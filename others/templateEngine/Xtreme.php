@@ -1,7 +1,7 @@
 <?php
 
 /*
-Xtreme 0.1 - Hight performance template engine
+Xtreme 0.2 - Hight performance template engine
 Copyright (C) 20011-2012  Covolo Nicola
 
 */
@@ -15,10 +15,11 @@ class Xtreme
     private $data; 
     private $readyCompiled;
     private $groups;
+    private $groups_html;
     private $outputModifiers;
     private $cache;
     private $compileCompression;
-    const UNIQUECOMMENT='<!--x-->';
+    const HTMLCODE='<!--|html|-->';
 
     function __construct()
     {
@@ -29,6 +30,7 @@ class Xtreme
         $this->data = new stdClass;
         $this->readyCompiled = new stdClass;
         $this->groups = new stdClass;
+        $this->groups_html=new stdClass;
         $this->outputModifiers = array();
         $this->cache = true;
         $this->compileCompression = true;
@@ -60,31 +62,37 @@ class Xtreme
     }
 
 
-    public function assignToGroup($groupId, $blockId, $templateName = '',$html=false)
+    public function assignToGroup($groupId, $blockId, $templateName = '',$type='template')
     {
             
-        if (!property_exists($this->groups, $groupId))
-            $this->groups->$groupId = array();
-            
-        $x=(html)?Xtreme::UNIQUECOMMENT:'';
+        $storeType='groups';
+        if($type=='template'){
+            $x=0;
+         }
+        else{
+            $storeType.='_html';
+            $x=Xtreme::HTMLCODE; 
+         }
+        if (!property_exists($this->$storeType, $groupId))
+            $this->$storeType->$groupId = array();    
 
         if (is_array($blockId))
         {
             foreach ($blockId as $n => $v){
                 $v=$x.$v;
-                $this->groups->$groupId[$n] = $v;
+                $this->$storeType->$groupId[$n] = $v;
             }
         } elseif (is_object($blockId))
         {
             foreach (get_object_vars($blockId) as $n => $v)
                 $v=$x.$v;
-                $this->groups->$groupId[$n] = $v;
+                $this->$storeType->$groupId[$n] = $v;
         } else
         {
             $templateName=$x.$templateName;
-            $this->groups->$groupId[$blockId] = $templateName;
+            $this->$storeType->$groupId[$blockId] = $templateName;
         } 
-    }
+    }       
     
     public function assign($key, $value = '')
     {
@@ -140,22 +148,26 @@ class Xtreme
     public function clearGroups()
     {
         $this->groups = new stdClass;
+        $this->groups_html= new stdClass;
     }
 
     public function outputGroup($templates, $groupId, $reuse = false, $draw = false)
     {
-        if (!property_exists($this->groups, $groupId))
-            return;
-        foreach ($this->groups->$groupId as $blockId => $templateName)
-        {
-            if(substr($templateName,0,strlen(Xtreme::UNIQUECOMMENT))==Xtreme::UNIQUECOMMENT || $templateName=='' )
-                $this->assign($blockId, $templateName);
-            else   
+        if (property_exists($this->groups, $groupId)){
+          foreach ($this->groups->$groupId as $blockId => $templateName)
+            {
                 $this->assign($blockId, file_get_contents($this->getTplPath($templateName)));
+             }
+             unset($this->groups->$groupId);
         }
-        $html = $this->output($templates);
-        unset($this->groups->$groupId);
-        return $html;
+        if (property_exists($this->groups_html, $groupId)){
+            foreach ($this->groups_html->$groupId as $blockId => $html)
+            {
+                $this->assign($blockId, $html);
+             }
+             unset($this->groups_html->$groupId);
+        }
+        return $this->output($templates);
     }
 
     public function output($templates, $reuse = false, $draw = false)
@@ -286,41 +298,43 @@ class Xtreme
 
         $parts = explode(':', $input);
 
-        $string = '<?php ';
+        $string = '';
         switch ($parts[0])
         { 
             case 'if':
             case 'switch':
-                $string .= $parts[0] . '(' . preg_replace($from, $to, $parts[1]) . ') { ' . ($parts[0] ==
-                    'switch' ? 'default: ' : '');
+                $string = '<?php '.$parts[0] . '(' . preg_replace($from, $to, $parts[1]) . ') { ' . ($parts[0] ==
+                    'switch' ? 'default: ?>' : ' ?>');
                 break;
             case 'foreach':
                 $pieces = explode(',', $parts[1]);
-                $string .= 'foreach(' . preg_replace($from, $to, $pieces[0]) . ' as ';
+                $string = '<?php foreach(' . preg_replace($from, $to, $pieces[0]) . ' as ';
                 $string .= preg_replace($from, $to, $pieces[1]);
                 if (sizeof($pieces) == 3)
 
                     $string .= '=>' . preg_replace($from, $to, $pieces[2]);
-                $string .= ') { ';
+                $string .= ') { ' ?>';
                 break;
             case 'end':
             case 'endswitch':
-                $string .= '}';
+                $string = '<?php } ?>';
                 break;
             case 'else':
-                $string .= '} else {';
+                $string = '<?php } else { ?>';
                 break;
             case 'case':
-                $string .= 'break; case ' . preg_replace($from, $to, $parts[1]) . ':';
+                $string = '<?php break; case ' . preg_replace($from, $to, $parts[1]) . ': ?>';
                 break;
             case 'include':
-                $string .= 'echo $this->output("' . $parts[1] . '");';
+                $string = '<?php echo $this->output("' . $parts[1] . '"); ?>';
                 break;
             default:
-                $string .= 'echo ' . preg_replace($from, $to, $parts[0]) . ';';
+                if(substr ($parts[0],0,strlen(Xtreme::HTMLCODE))==Xtreme::HTMLCODE)
+                  $string = $parts[0];
+                else
+                  $string = '<?php echo ' . preg_replace($from, $to, $parts[0]) . '; ?>';
                 break;
         }
-        $string .= ' ?>';
         return $string;
     }
 }
