@@ -1,0 +1,15 @@
+fixed:
+
+-flotten.js--> adapted to multiuniverse;
+-showshipyardPage-->hangar time;
+-generalFunction-->distance();
+
+add:
+
+-italian and english languages
+-anticheater in reg.php
+
+mod:
+
+-best countdown
+

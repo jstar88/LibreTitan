@@ -1,0 +1,957 @@
+
+
+body
+{color:#E6EBFB;margin-top:1px;margin-left:1px;background:#000000;background-image:url(img/background_dark.jpg);
+background-attachment:fixed;background-repeat:no-repeat;background-position:center;font-size:11px;
+font-family:Tahoma,sans-serif;overflow:visible !important;overflow:scroll;}
+
+
+
+  /***Menu***/
+#menu{margin-top:10px !important;margin:0px;}
+#menu p{margin-top:10px !important;margin-top:0px;margin-bottom:5px;}
+#menu td{background-image:url(img/no.gif) !important;
+filter               : alpha(opacity=70);
+  -moz-opacity         : 0.7;
+  -khtml-opacity       : 0.7;
+  opacity              : 0.7;
+border-color:transparent;border-style:solid;border-width:1px 1px 1px 1px;}
+#menu td:hover{background-image:url(img/bg3.png) !important;}
+#menu table a font{font-size:11px;}
+
+ 
+
+/*Materia oscura*/
+div#header_top table tr table#resources tr td img[src*="dm_klein_2.jpg"]{height: 0px !important;width: 0px!important;}
+
+
+
+div#header_top table tr table#resources tr:first-child td + td + td + td +td:after {content: "";} 
+
+
+/* Menu grafico */
+
+#menu {
+	color				:#0066CC;
+	font-family          		:Tahoma,sans-serif;
+    	font-size               	:11px;
+	width				:172px;
+	margin-left			:14px;
+	margin-top			:85px;
+	background-image		:url(img/bamenu.png);
+	background-repeat		:no-repeat;
+	background-position		:bottom ;
+	height				:550px;
+  
+}
+
+
+
+/* Contenus du menu gauche (vue générale, batiments...) */
+
+#menu table {
+	margin-top			:60px;
+	background-color		:transparent;
+}
+
+#menu td {
+	background-color		:transparent;
+}
+
+#menu img {
+	
+	height				:2px;
+		filter               : alpha(opacity=30);
+  -moz-opacity         : 0.3;
+  -khtml-opacity       : 0.3;
+  opacity              : 0.3;
+}
+
+
+    /*Cambia colore alle scritte*/
+#menu table a:link{color:#FFFFFF;font-family:Tahoma,sans-serif;font-size:11px;
+background-image:none !important;background-image:url(img/bg3.png);}
+#menu table a:visited{color:#FFFFFF;font-family:Tahoma,sans-serif;font-size:11px;
+background-image:none !important;background-image:url(img/bg3.png);}
+#menu table a:hover{color:#ED943A !important;color:92278f;text-decoration:none;
+background-image:none !important;background-image:url(img/bg3.png);}
+/*Cambia colore alla scritta Sala degli Ufficiali*/
+#menu a#darkmatter2 b{color:#6588A6;font-family:Tahoma,sans-serif;font-size:11px;}
+#menu a#darkmatter2 b:hover{color:#444444;}
+    /*Aggiunge Skin DurotanMod sopra al menu*/
+#menu a[href="mailto:barrierefrei@ogame.de"]:after
+{content:"Dedicata ad Alessandra";font-size:11px;font-weight:bold;color:#ED943A;text-decoration:none;}
+#menu a[href="mailto:barrierefrei@ogame.de"]:hover{text-decoration:none;}
+    /*Cambia colore alle scritte dell'Universo*/
+#menu nobr{color:#ED943A;font-family:Tahoma,sans-serif;font-size:11px;}
+#menu nobr a:link{color:#6588a6;font-family:Tahoma,sans-serif;font-size:11px;text-decoration:none;}
+#menu nobr a:visited{color:#6588a6;font-family:Tahoma,sans-serif;font-size:11px;text-decoration:none;}
+
+  /***Header***/
+#header_top td, #header_top select, td.header font{font-family:Tahoma,sans-serif;font-size:11px;}
+#header_top td{background-color:transparent;background-image:none}
+#header_top select{border:1px #537696 solid;color:#E6EBFB;background-color:#10365D;}
+    /*Colora i nomi risorse in alto*/
+#header_top tr>td>i>b>font{font-style:11;color:#FF3300;}
+#header_top tr>td+td>i>b>font{font-style:11;color:#97b8e0;}
+#header_top tr>td+td+td>i>b>font{font-style:11;color:#58ba66;}
+#header_top tr>td+td+td+td>i>b>font{font-style:11;color:#000033;}
+#header_top tr>td+td+td+td+td>i>b>font{font-style:11;color:#f2ab22;}
+    /*Fissa le risorse e gli imposta lo sfondo nero*/
+#header_top{position:fixed;z-index:100;}
+#overDiv{z-index:101;}
+
+  /***Content***/
+#content{overflow:visible !important;overflow:auto;}
+#content a{color:#cccccc;}
+#content th, #content td, #content input{font-size:11px;font-family:Tahoma,sans-serif;background-image:url(img/bg3.png);
+empty-cells:show;}
+#content th a{color:#cccccc;font-size:11px;font-family:Tahoma,sans-serif;}
+#content th a:hover{color:#ffffff;text-decoration:none;}
+#content input[type="submit"]{color:#00ccff;background-image:url(img/bg3.png);cursor:pointer;}
+#content input:hover[type="submit"]{color:#00dd00;background-image:url(img/bg3.png);}
+#content select{border:1px #537696 solid;color:#E6EBFB;background-color:#10365d;font-size:11px;
+font-family:Tahoma,sans-serif;}
+#content span, #content font, #content div{font-size:11px;font-family:Tahoma,sans-serif;}
+
+    /*Classe b*/
+#content td.b{background-color:#111111;color:#bbbbff;}
+#content td.b a{color:#dddddd;}
+#content td.b a:hover{text-decoration:none;color:#ffffff;}
+
+    /*Classe c*/
+#content td.c{font-weight:bold;color:#ED943A;padding-left:3px;background-image:url(img/bg1.gif);}
+#content td.c a{color:#dddddd;font-family:Tahoma,sans-serif;font-size:11px;}
+#content td.c a:hover{text-decoration:none;color:#ffff11;}
+
+    /*Classe l*/
+td.l{background-image:url(img/bg3.png);}    
+#content td.l{background-image:url(img/bg3.png);}
+#content td.l td{border:none;}
+#content td.l font{font-weight:normal;}
+#content td.l input[type="button"]{cursor:pointer;color:#00ccff;}
+#content td.l input:hover[type="button"]{color:#00dd00;background-image:url(img/bg3.png);}
+#content td.l font{font-family:Tahoma,sans-serif;font-size:11px;}
+#content td.l span, #content td.l b{font-family:Tahoma,sans-serif;font-size:11px !important;font-size:12px;}
+#content td.l a{color:#6588a6;font-family:Tahoma,sans-serif;font-size:11px;}
+#content td.l a:hover{color:#55ccff;text-decoration:none;}
+#content td.l a font[color="#00FF00"]:hover{color:#ffff11;}
+#content table[width="530"] td.l:first-line{color:#ffff55;font-weight:bold !important;font-weight:normal;}
+#content table[width="470"]>tbody>tr>td.l:first-line{font-weight:normal;}
+
+    /*Classe k*/
+#content td.k{background-image:url(img/bg3.png);}
+#content td.k a{font-family:Tahoma,sans-serif;font-size:11px;}
+#content td.k a:hover{text-decoration:none;}
+#content td.k a font[color="#00FF00"]:hover{color:#ffff11;text-decoration:none;}
+
+    /*Classe s*/
+#content table.s center{font-size:11px;font-family:Tahoma,sans-serif;}
+
+    /*Classe z*/
+#content div.z{color:#FFFFFF;}
+#content div.z a{color:#ff0000;}
+#content div.z a:hover{color:#ff5555;}
+
+    /***Tooltip***/
+#overDiv{border:3px #537696 outset !important;background-image:url(img/bg3.png) !important;}
+#overDiv b{font-family:Tahoma,sans-serif;font-size:11px;}
+#overDiv table{background-color:344566 !important;border-width:0px !important;width:auto !important;}
+#overDiv td{border:0px;color:#ED943A !important;background-color:transparent !important;
+font-family:Tahoma,sans-serif;font-size:11px;padding:3px;}
+#overDiv td.c{border:1px #448866 outset;background-image:url(img/bg3.png);text-align:center;}
+#overDiv th{color:#66ccff;background-color:transparent !important;background-image:url(img/bg3.png) !important;
+font-family:Tahoma,sans-serif;font-size:11px;border:2px #223355 inset;text-align:left;}
+#overDiv a{color:#dddddd !important;font-family:Tahoma,sans-serif;font-size:11px;}
+#overDiv a:hover{color:#dddd00 !important;text-decoration:none;}
+#overDiv img{border:2px #537696 outset;}
+
+    /***Riepilogo***/
+    /*Colorazione spazi it*/
+#content a[title="Spazi occupati"]{color:#6588A6;}
+#content a:hover[title="Spazi occupati"]{color:#6588A6;}
+#content a[title="Numero massimo di spazi occupabili"]{color:#33ffdd;}
+#content a:hover[title="Numero massimo di spazi occupabili"]{color:#33ffdd;}
+#content a[title="Spazi occupati"]:after{content:" occupati";color: #E6EBFB;}
+#content a[title="Numero massimo di spazi occupabili"]:after{content:" totale";color: #E6EBFB;}
+    /*Colorazione spazi en*/
+#content a[title="Developed fields"]{color:#eebb00;}
+#content a:hover[title="Developed fields"]{color:#eebb00;}
+#content a[title="max. developed fields"]{color:#00dd00;}
+#content a:hover[title="max. developed fields"]{color:#00dd00;}
+#content a[title="Developed fields"]:after{content:" developed";color: #E6EBFB;}
+#content a[title="max. developed fields"]:after{content:" max";color: #E6EBFB;}
+    /*Colorazione spazi fr*/
+#content a[title="Cases occupées"]{color:#eebb00;}
+#content a:hover[title="Cases occupées"]{color:#eebb00;}
+#content a[title="Nombre maximal de cases utilisables"]{color:#00dd00;}
+#content a:hover[title="Nombre maximal de cases utilisables"]{color:#00dd00;}
+#content a[title="Cases occupées"]:after{content:" occupées";color: #E6EBFB;}
+#content a[title="Nombre maximal de cases utilisables"]:after{content:" maximal";color: #E6EBFB;}
+    /*Colorazione posizione in classifica*/
+#content a[href*="?page=statistics"]{color:#1987BC;}
+    /*Navi e carico in chiaro*/
+tr.flight a[title]:after{content:" "attr(title)"";color:#dd8855;font-size:x-small;font-weight:normal;} /*NoL*/
+tr.return a[title]:after{content:" "attr(title)"";color:#dd8855;font-size:x-small;font-weight:normal;} /*NoL*/
+tr.holding a[title]:after{content:" "attr(title)"";color:#dd8855;font-size:x-small;font-weight:normal;} /*NoL*/
+    /*Cambia colore alle missioni*/
+#content tr.flight{background-image:url(img/bg3.png);}
+#content tr.flight th{background-image:url(img/bg3.png);}
+tr.flight a.ownattack{font-weight:bold;color:#cccccc !important;}
+tr.flight a.ownattack:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.ownespionage{font-weight:bold;color:#cccccc !important;}
+tr.flight a.ownespionage:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.ownharvest{font-weight:bold;color:#cccccc !important;}
+tr.flight a.ownharvest:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.owntransport{font-weight:bold;color:#cccccc !important;}
+tr.flight a.owntransport:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.owndeploy{font-weight:bold;color:#cccccc !important;}
+tr.flight a.owndeploy:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.attack{background-color:#160633;background-image:url(img/bg3.png);font-weight:bold;color:#cccccc !important;}
+tr.flight a.attack:hover{background-color:#160633;background-image:url(img/bg3.png);font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.espionage{font-weight:bold;color:#cccccc !important;}
+tr.flight a.espionage:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.transport{font-weight:bold;color:#cccccc !important;}
+tr.flight a.transport:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.flight a.owncolony{font-weight:bold;color:#cccccc !important;}
+tr.flight a.owncolony:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+#content tr.return{background-image:url(img/bg3.png);}
+#content tr.return th{background-image:url(img/bg3.png);}
+tr.return a.ownattack{font-weight:bold;color:#cccccc !important;}
+tr.return a.ownattack:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.return a.ownespionage{font-weight:bold;color:#cccccc !important;}
+tr.return a.ownespionage:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.return a.ownharvest{font-weight:bold;color:#cccccc !important;}
+tr.return a.ownharvest:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.return a.owntransport{font-weight:bold;color:#cccccc !important;}
+tr.return a.owntransport:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr.return a.owncolony{font-weight:bold;color:#cccccc !important;}
+tr.return a.owncolony:hover{font-weight:bold;color:#ffffff !important;;text-decoration:none;}
+tr th span.ownmissile{color:#9900ff;}
+tr.flight th span.flight.ownattack{color:#CC3300;}
+tr.return th span.return.ownattack{color:#993300;}
+tr.return th span.return.ownfederation{color:#ff0066;}
+tr.flight th span.flight.ownespionage{color:#77bbff;}
+tr.return th span.return.ownespionage{color:#77bbff;}
+tr.flight th span.flight.ownharvest{color:#119922;}
+tr.return th span.return.ownharvest{color:#119922;}
+tr.flight th span.flight.owntransport{color:#11ff11;}
+tr.return th span.return.owntransport{color:#11ff11;}
+tr.flight th span.flight.owndeploy{color:#55ff99;}
+tr.return th span.return.owndeploy{color:#55ff99;}
+tr.flight th span.flight.owncolony{color:#ddaadd;}
+tr.return th span.return.owncolony{color:#ddaadd;}
+tr.flight th span.flight.attack{color:#ff1111;text-decoration:blink;}
+tr.flight th span.flight.espionage{color:#ff8800;}
+tr.flight th span.flight.transport{color:#ffff44;}
+#content tr.holding{background-image:url(img/bg3.png);}
+#content tr.holding th{background-image:url(img/bg3.png);}
+tr.holding th span.holding.owntransport{color:#11ff11;}
+span.ownattack+br+br+span{color:#ff0066;}
+span.attack+br+br+span{color:#ff0066;}
+span.federation+br+br+span{color:#ff0066;}
+span.ownfederation+br+br+span{color:#ff0066;}
+
+    /***Impero**/
+    /*Riduzione e bilanciamento larghezza*/
+#content th[width="75"]{width:auto !important;}
+#content th[style="padding: 20px;"]{padding:0px !important;}
+    /*Colorazioni varie*/
+#content table[width="750"]>tbody>tr+tr>th a{color:#bb7744;}
+#content table[width="750"]>tbody>tr+tr>th a:hover{color:#dd9966;}
+#content table[width="750"]>tbody>tr+tr>th+th a{color:#00ffff;}
+#content table[width="750"]>tbody>tr+tr>th+th a:hover{color:#99ffff;}
+#content table[width="750"]>tbody>tr+tr+tr+tr>th:first-child{color:#ffffcc;}
+#content table[width="750"]>tbody>tr+tr+tr+tr>th a{color:#bbddbb;}
+#content table[width="750"]>tbody>tr+tr+tr+tr>th a:hover{color:#ddffdd;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#aaaaaa;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr>th{color:#55ff55;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr>th a{color:#aaaaaa;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#ffcccc;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr>th a{color:#ffcccc;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#77bbff;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th a{color:#77bbff;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#ccff44;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th{color:#ccff44;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th a{color:#bb7744;}
+#content table[width="750"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th a:hover{color:#bb7744;}
+#content table[width="750"] a[href*="gid=41"]{color:#00ffff;}
+#content table[width="750"] a[href*="gid=41"]:hover{color:#99ffff;}
+#content table[width="750"] a[href*="gid=42"]{color:#00ffff;}
+#content table[width="750"] a[href*="gid=42"]:hover{color:#99ffff;}
+#content table[width="750"] a[href*="gid=43"]{color:#00ffff;}
+#content table[width="750"] a[href*="gid=43"]:hover{color:#99ffff;}
+#content table[width="750"] a[href*="gid=106"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=106"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=108"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=108"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=109"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=109"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=110"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=110"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=111"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=111"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=113"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=113"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=114"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=114"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=115"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=115"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=117"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=117"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=118"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=118"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=120"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=120"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=121"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=121"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=122"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=122"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=123"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=123"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=124"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=124"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=199"]{color:#3377ff;}
+#content table[width="750"] a[href*="gid=199"]:hover{color:#66aaff;}
+#content table[width="750"] a[href*="gid=202"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=202"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=203"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=203"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=204"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=204"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=205"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=205"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=206"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=206"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=207"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=207"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=208"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=208"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=209"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=209"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=210"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=210"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=211"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=211"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=212"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=212"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=213"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=213"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=214"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=214"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=215"]{color:#ffaa00;}
+#content table[width="750"] a[href*="gid=215"]:hover{color:#ffcc44;}
+#content table[width="750"] a[href*="gid=401"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=401"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=402"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=402"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=403"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=403"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=404"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=404"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=405"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=405"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=406"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=406"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=407"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=407"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=408"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=408"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=502"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=502"]:hover{color:#88ffcc;}
+#content table[width="750"] a[href*="gid=503"]{color:#55ee99;}
+#content table[width="750"] a[href*="gid=503"]:hover{color:#88ffcc;}
+
+    /***Costruzioni - colorazione nomi strutture***/
+#content td a[href*="gid=1"]{color:#ED943A;}
+#content td a[href*="gid=1"]:hover{color:#cc00cc;}
+#content td a[href*="gid=2"]{color:#ED943A;}
+#content td a[href*="gid=2"]:hover{color:#cc00cc;}
+#content td a[href*="gid=3"]{color:#ED943A;}
+#content td a[href*="gid=3"]:hover{color:#cc00cc;}
+#content td a[href*="gid=4"]{color:#ED943A;}
+#content td a[href*="gid=4"]:hover{color:#cc00cc;}
+#content td a[href*="gid=12"]{color:#ED943A;}
+#content td a[href*="gid=12"]:hover{color:#cc00cc;}
+#content td a[href*="gid=14"]{color:#ED943A;}
+#content td a[href*="gid=14"]:hover{color:#cc00cc;}
+#content td a[href*="gid=15"]{color:#ED943A;}
+#content td a[href*="gid=15"]:hover{color:#cc00cc;}
+#content td a[href*="gid=21"]{color:#ED943A;}
+#content td a[href*="gid=21"]:hover{color:#cc00cc;}
+#content td a[href*="gid=22"]{color:#ED943A;}
+#content td a[href*="gid=22"]:hover{color:#cc00cc;}
+#content td a[href*="gid=23"]{color:#ED943A;}
+#content td a[href*="gid=23"]:hover{color:#cc00cc;}
+#content td a[href*="gid=24"]{color:#ED943A;}
+#content td a[href*="gid=24"]:hover{color:#cc00cc;}
+#content td a[href*="gid=31"]{color:#ED943A;}
+#content td a[href*="gid=31"]:hover{color:#cc00cc;}
+#content td a[href*="gid=33"]{color:#ED943A;}
+#content td a[href*="gid=33"]:hover{color:#cc00cc;}
+#content td a[href*="gid=34"]{color:#ED943A;}
+#content td a[href*="gid=34"]:hover{color:#cc00cc;}
+#content td a[href*="gid=44"]{color:#ED943A;}
+#content td a[href*="gid=44"]:hover{color:#cc00cc;}
+#content td a[href*="gid=41"]{color:#00ffff;}
+#content td a[href*="gid=41"]:hover{color:#99ffff;}
+#content td a[href*="gid=42"]{color:#00ffff;}
+#content td a[href*="gid=42"]:hover{color:#99ffff;}
+#content td a[href*="gid=43"]{color:#00ffff;}
+#content td a[href*="gid=43"]:hover{color:#99ffff;}
+
+    /***Portale - colorazione navi***/
+#content input[name="c202"]{color:#33dd44;}
+#content input[name="c203"]{color:#00aa11;}
+#content input[name="c204"]{color:#ff4444;}
+#content input[name="c205"]{color:#ee3333;}
+#content input[name="c206"]{color:#dd2222;}
+#content input[name="c207"]{color:#dd0000;}
+#content input[name="c208"]{color:#22cc33;}
+#content input[name="c209"]{color:#11bb22;}
+#content input[name="c210"]{color:#7788ff;}
+#content input[name="c211"]{color:#dd0022;}
+#content input[name="c212"]{color:#ffff66;}
+#content input[name="c213"]{color:#dd1111;}
+#content input[name="c214"]{color:#cc0066;}
+#content input[name="c215"]{color:#dd0033;}
+#content th a[href*="gid=202"]{color:#33dd44;}
+#content th a[href*="gid=202"]:after{content:" ";}
+#content th a[href*="gid=202"]:hover{color:#33dd44;}
+#content th a[href*="gid=203"]{color:#00aa11;}
+#content th a[href*="gid=203"]:after{content:" ";}
+#content th a[href*="gid=203"]:hover{color:#00aa11;}
+#content th a[href*="gid=204"]{color:#ff4444;}
+#content th a[href*="gid=204"]:after{content:" ";}
+#content th a[href*="gid=204"]:hover{color:#ff4444;}
+#content th a[href*="gid=205"]{color:#ee3333;}
+#content th a[href*="gid=205"]:after{content:" ";}
+#content th a[href*="gid=205"]:hover{color:#ee3333;}
+#content th a[href*="gid=206"]{color:#dd2222;}
+#content th a[href*="gid=206"]:after{content:" ";}
+#content th a[href*="gid=206"]:hover{color:#dd2222;}
+#content th a[href*="gid=207"]{color:#dd0000;}
+#content th a[href*="gid=207"]:after{content:" ";}
+#content th a[href*="gid=207"]:hover{color:#dd0000;}
+#content th a[href*="gid=208"]{color:#22cc33;}
+#content th a[href*="gid=208"]:after{content:" ";}
+#content th a[href*="gid=208"]:hover{color:#22cc33;}
+#content th a[href*="gid=209"]{color:#11bb22;}
+#content th a[href*="gid=209"]:after{content:" ";}
+#content th a[href*="gid=209"]:hover{color:#11bb22;}
+#content th a[href*="gid=210"]{color:#7788ff;}
+#content th a[href*="gid=210"]:after{content:" ";}
+#content th a[href*="gid=210"]:hover{color:#7788ff;}
+#content th a[href*="gid=211"]{color:#dd0022;}
+#content th a[href*="gid=211"]:after{content:" ";}
+#content th a[href*="gid=211"]:hover{color:#dd0022;}
+#content th a[href*="gid=212"]{color:#ffff66;}
+#content th a[href*="gid=212"]:after{content:" ";}
+#content th a[href*="gid=212"]:hover{color:#ffff66;}
+#content th a[href*="gid=213"]{color:#dd1111;}
+#content th a[href*="gid=213"]:after{content:" ";}
+#content th a[href*="gid=213"]:hover{color:#dd1111;}
+#content th a[href*="gid=214"]{color:#cc0066;}
+#content th a[href*="gid=214"]:after{content:" ";}
+#content th a[href*="gid=214"]:hover{color:#cc0066;}
+#content th a[href*="gid=215"]{color:#dd0033;}
+#content th a[href*="gid=215"]:after{content:" ";}
+#content th a[href*="gid=215"]:hover{color:#dd0033;}
+
+    /***Risorse***/
+table[width="550"]>tbody>tr>th+th{color:#99bb99;}
+table[width="550"]>tbody>tr>th+th+th{color:#97b8e0;}
+table[width="550"]>tbody>tr>th+th+th+th{color:#58ba66;}
+table[width="550"]>tbody>tr>th+th+th+th+th{color:#ccff44;}
+    /*Colorazioni varie*/
+table[width="550"]>tbody>tr+tr+tr>th:first-child{color:#00cc00;}
+table[width="550"]>tbody>tr+tr+tr+tr>th:first-child{color:#99bb99;}
+table[width="550"]>tbody>tr+tr+tr+tr+tr>th:first-child{color:#ffcccc;}
+table[width="550"]>tbody>tr+tr+tr+tr+tr+tr>th:first-child{color:#77bbff;}
+table[width="550"]>tbody>tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#ccff44;}
+table[width="550"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#ccff44;}
+table[width="550"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#ccff44;}
+table[width="550"]>tbody>tr+tr+tr+tr+tr+tr+tr+tr+tr+tr>th:first-child{color:#E6EBFB;}
+    /*Colorazione tendine*/
+#content select[name="last1"]{color:#99bb99;}
+#content select[name="last2"]{color:#ffcccc;}
+#content select[name="last3"]{color:#77bbff;}
+#content select[name="last4"]{color:#ffff22;}
+#content select[name="last12"]{color:#ffcc00;}
+#content select[name="last212"]{color:#bbff33;}
+
+    /***Mercante***/
+    /*Colora le risorse nella tendina*/
+select[name="offer_id"] option[value="1"]{color:#99bb99;}
+select[name="offer_id"] option[value="2"]{color:#ffcccc;}
+select[name="offer_id"] option[value="3"]{color:#77bbff;}
+    /*Colorazioni tabella*/
+#content table[width="520"]>tbody>tr+tr>th+th+th{color:#66ff99;}
+#content table[width="520"]>tbody>tr+tr>th+th+th+th{color:#ffff55;}
+#content table[width="520"]>tbody>tr+tr+tr>th+th+th{color:#ffffff;}
+#content table[width="520"]>tbody>tr+tr+tr>th+th+th+th{color:#ffffff;}
+#content table[width="520"]>tbody>tr+tr+tr>th.c:first-child{color:#99bb99;}
+#content table[width="520"]>tbody>tr+tr+tr+tr>th.c:first-child{color:#ffcccc;}
+#content table[width="520"]>tbody>tr+tr+tr+tr+tr>th.c:first-child{color:#77bbff;}
+#content table[width="520"]>tbody>tr+tr+tr+tr+tr+tr>th.c:first-child{color:#ff0000;}
+
+    /***Ricerca - colorazione nomi ricerche***/
+#content td a[href*="gid=106"]{color:#3377ff;}
+#content td a[href*="gid=106"]:hover{color:#66aaff;}
+#content td a[href*="gid=108"]{color:#3377ff;}
+#content td a[href*="gid=108"]:hover{color:#66aaff;}
+#content td a[href*="gid=109"]{color:#3377ff;}
+#content td a[href*="gid=109"]:hover{color:#66aaff;}
+#content td a[href*="gid=110"]{color:#3377ff;}
+#content td a[href*="gid=110"]:hover{color:#66aaff;}
+#content td a[href*="gid=111"]{color:#3377ff;}
+#content td a[href*="gid=111"]:hover{color:#66aaff;}
+#content td a[href*="gid=113"]{color:#3377ff;}
+#content td a[href*="gid=113"]:hover{color:#66aaff;}
+#content td a[href*="gid=114"]{color:#3377ff;}
+#content td a[href*="gid=114"]:hover{color:#66aaff;}
+#content td a[href*="gid=115"]{color:#3377ff;}
+#content td a[href*="gid=115"]:hover{color:#66aaff;}
+#content td a[href*="gid=117"]{color:#3377ff;}
+#content td a[href*="gid=117"]:hover{color:#66aaff;}
+#content td a[href*="gid=118"]{color:#3377ff;}
+#content td a[href*="gid=118"]:hover{color:#66aaff;}
+#content td a[href*="gid=120"]{color:#3377ff;}
+#content td a[href*="gid=120"]:hover{color:#66aaff;}
+#content td a[href*="gid=121"]{color:#3377ff;}
+#content td a[href*="gid=121"]:hover{color:#66aaff;}
+#content td a[href*="gid=122"]{color:#3377ff;}
+#content td a[href*="gid=122"]:hover{color:#66aaff;}
+#content td a[href*="gid=123"]{color:#3377ff;}
+#content td a[href*="gid=123"]:hover{color:#66aaff;}
+#content td a[href*="gid=124"]{color:#3377ff;}
+#content td a[href*="gid=124"]:hover{color:#66aaff;}
+#content td a[href*="gid=199"]{color:#3377ff;}
+#content td a[href*="gid=199"]:hover{color:#66aaff;}
+
+    /***Cantiere Spaziale***/
+    /*Colorazione navi*/
+#content td a[href*="gid=202"]{color:#ffaa00;}
+#content td a[href*="gid=202"]:hover{color:#ffcc44;}
+#content td a[href*="gid=203"]{color:#ffaa00;}
+#content td a[href*="gid=203"]:hover{color:#ffcc44;}
+#content td a[href*="gid=204"]{color:#ffaa00;}
+#content td a[href*="gid=204"]:hover{color:#ffcc44;}
+#content td a[href*="gid=205"]{color:#ffaa00;}
+#content td a[href*="gid=205"]:hover{color:#ffcc44;}
+#content td a[href*="gid=206"]{color:#ffaa00;}
+#content td a[href*="gid=206"]:hover{color:#ffcc44;}
+#content td a[href*="gid=207"]{color:#ffaa00;}
+#content td a[href*="gid=207"]:hover{color:#ffcc44;}
+#content td a[href*="gid=208"]{color:#ffaa00;}
+#content td a[href*="gid=208"]:hover{color:#ffcc44;}
+#content td a[href*="gid=209"]{color:#ffaa00;}
+#content td a[href*="gid=209"]:hover{color:#ffcc44;}
+#content td a[href*="gid=210"]{color:#ffaa00;}
+#content td a[href*="gid=210"]:hover{color:#ffcc44;}
+#content td a[href*="gid=211"]{color:#ffaa00;}
+#content td a[href*="gid=211"]:hover{color:#ffcc44;}
+#content td a[href*="gid=212"]{color:#ffaa00;}
+#content td a[href*="gid=212"]:hover{color:#ffcc44;}
+#content td a[href*="gid=213"]{color:#ffaa00;}
+#content td a[href*="gid=213"]:hover{color:#ffcc44;}
+#content td a[href*="gid=214"]{color:#ffaa00;}
+#content td a[href*="gid=214"]:hover{color:#ffcc44;}
+#content td a[href*="gid=215"]{color:#ffaa00;}
+#content td a[href*="gid=215"]:hover{color:#ffcc44;}
+
+    /***Costruzioni, Ricerche, Cantiere navale e Difese - colorazione risorse***/
+#content td.l a+br+br+b{color:#ff3300;}
+#content td.l a+br+br+b+b{color:#97b8e0;}
+#content td.l a+br+br+a+b{color:#f2ab22;}
+#content td.l a+br+br+b+b+b{color:#58ba66;}
+#content td.l a+br+br+a+b+b{color:#77bbff;}
+#content td.l a+br+br+b+a+b{color:#77bbff;}
+#content td.l a+br+br+a+a+b{color:#77bbff;}
+#content td.l a+br+br+b+b+b+b{color:#f2ab22;}
+#content td.l a+br+br+a+b+b+b{color:#f2ab22;}
+#content td.l a+br+br+b+a+b+b{color:#f2ab22;}
+#content td.l a+br+br+b+b+a+b{color:#f2ab22;}
+#content td.l a+br+br+a+a+b+b{color:#f2ab22;}
+#content td.l a+br+br+b+a+a+b{color:#f2ab22;}
+#content td.l a+br+br+a+b+a+b{color:#f2ab22;}
+#content td.l a+br+br+a+a+a+b{color:#f2ab22;}
+    /*Terraformer*/
+#content td.l a[href*="gid=33"]+br+br+b{color:#ff3300;}
+#content td.l a[href*="gid=33"]+br+br+b+b{color:#97b8e0;}
+#content td.l a[href*="gid=33"]+br+br+a+b{color:#f2ab22;}
+#content td.l a[href*="gid=33"]+br+br+b+b+b{color: #58ba66;}
+#content td.l a[href*="gid=33"]+br+br+a+b+b{color: #f2ab22;}
+#content td.l a[href*="gid=33"]+br+br+b+a+b{color: #f2ab22;}
+#content td.l a[href*="gid=33"]+br+br+a+a+b{color: #f2ab22;}
+    /*Tecnnologia Informatica, Energetica, Iperspaziale e Satellite Solare*/
+#content td.l a[href*="gid=108"]+br+br+b,#content td.l a[href*="gid=113"]+br+br+b,
+#content td.l a[href*="gid=114"]+br+br+b,#content td.l a[href*="gid=212"]+br+br+b{color:#97b8e0;}
+#content td.l a[href*="gid=108"]+br+br+b+b, #content td.l a[href*="gid=113"]+br+br+b+b,
+#content td.l a[href*="gid=114"]+br+br+b+b, #content td.l a[href*="gid=212"]+br+br+b+b{color:#58ba66;}
+#content td.l a[href*="gid=108"]+br+br+a+b, #content td.l a[href*="gid=113"]+br+br+a+b,
+#content td.l a[href*="gid=114"]+br+br+a+b, #content td.l a[href*="gid=212"]+br+br+a+b{color:#58ba66;}
+    /*Propulsore a combustione*/
+#content td.l a[href*="gid=115"]+br+br+b+b{color:#58ba66;}
+#content td.l a[href*="gid=115"]+br+br+a+b{color:#58ba66;}
+    /*Tecnologia Gravitonica*/
+#content td.l a[href*="gid=199"]+br+br+b{color: #f2ab22;}
+    /*Sonda Spia*/
+#content td.l a[href*="gid=210"]+br+br+b{color:#97b8e0;}
+    /*Missili anti-balistici*/
+#content td.l a[href*="gid=502"]+br+br+b+b{color:#58b666;}
+#content td.l a[href*="gid=502"]+br+br+a+b{color:#58b666;}
+
+    /*Cantiere e Difesa - colorazione coda di costruzione*/
+#content select[name="auftr"]{background-color:#33aa66;color:#003300;}
+#content select[name="auftr"] option[select]{background-color:#ff0000;color:#003300;}
+
+    /***Flotta1***/
+    /*Ridimensionamento per allargare un po'*/
+div#content > center > center > table[width="519"]{width:90%;} /*NoL*/
+    /*Colorazione e espansione scritta andata ritorno e staziona*/
+#content a[title="flotta sul pianeta"]{font-size:0px;}
+#content a[title="flotta sul pianeta"]:after{content:"(andata)";font-size:11px;font-weight:bold;color:#00dd00;
+text-decoration:none;}
+#content a[title="ritorna al pianeta"]{font-size:0px;}
+#content a[title="ritorna al pianeta"]:after{content:"(ritorno)";font-size:11px;font-weight:bold;color:#ff9900;
+text-decoration:none;}
+#content a[title="staziona"]{font-size:0px;}
+#content a[title="staziona"]:after{content:"(staziona)";font-size:11px;font-weight:bold;color:#22aaff;
+text-decoration:none;}
+    /*Colorazione scorciatoie*/
+#content a[href*="noShips"]{color:#ffaa00;}
+#content a:hover[href*="noShips"]{color:#ffaa44;}
+#content a[href*="maxShips"]{color:#22ff22;}
+#content a:hover[href*="maxShips"]{color:#55ff55;}
+    /*Carico in chiaro it*/
+div#content > center > center > table[width="519"] tr>th+th>a[title*="o:"]:before{content:" "attr(title)"";color:#aaffaa;
+font-size:x-small;font-weight:normal;} /*NoL*/
+    /*Carico in chiaro en fr*/
+div#content > center > center > table[width="519"] tr>th+th>a[title*="l:"]:before{content:" "attr(title)"";color:#aaffaa;
+font-size:x-small;font-weight:normal;} /*NoL*/
+div#content > center > center > table[width="519"] tr>th+th>a[title*="m:"]:before{content:" "attr(title)"";color:#aaffaa;
+font-size:x-small;font-weight:normal;} /*NoL*/
+    /*Navi in chiaro*/
+div#content > center > center > table[width="519"] tr>th+th+th>a:before{content:"" !important;} /*NoL*/
+div#content > center > center > table[width="519"] tr>th+th+th>a:after{content:" "attr(title)"";
+color:#ffaaaa;font-size:x-small;font-weight:normal;} /*NoL*/
+    /*Velocità in chiaro it en fr*/
+a[title~="Velocità:"]:after{content:" ("attr(title)")";color:#aaddff;font-size:x-small;font-weight:normal;}
+a[title~="Speed:"]:after{content:" ("attr(title)")";color:#aaddff;font-size:x-small;font-weight:normal;}
+a[title~="Vitesse:"]:after{content:" ("attr(title)")";color:#aaddff;font-size:x-small;font-weight:normal;}
+    /*Input Federazione*/
+#content input[name="groupname"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+#content input[name="addtogroup"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+    /*Colorazione tipo nave*/
+#content input[name="ship202"]{color:#33dd44;}
+#content input[name="ship203"]{color:#00aa11;}
+#content input[name="ship204"]{color:#ff4444;}
+#content input[name="ship205"]{color:#ee3333;}
+#content input[name="ship206"]{color:#dd2222;}
+#content input[name="ship207"]{color:#dd0000;}
+#content input[name="ship208"]{color:#22cc33;}
+#content input[name="ship209"]{color:#11bb22;}
+#content input[name="ship210"]{color:#7788ff;}
+#content input[name="ship211"]{color:#dd0022;}
+#content input[name="ship212"]{color:#ffff66;}
+#content input[name="ship213"]{color:#dd1111;}
+#content input[name="ship214"]{color:#cc0066;}
+#content input[name="ship215"]{color:#dd0033;}
+#content a[href*="ship202"]:after{content:" Tl:";color:#33dd44;}
+#content a[href*="ship203"]:after{content:" Tp:";color:#00aa11;}
+#content a[href*="ship204"]:after{content:" Cl:";color:#ff4444;}
+#content a[href*="ship205"]:after{content:" Cp:";color:#ee3333;}
+#content a[href*="ship206"]:after{content:" In:";color:#dd2222;}
+#content a[href*="ship207"]:after{content:" BS:";color:#dd0000;}
+#content a[href*="ship208"]:after{content:" Co:";color:#22cc33;}
+#content a[href*="ship209"]:after{content:" Rc:";color:#11bb22;}
+#content a[href*="ship210"]:after{content:" Sp:";color:#7788ff;}
+#content a[href*="ship211"]:after{content:" Bb:";color:#dd0022;}
+#content a[href*="ship212"]:after{content:" Sa:";color:#ffff66;}
+#content a[href*="ship213"]:after{content:" Cz:";color:#dd1111;}
+#content a[href*="ship214"]:after{content:" MN:";color:#cc0066;}
+#content a[href*="ship215"]:after{content:" IB:";color:#dd0033;}
+    /*Toglie lo spazio sotto ai pulsanti Richiama e Federazione*/
+#content form{margin-bottom:0px;}
+
+    /***Flotta2***/
+    /*Spostamento a destra della tendina delle percentuali*/
+/*#content th select[name="speed"]{position:relative;left:100px;}*/
+    /*Colorazione scorciatoie*/
+#content th a[href*="1); shortInfo()"]{color:#00DD00;}
+#content th a[href*="1); shortInfo()"]:hover{color:#66FF00;}
+#content th a[href*="3); shortInfo()"]{color:#00FFFF;}
+#content th a[href*="3); shortInfo()"]:hover{color:#77FFFF;}
+#content th a[href*="1); shortInfo()"] font{color:#00DD00;}
+#content th a[href*="1); shortInfo()"]:hover font{color:#66FF00;}
+#content th a[href*="3); shortInfo()"] font{color:#00FFFF;}
+#content th a[href*="3); shortInfo()"]:hover font{color:#77FFFF;}
+
+    /***Flotta3***/
+    /*Colorazione scorciatoie*/
+#content a[href*="maxResources"]{color:#22ff22;}
+#content a:hover[href*="maxResources"]{color:#55ff55;}
+    /*Colorazione risorse*/
+th[width="50%"]+th>table[width="259"]>tbody>tr+tr>th{color:#99bb99;}
+th[width="50%"]+th>table[width="259"]>tbody>tr+tr+tr>th{color:#ffcccc;}
+th[width="50%"]+th>table[width="259"]>tbody>tr+tr+tr+tr>th{color:#77bbff;}
+th[width="50%"]+th>table[width="259"]>tbody>tr+tr+tr+tr+tr>th{color:#bbffdd;}
+#content input[alt*="metallo"]{color:#99bb99;}
+#content input[alt*="cristallo"]{color:#ffcccc;}
+#content input[alt*="Deuterio"]{color:#77bbff;}
+    /*Colorazione durata*/
+#duration{color:#5599ff;}
+
+    /***Albero Tecnologico***/
+#content td.l a[href*="page=techtreedetails"]{color:#ffff00;}
+#content td.l a:hover[href*="page=techtreedetails"]{color:#ffff77;}
+
+    /***Galassia***/
+    /*Colorazione nomi dei giocatori*/
+.noob{color:#22cc66;}
+.strong{color:#ff2222;}
+.vacation{color:#3377ff;}
+.inactive{color:#ff8800;}
+.longinactive{color:#cc6600;}
+.banned{color:#9900ff;}
+    /*Detriti in chiaro it en fr*/
+th a[title*="Detriti"]:before, th a[title*="Debris"]:before, th a[title*="débris"]:before
+{content:""attr(title)"";color:#993300;font-size:x-small;font-weight:normal;display:compact;
+white-space:nowrap;} /*NoL*/
+    /*Ridimensionamento per evitare che vada a capo*/
+table[width="569"]{width:auto;}
+table[width="569"] th:first-child{width:auto;white-space:nowrap;} /*NoL*/
+    /*Colorazione scritte barra*/
+#content span#probes{color:#bbeeff;}
+#content span#recyclers{color:#66ff66;}
+#content span#missiles{color:#ff5555;}
+#content span#slots{color:#ffff00;}
+
+    /***Difese - colorazione difese***/
+#content td a[href*="gid=401"]{color:#55ee99;}
+#content td a[href*="gid=401"]:hover{color:#88ffcc;}
+#content td a[href*="gid=402"]{color:#55ee99;}
+#content td a[href*="gid=402"]:hover{color:#88ffcc;}
+#content td a[href*="gid=403"]{color:#55ee99;}
+#content td a[href*="gid=403"]:hover{color:#88ffcc;}
+#content td a[href*="gid=404"]{color:#55ee99;}
+#content td a[href*="gid=404"]:hover{color:#88ffcc;}
+#content td a[href*="gid=405"]{color:#55ee99;}
+#content td a[href*="gid=405"]:hover{color:#88ffcc;}
+#content td a[href*="gid=406"]{color:#55ee99;}
+#content td a[href*="gid=406"]:hover{color:#88ffcc;}
+#content td a[href*="gid=407"]{color:#55ee99;}
+#content td a[href*="gid=407"]:hover{color:#88ffcc;}
+#content td a[href*="gid=408"]{color:#55ee99;}
+#content td a[href*="gid=408"]:hover{color:#88ffcc;}
+#content td a[href*="gid=502"]{color:#55ee99;}
+#content td a[href*="gid=502"]:hover{color:#88ffcc;}
+#content td a[href*="gid=503"]{color:#55ee99;}
+#content td a[href*="gid=503"]:hover{color:#88ffcc;}
+
+    /*Cerca - colorazione area inserimento nome*/
+#content input[name="searchtext"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+
+    /***Statistiche***/
+#content a[name="SELF"]{color:#ffdd00 !important;}
+#content a[name="SELF"][style*="lime"]{color:#00dd00 !important;}
+#content a[name="SELF"][style*="0"]:after{content: " (alleato)";color:#88ccee;}
+
+    /***Messaggi***/
+    /*Colorazione Rapporti combattimento*/
+#content span.combatreport_igotattacked_iwon{color:#00aa22;}
+#content span.combatreport_ididattack_iwon{color:#33ee55;}
+#content span.combatreport{color:#dddd00;}
+    /*Colorazione pulsante sotto ai pm e alle circolari*/
+#content input[value~="Riferisci"]{background-color:#770000;}
+    /*Colorazione textarea scrittura messaggi*/
+#content textarea{font-size:11px;font-family:Tahoma,sans-serif;background-color:#224499;color:#bbbbff;}
+
+    /***Note***/
+    /*Pulsante di reset*/
+input[type="reset"]{color:#00ccff;background-image:url(img/bg3.png);cursor:pointer;}
+input:hover[type="reset"]{color:#00dd00;background-image:url(img/bg3.png);}
+    /*Colorazione area Oggetto*/
+#content input[name="betreff"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+
+    /***Opzioni***/
+    /*Colorazione aree di inserimento dati*/
+#content input[name="db_character"]{color:#ccccff;background-image:url(img/bg3.png);}
+#content input[name="db_password"]{font-weight:normal;color:#00dd00;background-image:url(img/bg3.png);}
+#content input[name="newpass1"]{font-weight:normal;color:#ffff00;background-image:url(img/bg3.png);}
+#content input[name="newpass2"]{font-weight:normal;color:#ffaa00;background-image:url(img/bg3.png);}
+#content input[name="db_email"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+#content input[name="dpath"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+#content input[name="spio_anz"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+#content input[name="settings_tooltiptime"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+#content input[name="settings_fleetactions"]{font-weight:normal;color:#ccccff;background-image:url(img/bg3.png);}
+
+    /***Falange***/
+td.c{font-family:Tahoma,sans-serif;font-size:11px;font-weight:bold;color:#55bbcc;padding-left:3px;
+background-image:url(img/bg1.gif);}
+td.c a{color:#dddddd;font-family:Tahoma,sans-serif;font-size:11px;}
+td.c a:hover{text-decoration:none;color:#ffff11;}
+div[id*="bxx"]{font-family:Tahoma,sans-serif;font-size:11px;}
+th{background-color:transparent;background-image:url(img/bg3.png);}
+span.phalanx_fleet a.phalanx_fleet{color:#dddddd;}
+span.phalanx_fleet a.phalanx_fleet:hover{text-decoration:none;color:#ffffff;}
+    /*Foxgame - Grandezza caratteri*/
+strong font{font-family:Tahoma,sans-serif;font-size:11px;}
+    /*Colorazione andata e ritorno*/
+span.return.phalanx_fleet{font-family:Tahoma,sans-serif;font-size:11px;color:#11ff11;}
+span.flight.phalanx_fleet{font-family:Tahoma,sans-serif;font-size:11px;color:#ff0000;}
+span.holding.phalanx_fleet{font-family:Tahoma,sans-serif;font-size:11px;color:#22aaff;}
+    /*Navi in chiaro*/
+/*Le mostra già il codice del Riepilogo*/
+
+    /***Pagina Alleanza esterna***/
+center table td, center table th{font-size:11px;font-family:Tahoma,sans-serif;background-color:transparent;
+color:#E6EBFB;border:1px #cccccc solid;background-image:url(img/bg3.png);empty-cells:show;}
+center table td.c{font-weight:bold;color:#55bbcc;padding-left:3px;background-image:url(img/bg1.gif);}
+center table th a{color:#55ff55;text-decoration:none;}
+center table th a:hover{color:#00dd00;text-decoration:none;}
+
+    /***Rapporti di combattimento***/
+table[width="99%"]{border:1px #537696 solid;background-color:transparent;background-image:url(img/bg3.png);}
+table[width="99%"] center{font-size:15px;font-family:Tahoma,sans-serif;color:#00dd00;}
+table[width="99%"] p{font-weight:normal;font-size:15px;font-family:Tahoma,sans-serif;color:#88bbff;}
+table[width="99%"] td{font-weight:bold;font-size:16px;font-family:Tahoma,sans-serif;color:#ff4400;}
+table[width="99%"] th{border:0px;color:#ffffcc;}
+table[width="99%"] table{border:1px #537696 solid;}
+table[width="99%"] table table{border:3px #537696 outset;}
+table[width="99%"] a{color:#cccccc;font-size:14px;text-decoration:none;}
+table[width="99%"] a:hover{color:#ffffff;text-decoration:none;}
+table[width="99%"] table table th{border:1px #537696 solid;background-color:transparent;
+background-image:url(img/bg3.png);}
+
+    /***Classi OoohpsGame***/
+    /*Flotta2 - Colorazione tipo missione*/
+select#missione1{color:#00DD00 !important;}
+select#missione2{color:#998833 !important;}
+select#missione3{color:#00FFFF !important;}
+select[name="planettype"] option[value="1"]{color:#00DD00;}
+select[name="planettype"] option[value="2"]{color:#998833;}
+select[name="planettype"] option[value="3"]{color:#00FFFF;}
+    /*Flotta2 - Colorazione percentuali*/
+select#velocita10{color:#0088FF !important;}
+select#velocita9{color:#00FFFF !important;}
+select#velocita8{color:#00FF88 !important;}
+select#velocita7{color:#00DD00 !important;}
+select#velocita6{color:#55DD00 !important;}
+select#velocita5{color:#99FF00 !important;}
+select#velocita4{color:#FFFF00 !important;}
+select#velocita3{color:#FFCC00 !important;}
+select#velocita2{color:#FF6600 !important;}
+select#velocita1{color:#FF0000 !important;}
+select[name="speed"] option[value="10"]{color:#0088FF;}
+select[name="speed"] option[value="9"]{color:#00FFFF;}
+select[name="speed"] option[value="8"]{color:#00FF88;}
+select[name="speed"] option[value="7"]{color:#00DD00;}
+select[name="speed"] option[value="6"]{color:#55DD00;}
+select[name="speed"] option[value="5"]{color:#99FF00;}
+select[name="speed"] option[value="4"]{color:#FFFF00;}
+select[name="speed"] option[value="3"]{color:#FFCC00;}
+select[name="speed"] option[value="2"]{color:#FF6600;}
+select[name="speed"] option[value="1"]{color:#FF0000;}
+    /*Flotta3 - Colorazione tipo missione*/
+td#missione1{color:#00DD00 !important;}
+td#missione2{color:#998833 !important;}
+td#missione3{color:#00FFFF !important;}
+
+   /*Fix men·risorse*/
+   div#header_top{
+	background-image: url(img/panel.png);
+	background-repeat: no-repeat;
+	background-color: transparent !important;
+	top: -8px;
+ 	position: fixed;
+	padding: 10px;
+	border: 0px;
+    overflow: auto;
+    overflow-y: hidden;
+	z-index:2 !important;
+}
+
+.style td
+{
+  vertical-align       : top;
+  height               : 15px;
+  background-image     : url(img/bg3.jpg);
+  background-color     : trasparent;
+  color                : #BFBFBF;
+  border               : 1px #537696 solid;
+  font-size            : 11px;
+  font-family          : Tahoma,sans-serif;
+  background-repeat    : no-repeat;
+  background-position  : left;  
+  text-align           : center;
+}
+.style td:hover
+{
+  height               : 15px;
+  background-image     : url(img/link.gif);
+  background-position  : center;
+  background-repeat    : no-repeat;
+}
+td.l a {
+	white-space: nowrap;
+}
+
+#darkmatter2 {
+	white-space: normal;
+}
+
+
+div#content{
+	margin  : 0px;
+	padding : 0px;
+	float   : top;
+	overflow: visible !important;
+	z-index:1 !important;
+}
+
+body{ 
+	overflow: visible !important; 
+
+
+}
+
+/**div#header_top{
+	background-image: url(img/intero.jpg);
+	background-color: none;
+	top: 0px;
+ 	margin-top           : 0px;
+  	margin-left          : 0px;
+  	background-image     : url(img/intero.jpg);
+  	background-attachment: fixed;
+  	background-repeat    : no-repeat;
+  	background-position  : top left;
+	position: fixed;
+	padding: 10px;
+	border: 0px;
+	overflow: auto;
+	overflow-y: hidden;
+	z-index:1;
+}
+**/
+
+
+
+#menu>table>tbody>tr>td>div>font>a>font{color:#6588A6;font-family:Tahoma,sans-serif;font-size:11px;}
+#menu>table>tbody>tr>td>div>font>a>font:hover{color:#444444;}
+
+/*Depositi pieni giallo*/
+tr .header td font[color="#ff0000"] 
+{ 
+    
+color:#FF0000;font-family:Tahoma,sans-serif;font-size:12px;text-decoration:none;
+ 
+}
+
+
+
+
+E9AB17
+eeee00
+
