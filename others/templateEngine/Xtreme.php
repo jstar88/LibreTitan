@@ -329,11 +329,7 @@ class Xtreme
                 $string = '<?php echo $this->output("' . $parts[1] . '"); ?>';
                 break;
             default:
-<<<<<<< HEAD
                 if(substr ($parts[0],0,strlen(Xtreme::HTMLCODE))==Xtreme::HTMLCODE)
-=======
-                if(substr ($parts[0],0,strlen(HTMLCODE))==HTMLCODE)
->>>>>>> 55b004d0297d8ea384a2bb6cd4c844a0c6f201fa
                   $string = $parts[0];
                 else
                   $string = '<?php echo ' . preg_replace($from, $to, $parts[0]) . '; ?>';
