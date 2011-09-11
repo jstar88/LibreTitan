@@ -182,7 +182,6 @@ else
 }
 
 include('includes/classes/class.SecurePage.' . $phpEx ); // include the class
-$SecureSqlInjection	= new SecureSqlInjection(); // load the class
-$SecureSqlInjection->secureGlobals(); // run the main class function
+SecurePage::run();
 
 ?>

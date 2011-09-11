@@ -13,13 +13,11 @@ if (!defined('INSIDE'))
 {
 	die('Hacking attempt');
 }
-//Ahora el sistema de plugins es compatible con todas las versiones, solo hay que cambiar el root que utiliza el juego desde aqui :D
-$game_root = $xgp_root;
 
 // return the name of php file without extension
 function phpself()
 {
-	global $game_root;
+	global $xgp_root;
 
 	$file = pathinfo($_SERVER['PHP_SELF']);
 	// fix for PHP PHP 4 > 5.2.0
@@ -28,7 +26,7 @@ function phpself()
 		$file['filename'] = substr($file['basename'], 0,
 			strlen($file['basename']) - strlen($file['extension']) - 1);
 	}
-	if (basename($game_root) != '.')
+	if (basename($xgp_root) != '.')
 	{
 		return basename($file['dirname']).'/'.$file['filename'];
 	}
@@ -112,7 +110,7 @@ return ($config_line);
 
 $config_line  = "";
 // making a little better the code using one var instead of two.
-$plugins_path = $game_root.'includes/plugins/';
+$plugins_path = $xgp_root.'includes/plugins/';
 // this variable is only for compatibility reasons, using version_compare()
 $plugins_version = '0.3';
 // this array is used to store code for actions trigger in some hooks

@@ -19,16 +19,6 @@
 # *																			 #
 ##############################################################################
 
-$_POST 		=	array_map ( 'deep' , $_POST );
-$_POST 		= 	array_map ( 'addslashes_deep' , $_POST );
-$_GET 		= 	array_map ( 'deep' ,  $_GET );
-$_GET 		= 	array_map ( 'addslashes_deep' , $_GET );
-$_REQUEST 	=  	array_map ( 'deep' , $_REQUEST );
-$_REQUEST 	= 	array_map ( 'addslashes_deep' ,  $_REQUEST );
-$_SERVER 	= 	array_map ( 'deep' , $_SERVER );
-$_SERVER	=  	array_map ( 'addslashes_deep' , $_SERVER );
-$_COOKIE 	= 	array_map ( 'deep' , $_COOKIE );
-$_COOKIE	= 	array_map ( 'addslashes_deep' , $_COOKIE );
 
 function deep ( $value )
 {

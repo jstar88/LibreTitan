@@ -22,7 +22,7 @@
 define('INSIDE'  , true);
 define('INSTALL' , false);
 
-$xgp_root = './';
+$xgp_root = dirname(__FILE__).DIRECTORY_SEPARATOR;
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.' . $phpEx);
 
