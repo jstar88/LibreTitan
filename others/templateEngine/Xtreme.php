@@ -2,7 +2,7 @@
 
 /*
 Xtreme 0.2 - Hight performance template engine
-Copyright (C) 20011-2012  Covolo Nicola
+Copyright (C) 2011-2012  Covolo Nicola
 
 */
 
