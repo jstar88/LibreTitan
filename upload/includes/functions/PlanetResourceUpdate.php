@@ -56,7 +56,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 			$post_porcent = 100;
 		}
 
-		for ( $ProdID = 0; $ProdID < 300; $ProdID++ )
+		foreach($reslist['prod'] as $ProdID)
 		{
 			if ( is_array($reslist['prod']) && in_array( $ProdID, $reslist['prod']) )
 			{
