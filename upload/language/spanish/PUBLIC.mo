@@ -9,62 +9,62 @@ $lang['forum']				= 'Foros';
 
 //index.php
 //case lostpassword
-$lang['mail_not_exist'] 		= '¡La dirección de correo eléctronico no existe!';
-$lang['mail_title']			= 'Nueva contraseña';
-$lang['mail_text']			= 'Esta es tu nueva contraseña: ';
-$lang['mail_sended']			= '¡La nueva contraseña ha sido enviado con éxito!';
+$lang['mail_not_exist'] 		= 'Â¡La direcciÃ³n de correo electrÃ³nico no existe!';
+$lang['mail_title']			= 'Nueva contraseÃ±a';
+$lang['mail_text']			= 'Esta es tu nueva contraseÃ±a: ';
+$lang['mail_sended']			= 'Â¡La nueva contraseÃ±a ha sido enviado con Ã©xito!';
 
 //case default
-$lang['login_error']			= '¡Datos ingresados incorrectos! <br /><a href="index.php" target="_top">Volver al inicio</a>';
+$lang['login_error']			= 'Â¡Datos ingresados incorrectos! <br /><a href="index.php" target="_top">Volver al inicio</a>';
 
 /* ------------------------------------------------------------------------------------------ */
 
 //lostpassword.tpl
 $lang['lost_pass_title']		= 'Recuperar clave perdida';
-$lang['lost_pass_text'] 		= 'Para recuperar tu contraseña, ingresa el email utilizado en el registro. Recibirás una nueva clave a la brevedad.';
+$lang['lost_pass_text'] 		= 'Para recuperar tu contraseÃ±a, ingresa el email utilizado en el registro. RecibirÃ¡s una nueva clave a la brevedad.';
 $lang['retrieve_pass']			= 'Recuperar clave';
-$lang['email']				= 'Correo electrónico';
+$lang['email']				= 'Correo electrÃ³nico';
 
 //index_body.tpl
 $lang['user']				= 'Usuario';
-$lang['pass']				= 'Contraseña';
-$lang['remember_pass']			= 'Recordar Contraseña';
-$lang['lostpassword']			= '¿Olvidaste tu Contraseña?';
+$lang['pass']				= 'ContraseÃ±a';
+$lang['remember_pass']			= 'Recordar ContraseÃ±a';
+$lang['lostpassword']			= 'Â¿Olvidaste tu ContraseÃ±a?';
 $lang['welcome_to']			= 'Bienvenido a';
-$lang['server_description']		= '</strong> es un <strong>juego de simulacion estratégica espacial</strong> con <strong>miles de jugadores</strong> a lo largo del mundo compitiendo por ser el mejor <strong>simultáneamente</strong>. Todo lo que necesitas para jugar, es un navegador web estándar.';
-$lang['server_register']		= '¡Registrate!';
-$lang['server_message']			= '¡Únete ya y forma parte del fantástico mundo de';
+$lang['server_description']		= '</strong> es un <strong>juego de simulaciÃ³n estratÃ©gica espacial</strong> con <strong>miles de jugadores</strong> a lo largo del mundo compitiendo por ser el mejor <strong>simultÃ¡neamente</strong>. Todo lo que necesitas para jugar, es un navegador web estÃ¡ndar.';
+$lang['server_register']		= 'Â¡Registrate!';
+$lang['server_message']			= 'Â¡Ãšnete ya y forma parte del fantÃ¡stico mundo de';
 $lang['login']				= 'Ingresar';
 
 /* ------------------------------------------------------------------------------------------ */
 
 //reg.php
-$lang['reg_mail_text_part1']		= 'Muchas gracias por registrarte en nuestro juego. \n Tu contraseña es: ';
-$lang['reg_mail_text_part2']		= ' \n\n ¡Disfrutá del juego! \n ';
+$lang['reg_mail_text_part1']		= 'Muchas gracias por registrarte en nuestro juego. \n Tu contraseÃ±a es: ';
+$lang['reg_mail_text_part2']		= ' \n\n Â¡Disfruta del juego! \n ';
 $lang['register_at']			= 'Registro en ';
-$lang['invalid_mail_adress']		= '¡Correo electrónico inválido!<br />';
-$lang['empty_user_field']		= '¡El campo del usuario no puedo estar vacío!<br />';
-$lang['password_lenght_error']		= '¡La contraseña debe tener al menos 4 caracteres!<br />';
-$lang['user_field_no_alphanumeric']	= '¡El campo de usuario sólo puede contener caracteres alfanuméricos!<br />';
-$lang['terms_and_conditions']		= '¡Debes aceptar nuestros términos y condiciones de uso!<br />';
-$lang['user_already_exists']		= '¡El nombre de usuario elegido ya existe!<br />';
-$lang['mail_already_exists']		= '¡El email ingresado ya existe!<br />';
+$lang['invalid_mail_adress']		= 'Â¡Correo electrÃ³nico invÃ¡lido!<br />';
+$lang['empty_user_field']		= 'Â¡El campo del usuario no puedo estar vacÃ­o!<br />';
+$lang['password_lenght_error']		= 'Â¡La contraseÃ±a debe tener al menos 4 caracteres!<br />';
+$lang['user_field_no_alphanumeric']	= 'Â¡El campo de usuario sÃ³lo puede contener caracteres alfanumÃ©ricos!<br />';
+$lang['terms_and_conditions']		= 'Â¡Debes aceptar nuestros tÃ©rminos y condiciones de uso!<br />';
+$lang['user_already_exists']		= 'Â¡El nombre de usuario elegido ya existe!<br />';
+$lang['mail_already_exists']		= 'Â¡El email ingresado ya existe!<br />';
 $lang['welcome_message_from']		= 'Admin';
 $lang['welcome_message_sender']		= 'Admin';
-$lang['welcome_message_subject']	= '¡Bienvenido!';
-$lang['welcome_message_content']	= '¡Bienvenido a XG Proyect!<p>Al comenzar, construye una mina de Metal.<br />Para hacerlo, haz click en el enlace \"Edificios\" en la izquierda, y dale a \"construir\" a la derecha de la mina de metal.<br />Ahora tienes algo de tiempo para conocer más cosas del juego.<p>Podrás encontrar ayuda:<br />En el <a href=\"http://www.xtreme-gamez.com.ar/foros\" target=\"_blank\">Foro</a><br />Ahora, tu mina debería estar acabada.<br />Como no producen nada sin energía, deberías construir una Planta de energía solar, vuelve a Edificios, y elige construir la Planta de energía solar.<p>Para ver todas las naves, estructuras defensivas, edificios e investigaciones que puedes investigar, puedes echarle un vistazo al árbol de tecnología en \"Tecnología\" en el menú izquierdo.<p>Ahora ya puedes empezar la conquista del universo... ¡Buena suerte!';
-$lang['reg_completed']			= '¡Registro completo!';
+$lang['welcome_message_subject']	= 'Â¡Bienvenido!';
+$lang['welcome_message_content']	= 'Â¡Bienvenido a XG Proyect!<p>Al comenzar, construye una mina de Metal.<br />Para hacerlo, haz click en el enlace \"Edificios\" en la izquierda, y dale a \"construir\" a la derecha de la mina de metal.<br />Ahora tienes algo de tiempo para conocer mÃ¡s cosas del juego.<p>PodrÃ¡s encontrar ayuda:<br />En el <a href=\"http://www.xtreme-gamez.com.ar/foros\" target=\"_blank\">Foro</a><br />Ahora, tu mina deberÃ­a estar acabada.<br />Como no producen nada sin energÃ­a, deberÃ­as construir una Planta de energÃ­a solar, vuelve a Edificios, y elige construir la Planta de energÃ­a solar.<p>Para ver todas las naves, estructuras defensivas, edificios e investigaciones que puedes investigar, puedes echarle un vistazo al Ã¡rbol de tecnologÃ­a en \"TecnologÃ­a\" en el menÃº izquierdo.<p>Ahora ya puedes empezar la conquista del universo... Â¡Buena suerte!';
+$lang['reg_completed']			= 'Â¡Registro completo!';
 
 //registry_form.tpl
-$lang['server_message_reg']		= '¡Únete ya y forma parte del fantástico mundo de';
+$lang['server_message_reg']		= 'Â¡Ãšnete ya y forma parte del fantÃ¡stico mundo de';
 $lang['register_at_reg']		= 'Registro en';
 $lang['user_reg']			= 'Usuario';
-$lang['pass_reg']			= 'Contraseña';
-$lang['email_reg']			= 'Correo electrónico';
-$lang['register_now']			= '¡Registrate!';
-$lang['accept_terms_and_conditions']	= 'Aceptar terminos y condiciones de uso';
+$lang['pass_reg']			= 'ContraseÃ±a';
+$lang['email_reg']			= 'Correo electrÃ³nico';
+$lang['register_now']			= 'Â¡Registrate!';
+$lang['accept_terms_and_conditions']	= 'Aceptar tÃ©rminos y condiciones de uso';
 //start mod
-$lang['select_universe_txt'] ='selección de universo';
+$lang['select_universe_txt'] ='selecciÃ³n de universo';
 $lang['universe_not_exist']				= 'Error, el universo no existe';
 //end mod
 $lang['language_selector_txt']="idioma";

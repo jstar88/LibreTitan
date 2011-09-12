@@ -135,7 +135,7 @@ function StdUserHeader ($metatags = '')
 
 	$parse['-title-'] 	.= $game_config['game_name'];
 	$parse['-favi-']	.= "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
-	$parse['-meta-']	.= "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=iso-8859-1\">\n";
+	$parse['-meta-']	.= "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\">\n";
 
 	if(!defined('LOGIN'))
 	{

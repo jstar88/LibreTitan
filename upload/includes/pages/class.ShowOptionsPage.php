@@ -58,7 +58,7 @@ class ShowOptionsPage
 
 		if ($_POST && $mode == "exit")
 		{
-			if (isset($_POST["exit_modus"]) && $_POST["exit_modus"] == 'on' and $CurrentUser['urlaubs_until'] <= time())
+			if (isset($_POST["exit_modus"]) && $_POST["exit_modus"] == 'on' && $CurrentUser['urlaubs_until'] <= time())
 			{
 				$urlaubs_modus = "0";
 
@@ -167,7 +167,7 @@ class ShowOptionsPage
 			{
 				$settings_wri = "0";
 			}
-			// < ------------------------------------------------------------ AÑADIR A LISTA DE AMIGOS ------------------------------------------------------------ >
+			// < ------------------------------------------------------------ AÃ‘ADIR A LISTA DE AMIGOS ------------------------------------------------------------ >
 			if (isset($_POST["settings_bud"]) && $_POST["settings_bud"] == 'on')
 			{
 				$settings_bud = "1";
@@ -306,11 +306,11 @@ class ShowOptionsPage
 			}
 			else
 			{
-				$parse['opt_lst_ord_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort'] == 0) ? " selected": "") .">Fecha de colonización</option>";
-				$parse['opt_lst_ord_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort'] == 1) ? " selected": "") .">Coordenadas</option>";
-				$parse['opt_lst_ord_data']  .= "<option value =\"2\"". (($CurrentUser['planet_sort'] == 2) ? " selected": "") .">Orden alfabético</option>";
-				$parse['opt_lst_cla_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort_order'] == 0) ? " selected": "") .">creciente</option>";
-				$parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort_order'] == 1) ? " selected": "") .">Decreciente</option>";
+				$parse['opt_lst_ord_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort'] == 0) ? " selected": "") .">".$lang['op_colo_date']."</option>";
+				$parse['opt_lst_ord_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort'] == 1) ? " selected": "") .">".$lang['op_coords']."</option>";
+				$parse['opt_lst_ord_data']  .= "<option value =\"2\"". (($CurrentUser['planet_sort'] == 2) ? " selected": "") .">".$lang['op_order_alpha']."</option>";
+				$parse['opt_lst_cla_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort_order'] == 0) ? " selected": "") .">".$lang['op_order_alpha_crec']."</option>";
+				$parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort_order'] == 1) ? " selected": "") .">".$lang['op_order_alpha_decr']."</option>";
 
 				if ($CurrentUser['authlevel'] > 0)
 				{

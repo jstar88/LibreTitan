@@ -175,13 +175,12 @@ if (INSTALL != true)
 		//include($xgp_root . 'includes/functions/CheckPlanetUsedFields.' . $phpEx);
 		//CheckPlanetUsedFields($planetrow);
 	}
+	include('includes/classes/class.SecurePage.' . $phpEx ); // include the class
+	SecurePage::run();
 }
 else
 {
 	$dpath     = "../" . DEFAULT_SKINPATH;
 }
-
-include('includes/classes/class.SecurePage.' . $phpEx ); // include the class
-SecurePage::run();
 
 ?>
