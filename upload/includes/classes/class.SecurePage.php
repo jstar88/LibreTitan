@@ -28,7 +28,7 @@ class SecurePage
    {    
       if(!is_array($value))
       {
-         $value = (get_magic_quotes_gpc()) ? htmlspecialchars(stripslashes($value)) : htmlspecialchars($value);
+         $value = (get_magic_quotes_gpc()) ? htmlspecialchars(stripslashes($value), ENT_QUOTES, 'UTF-8',false) : htmlspecialchars($value, ENT_QUOTES, 'UTF-8',false);
          $value = str_ireplace("script","blocked",$value);
          $value = mysql_real_escape_string($value);
       }
