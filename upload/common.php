@@ -46,6 +46,11 @@ include_once($xgp_root . 'includes/constants.'.$phpEx);
 include_once($xgp_root . 'includes/GeneralFunctions.'.$phpEx);
 include_once($xgp_root . 'includes/vendor/simplehtmldom/simple_html_dom.' . $phpEx);
 include_once($xgp_root . 'includes/classes/class.debug.'.$phpEx);
+include(dirname(__FILE__)."/includes/vendor/Xtreme.php");
+$engine=new Xtreme();
+$engine->setBaseDirectory($xgp_root);
+$engine->setCompileDirectory('styles/tmp');
+$engine->setTemplateDirectories('styles/templates');
 $debug 		= new debug();
 
 if (INSTALL != true)
@@ -175,7 +180,7 @@ if (INSTALL != true)
 		//include($xgp_root . 'includes/functions/CheckPlanetUsedFields.' . $phpEx);
 		//CheckPlanetUsedFields($planetrow);
 	}
-	include('includes/classes/class.SecurePage.' . $phpEx ); // include the class
+	include($xgp_root.'includes/classes/class.SecurePage.' . $phpEx ); // include the class
 	SecurePage::run();
 }
 else

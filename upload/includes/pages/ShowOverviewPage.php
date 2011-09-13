@@ -23,7 +23,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 {
-	global $xgp_root, $phpEx, $dpath, $game_config, $lang, $planetrow, $user;
+	global $xgp_root, $phpEx, $dpath, $game_config, $lang, $planetrow, $user,$engine;
 
 	include_once($xgp_root . 'includes/functions/InsertJavaScriptChronoAppletJstar.' . $phpEx);
 	include_once($xgp_root . 'includes/functions/InsertJavaScriptChronoApplet.' . $phpEx);
@@ -72,7 +72,8 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 			}
 			elseif ($_POST['action'] == $lang['ov_abandon_planet'])
 			{
-				return display(parsetemplate(gettemplate('overview/overview_deleteplanet'), $parse));
+                 $engine->assign($parse);
+			     return display($engine->output('overview/overview_deleteplanet'));
 			}
 			elseif (intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
 			{ //start mod
@@ -139,8 +140,8 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 					}
 				}
 			}
-
-			return display(parsetemplate(gettemplate('overview/overview_renameplanet'), $parse));
+            $engine->assign($parse);
+			return display($engine->output('overview/overview_renameplanet'));
 			break;
 
 		default:
@@ -502,9 +503,8 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 			}
 			
 			
-			//end mod
-
-			return display(parsetemplate(gettemplate('overview/overview_body'), $parse));
+			$engine->assign($parse);
+            return display($engine->output('overview/overview_body'));
 			break;
 	}
 }
