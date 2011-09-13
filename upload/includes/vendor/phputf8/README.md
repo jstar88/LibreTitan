@@ -18,7 +18,7 @@ feature requests.
 Please feel free to fork and get back to us with fork requests for optimizations
 and new features.
 
-Documentation & Usage Information
+Installation
 ---------------------------------
 
 Using the php-utf8 library is quite easy. Just include the `php-utf8.php` and
@@ -32,26 +32,7 @@ Sample Code:
     // ... and any other functions/*.php or utils/*.php files you may need.
     require('php-utf8_path/functions/trim.php');
 
-Make sure that you are confident about using the library by reading
-[Character Sets / Character Encoding Issues][2] and [Handling UTF-8 with PHP][3].
 
-Use these functions **only** if you really need them & you understand **why**
-you need to use them.
-
-In particular, do not blindly replace all use of PHP's string functions which
-functions found here. Most of the time you will not need to, and you will be
-introducing a significant performance overhead to your application.
-
-Most of the functions here are not operating *defensively*, mainly for performance
-reasons. For example there is no extensive parameter checking and it is assumed
-that they are fed with well formed UTF-8. This is particularly relevant when is
-comes to catching badly formed UTF-8. You should screen input on the *outer perimeter*
-with help from functions in the `utils/validation.php` and `utils/bad.php` files.
-
-Throughout the library **all** ASCII characters (*control characters included*)
-are treated as valid throughout the library. Make sure you take the appropriate
-measures before outputting into XML since it can become ill-formed with some
-control characters. [more info][5]
 
 Licensing
 ---------
