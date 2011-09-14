@@ -1,0 +1,1 @@
+<br><div id="content"><table width="668"><tr><td class="c"><?php echo $this->data->Version; ?></td><td class="c"><?php echo $this->data->Description; ?></td></tr><?php echo $this->data->body; ?></table></div>
