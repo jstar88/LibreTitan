@@ -28,8 +28,7 @@ require($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
 Autoloader::setCacheFilePath('tmp/class_path_cache.txt',$xgp_root);
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader::setClassPaths(array(
-     'includes/',
-     'models/'
+     'includes/'
 ));
 spl_autoload_register(array('Autoloader', 'loadClass'));
 
