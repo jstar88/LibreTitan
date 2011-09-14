@@ -20,8 +20,9 @@
  * @version 2008-09-22
  **/
 class Autoloader {
+   protected static $root ='';
 	protected static $classPaths = array();
-	protected static $classFileSuffix = '.class.php';
+	protected static $classFileSuffix = '.php';
 	protected static $cacheFilePath = null;
 	protected static $cachedPaths = null;
 	protected static $excludeFolderNames = '/^CVS|\..*$/'; // CVS directories and directories starting with a dot (.).
@@ -33,8 +34,9 @@ class Autoloader {
 	 * @param array $paths
 	 * @return void
 	 **/
-	public static function setClassPaths($paths) {
-		self::$classPaths = $paths;
+	public static function setClassPaths($paths,$ro='') {
+		self::$classPaths = $ro.$paths;
+		self::$root = $ro;
 	}
 	
 	/**
@@ -44,7 +46,7 @@ class Autoloader {
 	 * @return void
 	 **/
 	public static function addClassPath($path) {
-		self::$classPaths[] = $path;
+		self::$classPaths[] = self::$root.$path;
 	}
 	
 	/**
@@ -60,7 +62,7 @@ class Autoloader {
 	 * @return void
 	 **/
 	public static function setCacheFilePath($path) {
-		self::$cacheFilePath = $path;
+		self::$cacheFilePath = self::$root.$path;
 	}
 	
 	/**
@@ -98,26 +100,35 @@ class Autoloader {
 	 **/
 	public static function loadClass($className) {
 		
-		$filePath = self::getCachedPath($className);
-		if ($filePath && file_exists($filePath)) {
-			// Cached location is correct
+	    //don't load again!
+	   if(defined($className))
+	     return false;
+	   //search also in root,noob!
+	   $filePath=self::$root . $className;
+		if(file_exists($filePath){
+		    	include($filePath);
+		    	define($className,true);
+			   return true;
+		}
+		$filePath = self::getCachedPath($className);    
+      if ( $filePath && file_exists($filePath)) {
+			$filePath = self::getCachedPath($className);
 			include($filePath);
+			define($className,true);
 			return true;
-		} else {
-			// Scan for file
-			foreach (self::$classPaths as $path) {
-				if ($filePath = self::searchForClassFile($className, $path)) {
-					self::$cachedPaths[$className] = $filePath;
+		} 
+		foreach (self::$classPaths as $path) {
+		    if ($filePath = self::searchForClassFile($className, $path)) {
+			      self::$cachedPaths[$className] = $filePath;
 					if (!self::$hasSaver) {
 						register_shutdown_function(array('Autoloader', 'saveCachedPaths'));
 						self::$hasSaver = true;
 					}
 					include($filePath);
+					define($className,true);
 					return true;
 				}
-			}
-			
-		}
+			}			
 		return false;
 	}
 	

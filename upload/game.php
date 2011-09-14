@@ -23,6 +23,16 @@ define('INSIDE'  , true);
 define('INSTALL' , false);
 
 $xgp_root = dirname(__FILE__).DIRECTORY_SEPARATOR;
+
+require($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
+Autoloader::setCacheFilePath('tmp/class_path_cache.txt',$xgp_root);
+Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
+Autoloader::setClassPaths(array(
+     'includes/',
+     'models/'
+));
+spl_autoload_register(array('Autoloader', 'loadClass'));
+
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.' . $phpEx);
 
