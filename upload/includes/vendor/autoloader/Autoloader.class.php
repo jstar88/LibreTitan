@@ -105,7 +105,7 @@ class Autoloader {
 	     return false;
 	   //search also in root,noob!
 	   $filePath=self::$root . $className;
-		if(file_exists($filePath){
+		if(file_exists($filePath)){
 		    	include($filePath);
 		    	define($className,true);
 			   return true;

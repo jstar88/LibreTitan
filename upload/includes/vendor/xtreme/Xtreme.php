@@ -324,11 +324,12 @@ class Xtreme
 
     private function save($templatePath, $compiledFile, $value,$isTemplate=true)
     {
-        if($isTemplate)
-            $temp = ( $this->compileDirectory ). Xtreme::TEMPLATE_CACHE_DIRECTORY;
-        else
-            $temp = ( $this->compileDirectory ). Xtreme::LANG_CACHE_DIRECTORY;    
+        $temp = $this->compileDirectory ;
         $folders = explode(DIRECTORY_SEPARATOR, $templatePath);
+        if($isTemplate)
+            array_unshift($folders,Xtreme::TEMPLATE_CACHE_DIRECTORY);
+        else
+            array_unshift($folders,Xtreme::LANG_CACHE_DIRECTORY);
         $i = -1;
         $count = count($folders);
         while ($i < $count - 1)
