@@ -35,7 +35,7 @@ class Autoloader {
 	 * @return void
 	 **/
 	public static function setClassPaths($paths,$ro='') {
-		self::$classPaths = $ro.$paths;
+		self::$classPaths = $paths;
 		self::$root = $ro;
 	}
 	
@@ -117,7 +117,9 @@ class Autoloader {
 			define($className,true);
 			return true;
 		} 
+        
 		foreach (self::$classPaths as $path) {
+            $path=self::$root. $path;
 		    if ($filePath = self::searchForClassFile($className, $path)) {
 			      self::$cachedPaths[$className] = $filePath;
 					if (!self::$hasSaver) {

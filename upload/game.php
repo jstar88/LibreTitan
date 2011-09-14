@@ -56,7 +56,7 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'galaxy':
-		include_once($xgp_root . 'includes/pages/class.ShowGalaxyPage.' . $phpEx);
+	//	include_once($xgp_root . 'includes/pages/class.ShowGalaxyPage.' . $phpEx);
 		$ShowGalaxyPage = new ShowGalaxyPage($user, $planetrow);
 	break;
 	case'phalanx':
@@ -101,21 +101,21 @@ switch($_GET[page])
 		switch ($_GET['mode'])
 		{
 			case 'research':
-				include_once($xgp_root . 'includes/pages/class.ShowResearchPage.' . $phpEx);
+			//  include_once($xgp_root . 'includes/pages/class.ShowResearchPage.' . $phpEx);
 				new ShowResearchPage($planetrow, $user, $IsWorking['OnWork'], $IsWorking['WorkOn']);
 			break;
 			case 'fleet':
-				include_once($xgp_root . 'includes/pages/class.ShowShipyardPage.' . $phpEx);
+			//	include_once($xgp_root . 'includes/pages/class.ShowShipyardPage.' . $phpEx);
 				$FleetBuildingPage = new ShowShipyardPage();
 				$FleetBuildingPage->FleetBuildingPage ($planetrow, $user);
 			break;
 			case 'defense':
-				include_once($xgp_root . 'includes/pages/class.ShowShipyardPage.' . $phpEx);
+			//	include_once($xgp_root . 'includes/pages/class.ShowShipyardPage.' . $phpEx);
 				$DefensesBuildingPage = new ShowShipyardPage();
 				$DefensesBuildingPage->DefensesBuildingPage ($planetrow, $user);
 			break;
 			default:
-				include_once($xgp_root . 'includes/pages/class.ShowBuildingsPage.' . $phpEx);
+			//	include_once($xgp_root . 'includes/pages/class.ShowBuildingsPage.' . $phpEx);
 				new ShowBuildingsPage($planetrow, $user);
 			break;
 		}
@@ -142,7 +142,7 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'infos':
-		include_once($xgp_root . 'includes/pages/class.ShowInfosPage.' . $phpEx);
+	//	include_once($xgp_root . 'includes/pages/class.ShowInfosPage.' . $phpEx);
 		new ShowInfosPage($user, $planetrow, $_GET['gid']);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
@@ -152,7 +152,7 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'alliance':
-		include_once($xgp_root . 'includes/pages/class.ShowAlliancePage.' . $phpEx);
+	//	include_once($xgp_root . 'includes/pages/class.ShowAlliancePage.' . $phpEx);
 		new ShowAlliancePage($user);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
