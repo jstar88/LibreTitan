@@ -48,11 +48,13 @@ include_once($xgp_root . 'includes/vendor/simplehtmldom/simple_html_dom.' . $php
 include_once($xgp_root . 'includes/classes/class.debug.'.$phpEx);
 include_once($xgp_root . "includes/vendor/xtreme/Xtreme.$phpEx");
 include_once($xgp_root . "includes/vendor/phputf8/php-utf8.$phpEx");  //done,fixed utf8 functions!!!
+
 $engine=new Xtreme();
 $engine->setBaseDirectory($xgp_root);
 $engine->setCompileDirectory('styles/tmp');
 $engine->setTemplateDirectories('styles/templates');
-$debug = new debug();
+$engine->setLangDirectory('language/italian');
+$debug 		= new debug();
 
 if (INSTALL != true)
 {
