@@ -1,3 +1,4 @@
+AddDefaultCharset UTF-8
 <Files "config.php">
 Order Allow,Deny
 Deny from All
