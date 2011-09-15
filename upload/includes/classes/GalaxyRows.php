@@ -23,6 +23,49 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 class GalaxyRows
 {
+    protected $CurrentUniverse;
+    protected $CurrentSystem;
+    protected $CurrentGalaxy;
+    protected $CurrentPlanet;
+    
+    protected $TargetUniverse;
+    protected $TargetGalaxy;
+    protected $TargetSystem;
+    protected $TargetPlanet;
+    
+    protected $fleetmax;
+    protected $CurrentPlID;
+    protected $CurrentMIP;
+    protected $CurrentRC;
+    protected $CurrentSP;
+    protected $HavePhalanx;
+    protected $CurrentUserId;
+    protected $CanDestroy;
+    protected $maxfleet_count;
+    
+    public function __construct($CurrentUser,$CurrentPlanet){
+        $this->CurrentUniverse = $CurrentPlanet['universe'];
+        $this->CurrentSystem   = $CurrentPlanet['system'];
+        $this->CurrentGalaxy   = $CurrentPlanet['galaxy'];
+        $this->CurrentPlanet   = $CurrentPlanet['planet'];
+        
+        $this->TargetUniverse = $this->CurrentUniverse;
+        $this->TargetGalaxy   = $this->CurrentGalaxy;
+        $this->TargetSystem   = $this->CurrentSystem;
+        $this->TargetPlanet   = $this->CurrentPlanet;
+
+        $this->fleetmax      = ($CurrentUser['computer_tech'] + 1) + ($CurrentUser['rpg_commandant'] * COMMANDANT);
+        $this->CurrentPlID   = $CurrentPlanet['id'];
+        $this->CurrentMIP    = $CurrentPlanet['interplanetary_misil'];
+        $this->CurrentRC     = $CurrentPlanet['recycler'];
+        $this->CurrentSP     = $CurrentPlanet['spy_sonde'];
+        $this->HavePhalanx   = $CurrentPlanet['phalanx'];
+        $this->CurrentUserId =$CurrentUser['id'];
+        $this->CanDestroy    = $CurrentPlanet[$resource[213]] + $CurrentPlanet[$resource[214]];
+
+        $row = mysql_fetch_object(doquery("SELECT COUNT(*) as total FROM {{table}} WHERE `fleet_owner` = '" . $CurrentUser['id'] . "';", 'fleets'));
+        $this->maxfleet_count = $row->total;    
+    }
 	private function GetMissileRange ()
 	{
 		global $resource, $user;
@@ -38,10 +81,10 @@ class GalaxyRows
 		return $MissileRange;
 	}
 
-	public function GetPhalanxRange($PhalanxLevel)
+	public function GetPhalanxRange()
 	{
 		$PhalanxRange = 0;
-
+        $PhalanxLevel=$this->HavePhalanx;
 		if ($PhalanxLevel > 1)
 		{
 			$PhalanxRange = pow($PhalanxLevel, 2) - 1;
@@ -72,7 +115,7 @@ class GalaxyRows
 		}
 	}
 
-	public function GalaxyRowActions($GalaxyInfo, $Universe, $Galaxy, $System, $Planet, $CurrentUniverse, $CurrentGalaxy, $CurrentSystem, $CurrentMIP)
+	public function GalaxyRowActions($GalaxyInfo)
 	{
 		global $user, $dpath, $lang;
 
@@ -80,23 +123,23 @@ class GalaxyRows
 
 		if ($GalaxyInfo['id'] != $user['id'])
 		{
-			if ($CurrentMIP <> 0)
+			if ($this->CurrentMIP <> 0)
 			{
 				if ($GalaxyInfo['id'] != $user['id'])
 				{
-					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
+					if ($GalaxyInfo["galaxy"] == $this->CurrentGalaxy)
 					{
 						$Range = $this->GetMissileRange();
-						$SystemLimitMin = $CurrentSystem - $Range;
+						$SystemLimitMin = $this->CurrentSystem - $Range;
 						if ($SystemLimitMin < 1)
 						{
 							$SystemLimitMin = 1;
 						}
-						$SystemLimitMax = $CurrentSystem + $Range;
+						$SystemLimitMax = $this->CurrentSystem + $Range;
 
-						if ($System <= $SystemLimitMax)
+						if ($this->TargetSystem <= $SystemLimitMax)
 						{
-							if ($System >= $SystemLimitMin)
+							if ($this->TargetSystem >= $SystemLimitMin)
 							{
 								$MissileBtn = true;
 							}
@@ -129,7 +172,7 @@ class GalaxyRows
 			{
 				if ($user["settings_esp"] == "1" && $GalaxyInfo['id'])
 				{  
-					$Result .= "<a href=# onclick=\"javascript:doit(6, ".$Universe.", ".$Galaxy.", ".$System.", ".$Planet.", 1, ".$user["spio_anz"].");\" >";
+					$Result .= "<a href=# onclick=\"javascript:doit(6, ".$this->TargetUniverse.", ".$this->TargetGalaxy.", ".$this->TargetSystem.", ".$this->TargetPlanet.", 1, ".$user["spio_anz"].");\" >";
 				  
         	      $Result .= "<img src=". $dpath ."img/e.gif title=\"".$lang['gl_spy']."\" border=0></a>";
 					$Result .= "&nbsp;";
@@ -148,7 +191,7 @@ class GalaxyRows
 				}
 				if ($user["settings_mis"] == "1" && $MissileBtn == true && $GalaxyInfo['id'])
 				{	
-					$Result .= "<a href=game.php?page=galaxy&mode=2&universe=".$Universe."&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
+					$Result .= "<a href=game.php?page=galaxy&mode=2&universe=".$this->TargetUniverse."&galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&current=".$user['current_planet']." >";
 				
         	      $Result .= "<img src=". $dpath ."img/r.gif title=\"".$lang['gl_missile_attack']."\" border=0></a>";
 				}
@@ -159,7 +202,7 @@ class GalaxyRows
 		return $Result;
 	}
 
-		public function GalaxyRowAlly($GalaxyInfo, $Universe, $Galaxy, $System, $Planet)
+		public function GalaxyRowAlly($GalaxyInfo)
 	{
 		global $user, $lang;
 
@@ -170,9 +213,6 @@ class GalaxyRows
 			if ($GalaxyInfo['ally_members'] > 1)
 
 			{
-
-
-
 				$add = $lang['gl_member_add'];
 			}
 			else
@@ -222,7 +262,7 @@ class GalaxyRows
 		return $Result;
 	}
 
-	public function GalaxyRowDebris($GalaxyInfo, $Universe, $Galaxy, $System, $Planet, $PlanetType, $CurrentRC)
+	public function GalaxyRowDebris($GalaxyInfo)
 	{
 		global $dpath, $user, $pricelist, $lang;
 
@@ -233,19 +273,19 @@ class GalaxyRows
 			{
 				$RecNeeded = ceil(($GalaxyInfo["metal"] + $GalaxyInfo["crystal"]) / $pricelist[209]['capacity']);
 
-				if ($RecNeeded < $CurrentRC)
+				if ($RecNeeded < $this->CurrentRC)
 					$RecSended = $RecNeeded;
-				elseif ($RecNeeded >= $CurrentRC)
-					$RecSended = $CurrentRC;
+				elseif ($RecNeeded >= $this->CurrentRC)
+					$RecSended = $this->CurrentRC;
 				else
-					$RecSended = $RecyclerCount;
+					$RecSended = $RecyclerCount;//?
 
 				$Result .= "<a style=\"cursor: pointer;\"";
 				$Result .= " onmouseover='return overlib(\"";
 				$Result .= "<table width=240>";
 				$Result .= "<tr>";
 				$Result .= "<td class=c colspan=2>";	
-				$Result .= $lang['gl_debris_field'] . "[".$Universe.":".$Galaxy.":".$System.":".$Planet."]";
+				$Result .= $lang['gl_debris_field'] . "[".$this->TargetUniverse.":".$this->TargetGalaxy.":".$this->TargetSystem.":".$this->TargetPlanet."]";
 			  
             $Result .= "</td>";
 				$Result .= "</tr><tr>";
@@ -264,7 +304,7 @@ class GalaxyRows
 				$Result .= "<td class=c colspan=2>".$lang['gl_actions'].":</td>";
 				$Result .= "</tr><tr>";
 				$Result .= "<th colspan=2 align=left>";	
-				$Result .= "<a href= # onclick=&#039javascript:doit (8,".$Universe.", ".$Galaxy.", ".$System.", ".$Planet.", ".$PlanetType.", ".$RecSended."); return nd();&#039 >".$lang['gl_collect']."</a>";
+				$Result .= "<a href= # onclick=&#039javascript:doit (8,".$this->TargetUniverse.", ".$this->TargetGalaxy.", ".$this->TargetSystem.", ".$this->TargetPlanet.", 2, ".$RecSended."); return nd();&#039 >".$lang['gl_collect']."</a>";
 			 
          	$Result .= "</tr>";
 				$Result .= "</table>";
@@ -280,45 +320,45 @@ class GalaxyRows
 		return $Result;
 	}
 
-	public function GalaxyRowMoon($GalaxyInfo, $Universe, $Galaxy, $System, $Planet, $PlanetType)
+	public function GalaxyRowMoon($GalaxyInfo)
 	{
-		global $user, $dpath, $CanDestroy, $lang;
+		global $user, $dpath, $lang;
 
 		$Result  = "<th style=\"white-space: nowrap;\" width=30>";
 		if ($GalaxyInfo['id'] != $user['id'])
-			$MissionType6Link = "<a href=# onclick=&#039javascript:doit(6,".$Universe.", ".$Galaxy.", ".$System.", ".$Planet.", ".$PlanetType.", ".$user["spio_anz"].");&#039 >".$lang['type_mission'][6]."</a><br /><br />";
+			$MissionType6Link = "<a href=# onclick=&#039javascript:doit(6,".$this->TargetUniverse.", ".$this->TargetGalaxy.", ".$this->TargetSystem.", ".$this->TargetPlanet.", 3, ".$user["spio_anz"].");&#039 >".$lang['type_mission'][6]."</a><br /><br />";
 		
     elseif ($GalaxyInfo['id'] == $user['id'])
 			$MissionType6Link = "";
 
 		if ($GalaxyInfo['id'] != $user['id'])
-			$MissionType1Link = "<a href=game.php?page=fleet&universe=".$Universe."&amp;galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>".$lang['type_mission'][1]."</a><br />";
+			$MissionType1Link = "<a href=game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&amp;system=".$this->TargetSystem."&amp;planet=".$this->TargetPlanet."&amp;planettype=3&amp;target_mission=1>".$lang['type_mission'][1]."</a><br />";
 	    
   	elseif ($GalaxyInfo['id'] == $user['id'])
 			$MissionType1Link = "";
 
 		if ($GalaxyInfo['id'] != $user['id'])	
-			$MissionType5Link = "<a href=game.php?page=fleet&&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>".$lang['type_mission'][5]."</a><br />";
+			$MissionType5Link = "<a href=game.php?page=fleet&&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=3&target_mission=5>".$lang['type_mission'][5]."</a><br />";
 	  
   	elseif ($GalaxyInfo['id'] == $user['id'])
 			$MissionType5Link = "";
 
 		if ($GalaxyInfo['id'] == $user['id'])	
-			$MissionType4Link = "<a href=game.php?page=fleet&&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>".$lang['type_mission'][4]."</a><br />";
+			$MissionType4Link = "<a href=game.php?page=fleet&&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=3&target_mission=4>".$lang['type_mission'][4]."</a><br />";
 	  
   	elseif ($GalaxyInfo['id'] != $user['id'])
 			$MissionType4Link = "";
 
 		if ($GalaxyInfo['id'] != $user['id'])
-			if ($CanDestroy > 0)	
-				$MissionType9Link = "<a href=game.php?page=fleet&&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=9>".$lang['type_mission'][9]."</a>";
+			if ($this->CanDestroy > 0)	
+				$MissionType9Link = "<a href=game.php?page=fleet&&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=3&target_mission=9>".$lang['type_mission'][9]."</a>";
 	    
   	else
 			$MissionType9Link = "";
 		elseif ($GalaxyInfo['id'] == $user['id'])
 			$MissionType9Link = "";
     
-		$MissionType3Link = "<a href=game.php?page=fleet&&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>".$lang['type_mission'][3]."</a><br />";
+		$MissionType3Link = "<a href=game.php?page=fleet&&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=".$PlanetType."&target_mission=3>".$lang['type_mission'][3]."</a><br />";
     
 		if ($GalaxyInfo && $GalaxyInfo["destruyed"] == 0 && $GalaxyRow["id_luna"] != 0)
 		{
@@ -327,9 +367,9 @@ class GalaxyRows
 			$Result .= "<table width=240>";
 			$Result .= "<tr>";
 			$Result .= "<td class=c colspan=2>";		
-			$Result .= $lang['gl_moon'] . " ".$GalaxyInfo["name"]." [".$Universe.":".$Galaxy.":".$System.":".$Planet."]";
+			$Result .= $lang['gl_moon'] . " ".$GalaxyInfo["name"]." [".$this->TargetUniverse.":".$this->TargetGalaxy.":".$this->TargetSystem.":".$this->TargetPlanet."]";
 			
-         $Result .= "</td>";
+            $Result .= "</td>";
 			$Result .= "</tr><tr>";
 			$Result .= "<th width=80>";
 			$Result .= "<img src=". $dpath ."planeten/mond.jpg height=75 width=75 />";
@@ -342,7 +382,7 @@ class GalaxyRows
 			$Result .= "<th>".$lang['gl_diameter']."</th>";
 			$Result .= "<th>". number_format($GalaxyRowPlanet['diameter'], 0, '', '.') ."</th>";
 			$Result .= "</tr><tr>";
-			$Result .= "<th>".$lang['gl_temperature']."</th><th>". number_format($GalaxyRowPlanet['temp_min'], 0, '', '.') ."</th>";
+			$Result .= "<th>".$lang['gl_temperature']."</th><th>". number_format($GalaxyInfo['temp_min'], 0, '', '.') ."</th>";
 			$Result .= "</tr><tr>";
 			$Result .= "<td class=c colspan=2>".$lang['gl_actions']."</td>";
 			$Result .= "</tr><tr>";
@@ -367,30 +407,30 @@ class GalaxyRows
 		return $Result;
 	}
 	
-   public function GalaxyRowPlanet($GalaxyInfo, $Universe, $Galaxy, $System, $Planet, $PlanetType, $HavePhalanx, $CurrentUniverse, $CurrentGalaxy, $CurrentSystem)
+   public function GalaxyRowPlanet($GalaxyInfo)
 	{
-		global $dpath, $user, $CurrentMIP, $game_config, $lang;
+		global $dpath, $user, $game_config, $lang;
 
 		$Result  = "<th width=30>";
 		
       if ($GalaxyInfo && $GalaxyInfo["destruyed"] == 0 && $GalaxyInfo["id_planet"] != 0)
 		{
-			if ($HavePhalanx <> 0)
+			if ($this->HavePhalanx <> 0)
 			{
 				if ($GalaxyInfo['id'] != $user['id'])
 				{
-					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
+					if ($GalaxyInfo["galaxy"] == $this->CurrentGalaxy)
 					{
-						$PhRange = $this->GetPhalanxRange ( $HavePhalanx );
-						$SystemLimitMin = $CurrentSystem - $PhRange;
+						$PhRange = $this->GetPhalanxRange ();
+						$SystemLimitMin = $this->CurrentSystem - $PhRange;
 						if ($SystemLimitMin < 1)
 							$SystemLimitMin = 1;
 
-						$SystemLimitMax = $CurrentSystem + $PhRange;
-						if ($System <= $SystemLimitMax)
+						$SystemLimitMax = $this->CurrentSystem + $PhRange;
+						if ($this->TargetSystem <= $SystemLimitMax)
 						{
-							if ($System >= $SystemLimitMin)
-                        $PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&universe=".$Universe."&amp;galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."') >".$lang['gl_phalanx']."</a><br />";
+							if ($this->TargetSystem >= $SystemLimitMin)
+                        $PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&amp;system=".$this->TargetSystem."&amp;planet=".$this->TargetPlanet."&amp;planettype=1') >".$lang['gl_phalanx']."</a><br />";
                         
 							else
 								$PhalanxTypeLink = "";
@@ -415,22 +455,22 @@ class GalaxyRows
 				$PhalanxTypeLink = "";
 			}
 
-			if ($CurrentMIP <> 0)
+			if ($this->CurrentMIP <> 0)
 			{
 				if ($GalaxyInfo['id'] != $user['id'])
 				{
-					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
+					if ($GalaxyInfo["galaxy"] == $this->CurrentGalaxy)
 					{
 						$MiRange = $this->GetMissileRange();
-						$SystemLimitMin = $CurrentSystem - $MiRange;
+						$SystemLimitMin = $this->CurrentSystem - $MiRange;
 						if ($SystemLimitMin < 1)
 							$SystemLimitMin = 1;
 
-						$SystemLimitMax = $CurrentSystem + $MiRange;
+						$SystemLimitMax = $this->CurrentSystem + $MiRange;
 
-						if ($System <= $SystemLimitMax)
+						if ($this->TargetSystem <= $SystemLimitMax)
 						{
-							if ($System >= $SystemLimitMin)
+							if ($this->TargetSystem >= $SystemLimitMin)
 								$MissileBtn = true;
 							else
 								$MissileBtn = false;
@@ -456,43 +496,43 @@ class GalaxyRows
 			}
 
 			if ($GalaxyInfo['id'] != $user['id'])
-				$MissionType6Link = "<a href=# onclick=&#039javascript:doit(6, ".$Universe.", ".$Galaxy.", ".$System.", ".$Planet.", ".$PlanetType.", ".$user["spio_anz"].");&#039 >".$lang['type_mission'][6]."</a><br /><br />";
+				$MissionType6Link = "<a href=# onclick=&#039javascript:doit(6, ".$this->TargetUniverse.", ".$this->TargetGalaxy.", ".$this->TargetSystem.", ".$this->TargetPlanet.", 1, ".$user["spio_anz"].");&#039 >".$lang['type_mission'][6]."</a><br /><br />";
 		 
     	elseif ($GalaxyInfo['id'] == $user['id'])
 				$MissionType6Link = "";
 
 			if ($GalaxyInfo['id'] != $user['id'])
-				$MissionType1Link = "<a href=game.php?page=fleet&universe=".$Universe."&amp;galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>".$lang['type_mission'][1]."</a><br />";
+				$MissionType1Link = "<a href=game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&amp;system=".$this->TargetSystem."&amp;planet=".$this->TargetPlanet."&amp;planettype=1&amp;target_mission=1>".$lang['type_mission'][1]."</a><br />";
 		 
     	elseif ($GalaxyInfo['id'] == $user['id'])
 				$MissionType1Link = "";
 
 			if ($GalaxyInfo['id'] == $user['id'])
-				$MissionType5Link = "<a href=game.php?page=fleet&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>".$lang['type_mission'][5]."</a><br />";
+				$MissionType5Link = "<a href=game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=1&target_mission=5>".$lang['type_mission'][5]."</a><br />";
 			
       elseif ($GalaxyInfo['id'] == $user['id'])
 				$MissionType5Link = "";
 
 			if ($GalaxyInfo['id'] == $user['id'])
-				$MissionType4Link = "<a href=game.php?page=fleet&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>".$lang['type_mission'][4]."</a><br />";
+				$MissionType4Link = "<a href=game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=1&target_mission=4>".$lang['type_mission'][4]."</a><br />";
 			
       elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType4Link = "";
 
 			if ($user["settings_mis"] == "1" AND $MissileBtn == true && $GalaxyInfo['id'])
-				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br />";
+				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br />";
 		  
     	elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType10Link = "";
        
-			$MissionType3Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>".$lang['type_mission'][3]."</a><br />";
+			$MissionType3Link = "<a href=game.php?page=fleet&galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=1&target_mission=3>".$lang['type_mission'][3]."</a><br />";
        
 			$Result .= "<a style=\"cursor: pointer;\"";
 			$Result .= " onmouseover='return overlib(\"";
 			$Result .= "<table width=240>";
 			$Result .= "<tr>";
 			$Result .= "<td class=c colspan=2>";
-			$Result .= $lang['gl_planet'] . " " . $GalaxyInfo["name"] ." [".$Universe.":".$Galaxy.":".$System.":".$Planet."]";
+			$Result .= $lang['gl_planet'] . " " . $GalaxyInfo["name"] ." [".$this->TargetUniverse.":".$this->TargetGalaxy.":".$this->TargetSystem.":".$this->TargetPlanet."]";
 			
          $Result .= "</td>";
 			$Result .= "</tr>";
@@ -521,7 +561,7 @@ class GalaxyRows
 		return $Result;
 	}
 	
-	public function GalaxyRowPlanetName($GalaxyInfo, $Universe, $Galaxy, $System, $Planet, $PlanetType, $HavePhalanx, $CurrentUniverse, $CurrentGalaxy, $CurrentSystem)
+	public function GalaxyRowPlanetName($GalaxyInfo)
 	{
 		global $user, $lang;
 
@@ -534,13 +574,13 @@ class GalaxyRows
       
 		if ($GalaxyInfo && $GalaxyInfo["destruyed"] == 0)
 		{
-			if ($HavePhalanx <> 0)
+			if ($this->HavePhalanx <> 0)
 			{
-				if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
+				if ($GalaxyInfo["galaxy"] == $this->CurrentGalaxy)
 				{
-					$Range = $this->GetPhalanxRange ( $HavePhalanx );
-					if ($CurrentGalaxy + $Range <= $CurrentSystem && $CurrentSystem >= $CurrentGalaxy - $Range)
-						$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&universe=".$Universe."&amp;galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"Phalanx\">".$GalaxyInfo['name']."</a><br />";
+					$Range = $this->GetPhalanxRange ();
+					if ($this->CurrentGalaxy + $Range <= $this->CurrentSystem && $this->CurrentSystem >= $this->CurrentGalaxy - $Range)
+						$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&amp;system=".$this->TargetSystem."&amp;planet=".$this->TargetPlanet."&amp;planettype=1')  title=\"Phalanx\">".$GalaxyInfo['name']."</a><br />";
 					
                else
 						$PhalanxTypeLink = $GalaxyInfo['name'];
@@ -579,22 +619,22 @@ class GalaxyRows
 		return $Result;
 	}
 
-	public function GalaxyRowPos($GalaxyInfo, $Universe, $Galaxy, $System, $Planet)
+	public function GalaxyRowPos($GalaxyInfo)
 	{
 		$Result  = "<th width=30>";
-		$Result .= "<a href=\"game.php?page=fleet&universe=".$Universe."&amp;galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=0&target_mission=7\"";
+		$Result .= "<a href=\"game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=0&target_mission=7\"";
 	  
   	   if ($GalaxyInfo)
   	   {    
-			$Result .= " tabindex=\"". ($Planet + 1) ."\"";
+			$Result .= " tabindex=\"". ($this->TargetPlanet + 1) ."\"";
 		}
-		$Result .= ">". $Planet ."</a>";
+		$Result .= ">". $this->TargetPlanet ."</a>";
 		$Result .= "</th>";
 
 		return $Result;
 	}
 
-	public function GalaxyRowUser($GalaxyInfo, $Universe, $Galaxy, $System, $Planet)
+	public function GalaxyRowUser($GalaxyInfo)
 	{
 		global $game_config, $user, $lang;
 

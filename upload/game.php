@@ -58,6 +58,8 @@ switch($_GET[page])
 	case'galaxy':
 	//	include_once($xgp_root . 'includes/pages/class.ShowGalaxyPage.' . $phpEx);
 		$ShowGalaxyPage = new ShowGalaxyPage($user, $planetrow);
+        $ShowGalaxyPage->updatePosition();
+        $ShowGalaxyPage->show();
 	break;
 	case'phalanx':
 		include_once($xgp_root . 'includes/pages/ShowPhalanxPage.' . $phpEx);

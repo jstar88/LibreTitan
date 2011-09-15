@@ -8,6 +8,14 @@ Copyright (C) 2011-2012  Covolo Nicola
 
 class Xtreme
 {
+    const GROUPS_CACHE_POSTFIX='_group';
+    const TEMPLATE_CACHE_DIRECTORY='templates/';
+    const LANG_CACHE_DIRECTORY='langs/';
+    
+    const SHOW_TAG='show';
+    const HIDE_TAG='hide';
+    const DELTE_TAG='delete';
+    
     private $baseDirectory; 
     private $compileDirectory; 
     private $langDirectory;
@@ -21,9 +29,8 @@ class Xtreme
     private $cache;
     private $compileCompression;
     private $config;
-    const GROUPS_CACHE_POSTFIX='_group';
-    const TEMPLATE_CACHE_DIRECTORY='templates/';
-    const LANG_CACHE_DIRECTORY='langs/';
+    private $onInexistenceTag;
+    
 
     function __construct()
     {
@@ -44,6 +51,7 @@ class Xtreme
             'left' => '{', 'right' => '}'
         )
          );
+         $this->onInexistenceTag=self::HIDE_TAG;
     }
 
     public function setBaseDirectory($new)
@@ -77,10 +85,6 @@ class Xtreme
     public function useCompileCompression($status)
     {
         $this->compileCompression = $status;
-    }
-    
-    public function getKey($key){
-        return $this->data->$key;
     }
     
     public function assignLangFile($path){
@@ -190,7 +194,7 @@ class Xtreme
         $this->groups_html= new stdClass;
     }
 
-    public function outputGroup($groupId,$templates, $reuse = false, $draw = false)
+    public function outputGroup($groupId,$template, $reuse = false, $draw = false)
     {
         
         if (property_exists($this->groups_php, $groupId)){
@@ -207,17 +211,20 @@ class Xtreme
              }
              
         }
-        return $this->output($templates.Xtreme::GROUPS_CACHE_POSTFIX);
+        return $this->output($template,$reuse,$draw,true);
     }
 
-    public function output($templates, $reuse = false, $draw = false)
+    public function output($templates, $reuse = false, $draw = false,$forGroup=false)
     {
         if (!is_array($templates))
             $templates = explode('|', $templates);
         $out = '';
         foreach ($templates as $template)
         {
-            $compiledFile = $this->getCompiledPath($template);
+            if($forGroup)
+                $compiledFile = $this->getCompiledPath($template.self::GROUPS_CACHE_POSTFIX);
+            else                
+                $compiledFile = $this->getCompiledPath($template);
             $templateFile = $this->getTplPath($template);
             
             if (isset($this->readyCompiled->$template) && $reuse)
@@ -227,7 +234,7 @@ class Xtreme
             elseif (file_exists($templateFile))
             {
                 $value = null;
-                $this->save($template, $compiledFile, $this->compile($templateFile));
+                $this->save($template, $compiledFile, $this->compile($templateFile),true);
                 $buffer = $this->bufferedOutput($compiledFile);
                 $out .= $buffer;
                 if ($reuse)
@@ -260,8 +267,8 @@ class Xtreme
     private function getCompiledPath($path,$isTemplate=true)
     {
         if($isTemplate)
-            return ($this->compileDirectory) .(Xtreme::TEMPLATE_CACHE_DIRECTORY). $path . '.php';
-        return ($this->compileDirectory) .(Xtreme::LANG_CACHE_DIRECTORY). $path . '.json'; 
+            return ($this->compileDirectory) .(self::TEMPLATE_CACHE_DIRECTORY). $path . '.php';
+        return ($this->compileDirectory) .(self::LANG_CACHE_DIRECTORY). $path . '.json'; 
     }
     private function getLangPath($langini)
     {
@@ -322,14 +329,14 @@ class Xtreme
     }
 
 
-    private function save($templatePath, $compiledFile, $value,$isTemplate=true)
+    private function save($templatePath, $compiledFile, $value,$isTemplate)
     {
         $temp = $this->compileDirectory ;
         $folders = explode(DIRECTORY_SEPARATOR, $templatePath);
         if($isTemplate)
-            array_unshift($folders,Xtreme::TEMPLATE_CACHE_DIRECTORY);
+            array_unshift($folders,self::TEMPLATE_CACHE_DIRECTORY);
         else
-            array_unshift($folders,Xtreme::LANG_CACHE_DIRECTORY);
+            array_unshift($folders,self::LANG_CACHE_DIRECTORY);
         $i = -1;
         $count = count($folders);
         while ($i < $count - 1)
@@ -347,9 +354,8 @@ class Xtreme
     {
         $from = array( 
          '/(^|\,|\(|\+| )([a-zA-Z_][a-zA-Z0-9_]*)($|\.|\)|\->|\+)/',
-         '/(^|\,|\(|\+| )([a-zA-Z_][a-zA-Z0-9_]*)($|\.|\)|\->|\+)/',
-         '/\./', );
-        $to = array('$1$this->data->$2$3', '$1$this->data->$2$3', '->');
+         '/\./' );
+        $to = array('$1$this->get($2$3)',  '->');
 
         $parts = explode(':', $input);
 
@@ -386,13 +392,38 @@ class Xtreme
                 $string = '<?php echo $this->output("' . $parts[1] . '"); ?>';
                 break;
             case 'group':
-                $string =  $this->data->$parts[1];
+                $string =  $this->get($parts[1]);
                 break;
             default:
                 $string = '<?php echo ' . preg_replace($from, $to, $parts[0]) . '; ?>';
                 break;
         }
         return $string;
+    }
+    public function get($key,$index=false){
+        if (!property_exists($this->data, $key)){
+            $return='';
+            switch($this->onInexistenceTag){
+                case self::HIDE_TAG:
+                    break;
+                case self::DELTE_TAG:
+                    break;
+                case self::SHOW_TAG:
+                    if($index=== false)
+                        $return=$key;
+                    else
+                        $return="$key[$index]";
+                    break;
+                default:
+                    break;
+                
+            }
+            return $return;               
+        } 
+        if(empty($index))   
+            return $this->data->$key;
+        else    
+            return $this->data->{$key}[$index];
     }
 }
 
