@@ -92,6 +92,7 @@ class ShowTraderPage
     }
     public function exchange()
     {
+      global $lang;
         if (empty($_POST['ress']))
             return;
         $proposal = $_POST['ress'];
@@ -169,7 +170,7 @@ class ShowTraderPage
         $_POST = filter_input_array(INPUT_POST, $args);
         $_GET = filter_input_array(INPUT_GET, $args);
     }
-    private function valdateRess($proposal)
+    private function validateRess($proposal)
     {
         if ($proposal != 'metal' && $proposal != 'crystal' && $proposal != 'deuterium')
             return false;
