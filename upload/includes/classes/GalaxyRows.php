@@ -27,6 +27,8 @@ class GalaxyRows
     protected $CurrentSystem;
     protected $CurrentGalaxy;
     protected $CurrentPlanet;
+    protected $CurrentPlanetType;
+    protected $CurrentPlanetId;
     
     protected $TargetUniverse;
     protected $TargetGalaxy;
@@ -42,12 +44,16 @@ class GalaxyRows
     protected $CurrentUserId;
     protected $CanDestroy;
     protected $maxfleet_count;
+    protected $interplanetary_misil;   
+    protected $CurrentDeuterium;
     
     public function __construct($CurrentUser,$CurrentPlanet){
         $this->CurrentUniverse = $CurrentPlanet['universe'];
         $this->CurrentSystem   = $CurrentPlanet['system'];
         $this->CurrentGalaxy   = $CurrentPlanet['galaxy'];
         $this->CurrentPlanet   = $CurrentPlanet['planet'];
+        $this->CurrentPlanetType=$CurrentPlanet["planet_type"];
+        $this->CurrentPlanetId=$CurrentPlanet['id'];
         
         $this->TargetUniverse = $this->CurrentUniverse;
         $this->TargetGalaxy   = $this->CurrentGalaxy;
@@ -62,6 +68,8 @@ class GalaxyRows
         $this->HavePhalanx   = $CurrentPlanet['phalanx'];
         $this->CurrentUserId =$CurrentUser['id'];
         $this->CanDestroy    = $CurrentPlanet[$resource[213]] + $CurrentPlanet[$resource[214]];
+        $this->interplanetary_misil=$CurrentPlanet['interplanetary_misil'];  
+        $this->CurrentDeuterium=$CurrentPlanet['deuterium'];
 
         $row = mysql_fetch_object(doquery("SELECT COUNT(*) as total FROM {{table}} WHERE `fleet_owner` = '" . $CurrentUser['id'] . "';", 'fleets'));
         $this->maxfleet_count = $row->total;    

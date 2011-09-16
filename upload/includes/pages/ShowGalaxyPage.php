@@ -140,31 +140,32 @@ class ShowGalaxyPage extends GalaxyRows
         } 
     }
     
-    private function consumption(){
-        // START FIX BY alivan
-            /*
-            if ($mode != 2)
+    private function consumption()
+    {
+        global $lang;
+        if ($mode == 1 || $mode == 3)
+        {
+            if ( ( $this->CurrentSystem != $this->TargetSystem ) || ( $this->CurrentGalaxy != $this->TargetGalaxy ) )
             {
-            if ( ( $CurrentPlanet['system'] != ( $_POST["system"] - 1 ) ) && ( $CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy'] ) && ( $mode != 0 ) && ( $CurrentPlanet['deuterium'] < 10 ) )
-            {
-            die (message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
+                if($this->CurrentDeuterium < 10)
+                {
+                    die (message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
+                }
+                else
+                {
+                    $QryGalaxyDeuterium   = "UPDATE {{table}} SET ";
+                    $QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
+                    $QryGalaxyDeuterium  .= "WHERE ";
+                    $QryGalaxyDeuterium  .= "`id` = '". $this->CurrentPlanetId ."' ";
+                    $QryGalaxyDeuterium  .= "LIMIT 1;";
+                    doquery($QryGalaxyDeuterium, 'planets');
+                }
             }
-            elseif( ( $CurrentPlanet['system'] != ( $_POST["system"] - 1 ) ) && ( $CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy'] ) && ( $mode != 0 ) )
-            {
-            $QryGalaxyDeuterium   = "UPDATE {{table}} SET ";
-            $QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
-            $QryGalaxyDeuterium  .= "WHERE ";
-            $QryGalaxyDeuterium  .= "`id` = '". $CurrentPlanet['id'] ."' ";
-            $QryGalaxyDeuterium  .= "LIMIT 1;";
-            doquery($QryGalaxyDeuterium, 'planets');
-            }
-            }
-            elseif ($mode == 2 && $CurrentPlanet['interplanetary_misil'] < 1)
-            {
+        }
+        elseif ($mode == 2 && $this->interplanetary_misil < 1)
+        {
             die (message($lang['ma_no_missiles'], "game.php?page=galaxy&mode=0", 2));
-            }
-            // END FIX BY alivan
-            */
+        }    
     }
 
     public function show()
@@ -192,10 +193,10 @@ class ShowGalaxyPage extends GalaxyRows
         $engine->assign('missile_count', sprintf($lang['gl_missil_to_launch'], $this->CurrentMIP));
         $engine->assign('current', $_GET['current']);//?
         $engine->assign('current_universe', $this->CurrentUniverse);
-        $engine->assign('current_galaxy', $this->CurrentPlanet["galaxy"]);
-        $engine->assign('current_system', $this->CurrentPlanet["system"]);
-        $engine->assign('current_planet', $this->CurrentPlanet["planet"]);
-        $engine->assign('planet_type', $this->CurrentPlanet["planet_type"]);
+        $engine->assign('current_galaxy', $this->CurrentGalaxy);
+        $engine->assign('current_system', $this->CurrentSystem);
+        $engine->assign('current_planet', $this->CurrentPlanet);
+        $engine->assign('planet_type', $this->CurrentPlanetType);
         $engine->assign('dpath', $dpath);
         $engine->assign('planetcount', $planetcount . " " . $lang['gl_populed_planets']);
         $engine->assign($lang);
