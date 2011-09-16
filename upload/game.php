@@ -58,9 +58,8 @@ switch($_GET[page])
 	case'galaxy':
 	//	include_once($xgp_root . 'includes/pages/class.ShowGalaxyPage.' . $phpEx);
 		$ShowGalaxyPage = new ShowGalaxyPage($user, $planetrow);
-        $ShowGalaxyPage->updatePosition();
-        $ShowGalaxyPage->consumption();
-        $ShowGalaxyPage->show();
+      $ShowGalaxyPage->updatePosition();
+      $ShowGalaxyPage->show();
 	break;
 	case'phalanx':
 		include_once($xgp_root . 'includes/pages/ShowPhalanxPage.' . $phpEx);
@@ -135,8 +134,10 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'trader':
-		include_once($xgp_root . 'includes/pages/ShowTraderPage.' . $phpEx);
-		ShowTraderPage($user, $planetrow);
+		//include_once($xgp_root . 'includes/pages/ShowTraderPage.' . $phpEx);
+		$ShowTraderPage= new ShowTraderPage($user, $planetrow);
+		$ShowTraderPage->exchange();
+		$ShowTraderPage->show();
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'techtree':

@@ -9,7 +9,7 @@
         <th colspan="10">{tr_call_trader_who_buys}
           <select name="choix">
             <option value="metal">{Metal}</option>
-            <option value="cristal">{Crystal}</option>
+            <option value="crystal">{Crystal}</option>
             <option value="deut">{Deuterium}</option>
         </select>
         <br>

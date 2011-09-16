@@ -142,7 +142,8 @@ class ShowGalaxyPage extends GalaxyRows
             {
                 $this->TargetSystem = $_GET["planet"];
             }                
-        } 
+        }
+        $this->consumption(); 
     }
     
     public function consumption()

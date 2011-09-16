@@ -1,19 +1,21 @@
 <script type="text/javascript" >
 function calcul() {
 	var Metal   = document.forms['trader'].elements['metal'].value;
-	var Cristal = document.forms['trader'].elements['cristal'].value;
+	var Cristal = document.forms['trader'].elements['crystal'].value;
 
 	Metal   = Metal * {mod_ma_res_a};
 	Cristal = Cristal * {mod_ma_res_b};
 
 	var Deuterium = Metal + Cristal;
-	document.getElementById("deuterio").innerHTML=Deuterium;
+    var max={max_resource};
+    Deuterium = Math.min(Deuterium,max);
+	document.getElementById("deuterio").innerHTML=Math.round(Deuterium);
 
 	if (isNaN(document.forms['trader'].elements['metal'].value)) {
-		document.getElementById("deuterio").innerHTML="Sólo números";
+		document.getElementById("deuterio").innerHTML="Solo numeri";
 	}
-	if (isNaN(document.forms['trader'].elements['cristal'].value)) {
-		document.getElementById("deuterio").innerHTML="Sólo números";
+	if (isNaN(document.forms['trader'].elements['crystal'].value)) {
+		document.getElementById("deuterio").innerHTML="Solo numeri";
 	}
 }
 </script>
@@ -34,11 +36,11 @@ function calcul() {
         <th>{mod_ma_res}</th>
     </tr><tr>
         <th>{Metal}</th>
-        <th><input name="metal" type="text" value="0" onkeyup="calcul()"/></th>
+        <th><input name="metal" id="metTrader" type="text" value="0" onkeyup="calcul()"/><a href="#" onclick="document.getElementById('metTrader').value={max_resource1};calcul()"><font color="green">max</font></a></th>
         <th>{mod_ma_res_a}</th>
     </tr><tr>
         <th>{Crystal}</th>
-        <th><input name="cristal" type="text" value="0" onkeyup="calcul()"/></th>
+        <th><input name="crystal" id="cryTrader" type="text" value="0" onkeyup="calcul()"/><a href="#" onclick="document.getElementById('cryTrader').value={max_resource2};calcul()"><font color="green">max</font></a></th>
         <th>{mod_ma_res_b}</th>
     </tr><tr>
         <th colspan="6"><input type="submit" value="{tr_exchange}" /></th>
