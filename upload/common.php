@@ -21,7 +21,7 @@
 
 // SETEADO PARA EVITAR ERRORRES EN VERSION DE PHP MAYORES A 5.3.0
 error_reporting(E_ALL & ~E_NOTICE);
-
+$xgp_root=dirname(__FILE__).DIRECTORY_SEPARATOR;
 if ( isset ( $_GET["xgp_root"] ) or isset ( $_POST["xgp_root"] ) )
 {
 	die();
