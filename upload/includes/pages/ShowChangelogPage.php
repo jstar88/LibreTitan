@@ -10,7 +10,7 @@ function ShowChangelogPage()
     global $engine;
 
     $engine->assignLangFile('CHANGELOG');
-    $story = $engine->getKey('changelog');
+    $story = $engine->get('changelog');
     foreach ($story as $a => $b)
     {
         $engine->assign('version_number', $a);
