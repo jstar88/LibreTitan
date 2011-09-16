@@ -59,6 +59,7 @@ switch($_GET[page])
 	//	include_once($xgp_root . 'includes/pages/class.ShowGalaxyPage.' . $phpEx);
 		$ShowGalaxyPage = new ShowGalaxyPage($user, $planetrow);
         $ShowGalaxyPage->updatePosition();
+        $ShowGalaxyPage->consumption();
         $ShowGalaxyPage->show();
 	break;
 	case'phalanx':

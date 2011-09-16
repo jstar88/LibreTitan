@@ -140,9 +140,10 @@ class ShowGalaxyPage extends GalaxyRows
         } 
     }
     
-    private function consumption()
+    public function consumption()
     {
         global $lang;
+        $mode=$_GET['mode'];
         if ($mode == 1 || $mode == 3)
         {
             if ( ( $this->CurrentSystem != $this->TargetSystem ) || ( $this->CurrentGalaxy != $this->TargetGalaxy ) )
@@ -161,10 +162,6 @@ class ShowGalaxyPage extends GalaxyRows
                     doquery($QryGalaxyDeuterium, 'planets');
                 }
             }
-        }
-        elseif ($mode == 2 && $this->interplanetary_misil < 1)
-        {
-            die (message($lang['ma_no_missiles'], "game.php?page=galaxy&mode=0", 2));
         }    
     }
 
