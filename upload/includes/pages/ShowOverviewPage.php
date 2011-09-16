@@ -118,7 +118,9 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 					if (md5($_POST['pw']) == $CurrentUser["password"] && $CurrentUser['id_planet'] != $CurrentUser['current_planet'])
 					{
 
-						doquery("UPDATE {{table}} SET `destruyed` = '".(time()+ 86400)."' WHERE `id` = '".intval($CurrentUser['current_planet'])."' LIMIT 1;" , 'planets');
+						doquery("UPDATE {{table}} SET `destruyed` = '".(time()+ PLANET_DELETE_TIME)."' WHERE `id` = '".$CurrentUser['current_planet']."' LIMIT 1;" , 'planets');
+                        if($CurrentPlanet['planet_type']==3)
+                            doquery("UPDATE {{table}} SET `destruyed_moon` = '".(time()+ MOON_DELETE_TIME)."' WHERE `id_luna` = '".$CurrentUser['current_planet']."' LIMIT 1;" , 'galaxy');
 						doquery("UPDATE {{table}} SET `current_planet` = `id_planet` WHERE `id` = '". intval($CurrentUser['id']) ."' LIMIT 1", "users");
 						//start mod
             doquery("DELETE FROM {{table}} WHERE 

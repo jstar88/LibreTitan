@@ -21,6 +21,11 @@
 
 if ( !defined('INSIDE') ) die(header("location:../"));
 
+   // time after that position will be ready for colonization
+   define('PLANET_DELETE_TIME',86400);
+   // time after that moon will be deleted in galaxy 
+   define('MOON_DELETE_TIME',86400); 
+
 	//TEMPLATES DEFAULT SETTINGS
 	define('DEFAULT_SKINPATH' 		 , 'styles/skins/stargate/');
 	define('TEMPLATE_DIR'     		 , 'styles/templates/');

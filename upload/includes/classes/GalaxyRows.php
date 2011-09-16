@@ -105,23 +105,22 @@ class GalaxyRows
 		return $PhalanxRange;
 	}
 
-	public function CheckAbandonMoonState($lunarow)
-	{
-		if (($lunarow['destruyed_moon'] + 172800) <= time() && $lunarow['destruyed_moon'] != 0)		
-			$QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0' WHERE `universe` = '". intval($lunarow['universe']) ."' AND `galaxy` = '". intval($lunarow['galaxy']) ."' AND `system` = '". intval($lunarow['system']) ."' AND `planet` = '". intval($lunarow['planet']) ."' LIMIT 1;";
-	
-   	doquery( $QryUpdateGalaxy , 'galaxy');
-		doquery("DELETE FROM {{table}} WHERE `id` = ".intval($lunarow['id'])."", 'planets');
-	}
+   public function CheckAbandonMoonState($lunarow)
+   {
+      if ($lunarow['destruyed_moon'] <= time() && $lunarow['destruyed_moon'] != 0){
+         $QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0',`destruyed_moon` = '0' WHERE `galaxy` = '". $lunarow['galaxy'] ."' AND `system` = '".$lunarow['system'] ."' AND `planet` = '". $lunarow['planet'] ."' LIMIT 1;";
+         doquery( $QryUpdateGalaxy , 'galaxy');
+      }
+    }
 
-	public function CheckAbandonPlanetState(&$planet)
-	{
-		if ($planet['destruyed'] <= time())
-		{
-			doquery("DELETE FROM {{table}} WHERE `id_planet` = '".intval($planet['id'])."' LIMIT 1;" , 'galaxy');
-			doquery("DELETE FROM {{table}} WHERE `id` = ".intval($planet['id'])."", 'planets');
-		}
-	}
+   public function CheckAbandonPlanetState(&$planet)
+   {
+      if ($planet['destruyed'] <= time())
+      {
+         doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;" , 'galaxy');
+         doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
+      }
+   }
 
 	public function GalaxyRowActions($GalaxyInfo)
 	{
@@ -408,9 +407,12 @@ class GalaxyRows
 			$Result .= "</table>\"";
 			$Result .= ", STICKY, MOUSEOFF, DELAY, 750, CENTER, OFFSETX, -40, OFFSETY, -40 );'";
 			$Result .= " onmouseout='return nd();'>";
-			$Result .= "<img src=". $dpath ."planeten/small/s_mond.jpg height=22 width=22>";
+			$Result .= "<img src=". $dpath ."planeten/small/s_mond.jpg height=22 width=22>";   
 			$Result .= "</a>";
 		}
+      elseif($GalaxyInfo["destruyed_moon"] != 0 && $GalaxyInfo["id_luna"] != 0){
+            $Result .= "<img src=". $dpath ."planeten/small/s_mond.jpg height=22 width=22 style=\"border:1px solid red;\">";
+      }
 		$Result .= "</th>";
 		return $Result;
 	}

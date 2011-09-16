@@ -66,7 +66,7 @@ RIGHT JOIN
          ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner)
       )  
       ON
-      {{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1
+      ({{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1)
    ) 
    ON 
       {{table}}moons.id = {{table}}galaxy.id_luna
