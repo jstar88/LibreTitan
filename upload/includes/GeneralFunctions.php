@@ -81,7 +81,7 @@ function display ($page, $topnav = true, $metatags = '', $AdminPage = false, $me
 		$DisplayPage  = StdUserHeader($metatags);
 	else
 		$DisplayPage  = AdminUserHeader($metatags);
-
+		
 	if ($topnav)
 	{
 		include_once($xgp_root . 'includes/functions/ShowTopNavigationBar.' . $phpEx);
@@ -98,7 +98,14 @@ function display ($page, $topnav = true, $metatags = '', $AdminPage = false, $me
 
 	if(!defined('LOGIN') && $_GET['page'] != 'galaxy')
 		$DisplayPage .= parsetemplate(gettemplate('footer'), $parse);
-
+	
+	if (INSTALL != true){
+		if($user['urlaubs_modus'] == 0 )
+			PlanetResourceUpdate($user, $planetrow, time());
+		else
+			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
+	}
+	
 	if ($link)
 	{
 		mysql_close($link);

@@ -54,7 +54,7 @@ function mymail($to, $title, $body, $from = '')
 
 	$head = '';
 	$head .= "Content-Type: text/html \r\n";
-	$head  .= "charset: iso-8859-1 \r\n";
+	$head  .= "charset: utf-8 \r\n";
 	$head .= "Date: " . date('r') . " \r\n";
 	$head .= "Return-Path: $rp \r\n";
 	$head .= "From: $from \r\n";

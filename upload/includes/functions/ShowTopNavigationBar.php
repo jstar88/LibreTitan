@@ -23,12 +23,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 	function ShowTopNavigationBar ($CurrentUser, $CurrentPlanet)
 	{
-		global $lang, $game_config, $dpath;
-
-		if($CurrentUser['urlaubs_modus'] == 0)
-			PlanetResourceUpdate($CurrentUser, $CurrentPlanet, time());
-		else
-			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
+		global $lang, $game_config, $dpath, $planetlist;
 
 		$parse				 			= $lang;
 		$parse['dpath']      			= $dpath;
@@ -46,7 +41,9 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		}
 
 		$parse['planetlist'] 			= '';
-		$ThisUsersPlanets    			= SortUserPlanets ( $CurrentUser );
+
+		mysql_data_seek($planetlist, 0);
+		$ThisUsersPlanets    			= $planetlist;
 
 		while ($CurPlanet = mysql_fetch_array($ThisUsersPlanets))
 		{

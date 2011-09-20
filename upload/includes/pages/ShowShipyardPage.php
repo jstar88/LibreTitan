@@ -69,7 +69,7 @@ class ShowShipyardPage
 		return $ResType;
 	}
 
-	private function ElementBuildListBox ( $CurrentUser, $CurrentPlanet )
+	private function ElementBuildListBox ( $CurrentUser, &$CurrentPlanet, $Work_place )
 	{
 		global $lang, $pricelist,$xgp_root;
 
@@ -118,7 +118,7 @@ class ShowShipyardPage
 
 	public function FleetBuildingPage ( &$CurrentPlanet, $CurrentUser )
 	{
-		global $lang, $resource, $phpEx, $dpath, $xgp_root;
+		global $lang, $resource, $phpEx, $dpath, $pricelist, $CombatCaps, $xgp_root, $LegacyPlanet;
 
 		include_once($xgp_root . 'includes/functions/IsTechnologieAccessible.' . $phpEx);
 		include_once($xgp_root . 'includes/functions/GetElementPrice.' . $phpEx);
@@ -163,6 +163,7 @@ class ShowShipyardPage
 								$Count = 2 * $Count;
 
 							$CurrentPlanet['b_hangar_id']    .= "". $Element .",". $Count .";";
+							$LegacyPlanet['b_hangar_id']	=	'b_hangar_id';
 						}
 					}
 				}
@@ -262,7 +263,7 @@ class ShowShipyardPage
 
 	public function DefensesBuildingPage ( &$CurrentPlanet, $CurrentUser )
 	{
-		global $lang, $resource, $phpEx, $dpath, $_POST,$xgp_root;
+		global $lang, $resource, $phpEx, $dpath, $_POST,$xgp_root, $LegacyPlanet;
 
 		include_once($xgp_root . 'includes/functions/IsTechnologieAccessible.' . $phpEx);
 		include_once($xgp_root . 'includes/functions/GetElementPrice.' . $phpEx);
@@ -379,6 +380,8 @@ class ShowShipyardPage
 							$CurrentPlanet['crystal']         -= $Ressource['crystal'];
 							$CurrentPlanet['deuterium']       -= $Ressource['deuterium'];
 							$CurrentPlanet['b_hangar_id']     .= "". $Element .",". $Count .";";
+							$LegacyPlanet['b_hangar_id']	=	'b_hangar_id';
+                            //}
 						}
 					}
 				}

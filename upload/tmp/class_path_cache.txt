@@ -1,1 +1,1 @@
-a:2:{s:14:"ShowGalaxyPage";s:33:"includes/pages/ShowGalaxyPage.php";s:10:"GalaxyRows";s:31:"includes/classes/GalaxyRows.php";}
+a:5:{s:14:"ShowGalaxyPage";s:33:"includes/pages/ShowGalaxyPage.php";s:10:"GalaxyRows";s:31:"includes/classes/GalaxyRows.php";s:16:"ShowShipyardPage";s:35:"includes/pages/ShowShipyardPage.php";s:17:"ShowBuildingsPage";s:36:"includes/pages/ShowBuildingsPage.php";s:16:"ShowResearchPage";s:35:"includes/pages/ShowResearchPage.php";}

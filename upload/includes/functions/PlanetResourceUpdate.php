@@ -4,7 +4,7 @@
 # *																			 #
 # * XG PROYECT																 #
 # *  																		 #
-# * @copyright Copyright (C) 2008 - 2009 By lucky from xgproyect.net      	 #
+# * @copyright Copyright (C) 2008 - 2009 By lucky from Xtreme-gameZ.com.ar	 #
 # *																			 #
 # *																			 #
 # *  This program is free software: you can redistribute it and/or modify    #
@@ -23,7 +23,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 	function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = false )
 	{
-		global $ProdGrid, $resource, $reslist, $game_config;
+		global $ProdGrid, $resource, $reslist, $game_config, $LegacyPlanet;
 
 		$CurrentPlanet['metal_max']		=	(BASE_STORAGE_SIZE + 50000 * (roundUp(pow(1.6,$CurrentPlanet[ $resource[22] ])) -1)) * (1 + ($CurrentUser['rpg_stockeur'] * STOCKEUR));
 		$CurrentPlanet['crystal_max']	=	(BASE_STORAGE_SIZE + 50000 * (roundUp(pow(1.6,$CurrentPlanet[ $resource[23] ])) -1)) * (1 + ($CurrentUser['rpg_stockeur'] * STOCKEUR));
@@ -58,7 +58,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 		foreach($reslist['prod'] as $ProdID)
 		{
-			if ( is_array($reslist['prod']) && in_array( $ProdID, $reslist['prod']) )
+			if ( is_array($reslist['prod']))
 			{
 				$BuildLevelFactor = $CurrentPlanet[ $resource[$ProdID]."_porcent" ];
 				$BuildLevel = $CurrentPlanet[ $resource[$ProdID] ];
@@ -188,27 +188,34 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 			$CurrentPlanet['deuterium']  = 0;
 		}
 
+		$Builded          = HandleElementBuildingQueue ( $CurrentUser, $CurrentPlanet, $ProductionTime );
+		CheckPlanetUsedFields($CurrentPlanet);
+
 		if ($Simul == false)
 		{
-			$Builded          = HandleElementBuildingQueue ( $CurrentUser, $CurrentPlanet, $ProductionTime );
-
+			
 			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-			$QryUpdatePlanet .= "`metal` = '"            . $CurrentPlanet['metal']             ."', ";
-			$QryUpdatePlanet .= "`crystal` = '"          . $CurrentPlanet['crystal']           ."', ";
-			$QryUpdatePlanet .= "`deuterium` = '"        . $CurrentPlanet['deuterium']         ."', ";
-			$QryUpdatePlanet .= "`last_update` = '"      . $CurrentPlanet['last_update']       ."', ";
-			$QryUpdatePlanet .= "`b_hangar_id` = '"      . $CurrentPlanet['b_hangar_id']       ."', ";
-			$QryUpdatePlanet .= "`metal_perhour` = '"    . $CurrentPlanet['metal_perhour']     ."', ";
-			$QryUpdatePlanet .= "`crystal_perhour` = '"  . $CurrentPlanet['crystal_perhour']   ."', ";
-			$QryUpdatePlanet .= "`deuterium_perhour` = '". $CurrentPlanet['deuterium_perhour'] ."', ";
-			$QryUpdatePlanet .= "`energy_used` = '"      . $CurrentPlanet['energy_used']       ."', ";
-			$QryUpdatePlanet .= "`energy_max` = '"       . $CurrentPlanet['energy_max']        ."', ";
-			if ( $Builded != '' )
+			$QryUpdatePlanet .= "`metal` = '"            	. $CurrentPlanet['metal']             ."', ";
+			$QryUpdatePlanet .= "`crystal` = '"          	. $CurrentPlanet['crystal']           ."', ";
+			$QryUpdatePlanet .= "`deuterium` = '"        	. $CurrentPlanet['deuterium']         ."', ";
+			$QryUpdatePlanet .= "`metal_max` = '"        	. $MaxMetalStorage                    ."', ";
+			$QryUpdatePlanet .= "`crystal_max` = '"      	. $MaxCristalStorage                  ."', ";
+			$QryUpdatePlanet .= "`deuterium_max` = '"    	. $MaxDeuteriumStorage                ."', ";
+			$QryUpdatePlanet .= "`last_update` = '"      	. $CurrentPlanet['last_update']       ."', ";
+			$QryUpdatePlanet .= "`b_hangar_id` = '"      	. $CurrentPlanet['b_hangar_id']       ."', ";
+			$QryUpdatePlanet .= "`metal_perhour` = '"    	. $CurrentPlanet['metal_perhour']     ."', ";
+			$QryUpdatePlanet .= "`crystal_perhour` = '"  	. $CurrentPlanet['crystal_perhour']   ."', ";
+			$QryUpdatePlanet .= "`deuterium_perhour` = '"	. $CurrentPlanet['deuterium_perhour'] ."', ";
+			$QryUpdatePlanet .= "`energy_used` = '"      	. $CurrentPlanet['energy_used']       ."', ";
+			$QryUpdatePlanet .= "`energy_max` = '"       	. $CurrentPlanet['energy_max']        ."', ";
+
+			if(!empty($LegacyPlanet))
 			{
-				foreach ( $Builded as $Element => $Count )
+				$LegacyPlanet	=	array_values(array_unique($LegacyPlanet));
+				foreach ( $LegacyPlanet as $Order => $Element)
 				{
 					if ($Element <> '')
-						$QryUpdatePlanet .= "`". $resource[$Element] ."` = '". $CurrentPlanet[$resource[$Element]] ."', ";
+						$QryUpdatePlanet .= "`". $Element ."` = '". $CurrentPlanet[$Element] ."', ";
 				}
 			}
 			$QryUpdatePlanet .= "`b_hangar` = '". $CurrentPlanet['b_hangar'] ."' ";

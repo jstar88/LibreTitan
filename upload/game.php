@@ -35,12 +35,11 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.' . $phpEx);
 
-include($xgp_root . 'includes/functions/CheckPlanetBuildingQueue.' . $phpEx);
-include($xgp_root . 'includes/functions/GetBuildingPrice.' . $phpEx);
-include($xgp_root . 'includes/functions/IsElementBuyable.' . $phpEx);
-include($xgp_root . 'includes/functions/SetNextQueueElementOnTop.' . $phpEx);
-include($xgp_root . 'includes/functions/SortUserPlanets.' . $phpEx);
-include($xgp_root . 'includes/functions/UpdatePlanetBatimentQueueList.' . $phpEx);
+//include($xgp_root . 'includes/functions/CheckPlanetBuildingQueue.' . $phpEx);
+//include($xgp_root . 'includes/functions/GetBuildingPrice.' . $phpEx);
+//include($xgp_root . 'includes/functions/IsElementBuyable.' . $phpEx);
+//include($xgp_root . 'includes/functions/SetNextQueueElementOnTop.' . $phpEx);
+//include($xgp_root . 'includes/functions/SortUserPlanets.' . $phpEx);
 
 switch($_GET[page])
 {
@@ -97,9 +96,6 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'buildings':
-		include_once($xgp_root . 'includes/functions/HandleTechnologieBuild.' . $phpEx);
-		UpdatePlanetBatimentQueueList ($planetrow, $user);
-		$IsWorking = HandleTechnologieBuild($planetrow, $user);
 		switch ($_GET['mode'])
 		{
 			case 'research':

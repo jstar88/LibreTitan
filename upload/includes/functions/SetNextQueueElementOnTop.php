@@ -4,7 +4,7 @@
 # *																			 #
 # * XG PROYECT																 #
 # *  																		 #
-# * @copyright Copyright (C) 2008 - 2009 By lucky from xgproyect.net      	 #
+# * @copyright Copyright (C) 2008 - 2009 By lucky from Xtreme-gameZ.com.ar	 #
 # *																			 #
 # *																			 #
 # *  This program is free software: you can redistribute it and/or modify    #
@@ -23,7 +23,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 	function SetNextQueueElementOnTop ( &$CurrentPlanet, $CurrentUser )
 	{
-		global $lang, $resource;
+		global $lang, $resource, $LegacyPlanet;
 
 		if ($CurrentPlanet['b_building'] == 0)
 		{
@@ -111,16 +111,19 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 			$CurrentPlanet['b_building']    = $BuildEndTime;
 			$CurrentPlanet['b_building_id'] = $NewQueue;
+			
+			$LegacyPlanet['b_building']   			= 'b_building';
+			$LegacyPlanet['b_building_id']   		= 'b_building_id';
 
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-			$QryUpdatePlanet .= "`metal` = '".         $CurrentPlanet['metal']         ."' , ";
-			$QryUpdatePlanet .= "`crystal` = '".       $CurrentPlanet['crystal']       ."' , ";
-			$QryUpdatePlanet .= "`deuterium` = '".     $CurrentPlanet['deuterium']     ."' , ";
-			$QryUpdatePlanet .= "`b_building` = '".    $CurrentPlanet['b_building']    ."' , ";
-			$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' ";
-			$QryUpdatePlanet .= "WHERE ";
-			$QryUpdatePlanet .= "`id` = '" .           $CurrentPlanet['id']            . "';";
-			doquery( $QryUpdatePlanet, 'planets');
+			//$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			//$QryUpdatePlanet .= "`metal` = '".         $CurrentPlanet['metal']         ."' , ";
+			//$QryUpdatePlanet .= "`crystal` = '".       $CurrentPlanet['crystal']       ."' , ";
+			//$QryUpdatePlanet .= "`deuterium` = '".     $CurrentPlanet['deuterium']     ."' , ";
+			//$QryUpdatePlanet .= "`b_building` = '".    $CurrentPlanet['b_building']    ."' , ";
+			//$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' ";
+			//$QryUpdatePlanet .= "WHERE ";
+			//$QryUpdatePlanet .= "`id` = '" .           $CurrentPlanet['id']            . "';";
+			//doquery( $QryUpdatePlanet, 'planets');
 
 		}
 		return;

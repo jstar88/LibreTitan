@@ -19,9 +19,9 @@
 # *																			 #
 ##############################################################################
 
-function ShowFleet3Page($CurrentUser, $CurrentPlanet)
+function ShowFleet3Page($CurrentUser, &$CurrentPlanet)
 {
-	global $resource, $pricelist, $reslist, $phpEx, $lang, $xgp_root, $game_config;
+	global $resource, $pricelist, $reslist, $phpEx, $lang, $xgp_root, $game_config, $LegacyPlanet;
 	include_once($xgp_root . 'includes/functions/IsVacationMode.' . $phpEx);
 
 	$parse = $lang;
@@ -410,10 +410,9 @@ function ShowFleet3Page($CurrentUser, $CurrentPlanet)
 
 	foreach ($fleetarray as $Ship => $Count)
 	{
-		$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
-		$FleetShipCount  += $Count;
-		$fleet_array     .= $Ship .",". $Count .";";
-		$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . ", ";
+		$FleetStorage    			+= $pricelist[$Ship]["capacity"] * $Count;
+		$FleetShipCount  			+= $Count;
+		$fleet_array     			.= $Ship .",". $Count .";";
 	}
 
 	$FleetStorage        -= $consumption;
@@ -516,15 +515,18 @@ function ShowFleet3Page($CurrentUser, $CurrentPlanet)
 	$QryInsertFleet .= "`start_time` = '". time() ."';";
 	doquery( $QryInsertFleet, 'fleets');
 
-	$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
-	$QryUpdatePlanet .= $FleetSubQRY;
-	$QryUpdatePlanet .= "`metal` = `metal` - ". $TransMetal .", ";
-	$QryUpdatePlanet .= "`crystal` = `crystal` - ". $TransCrystal .", ";
-	$QryUpdatePlanet .= "`deuterium` = `deuterium` - ". ($TransDeuterium + $consumption) ." ";
-	$QryUpdatePlanet .= "WHERE ";
-	$QryUpdatePlanet .= "`id` = ". intval($CurrentPlanet['id']) ." LIMIT 1;";
-	doquery ($QryUpdatePlanet, "planets");
-
+	foreach ($fleetarray as $Ship => $Count)
+	{
+		$CurrentPlanet[$resource[$Ship]]	-= $Count;
+		$LegacyPlanet[$resource[$Ship]]   	= $resource[$Ship];
+	}
+	
+	$CurrentPlanet['metal'] -= $TransMetal;
+	$CurrentPlanet['crystal'] -= $TransCrystal ;
+	$CurrentPlanet['deuterium'] -= $TransDeuterium + $consumption;
+	$CurrentPlanet['population'] -= $TransPopulation ;
+	$CurrentPlanet['population_free'] -= $TransPopulation ;
+	
 	$parse['mission'] 		= $missiontype[$_POST['mission']];
 	$parse['distance'] 		= pretty_number($distance);
 	$parse['speedallsmin'] 	= pretty_number($_POST['speedallsmin']);

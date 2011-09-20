@@ -23,21 +23,9 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 function ShowImperiumPage($CurrentUser)
 {
-	global $lang, $resource, $reslist, $dpath;
+	global $lang, $resource, $reslist, $dpath, $planetlist;
 
-	$planetsrow = doquery("
-	SELECT `id`,`name`,`universe`,`galaxy`,`system`,`planet`,`planet_type`,
-	`image`,`field_current`,`field_max`,`metal`,`metal_perhour`,
-	`crystal`,`crystal_perhour`,`deuterium`,`deuterium_perhour`,
-	`energy_used`,`energy_max`,`metal_mine`,`crystal_mine`,`deuterium_sintetizer`,
-	`solar_plant`,`fusion_plant`,`robot_factory`,`nano_factory`,`hangar`,`metal_store`,
-	`crystal_store`,`deuterium_store`,`laboratory`,`terraformer`,`ally_deposit`,`silo`,
-	`small_ship_cargo`,`big_ship_cargo`,`light_hunter`,`heavy_hunter`,`crusher`,`battle_ship`,
-	`colonizer`,`recycler`,`spy_sonde`,`bomber_ship`,`solar_satelit`,`destructor`,`dearth_star`,
-	`battleship`,`supernova`,`misil_launcher`,`small_laser`,`big_laser`,`gauss_canyon`,`ionic_canyon`,
-	`buster_canyon`,`small_protection_shield`,`planet_protector`,`big_protection_shield`,`interceptor_misil`,
-	`interplanetary_misil`, `mondbasis`, `phalanx`, `sprungtor` FROM {{table}} WHERE `id_owner` = '" . intval($CurrentUser['id']) . "' AND `destruyed` = 0;", 'planets');
-
+	$planetsrow = $planetlist;
 	$parse 	= $lang;
 	$planet = array();
 

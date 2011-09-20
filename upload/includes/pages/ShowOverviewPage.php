@@ -21,14 +21,14 @@
 
 if(!defined('INSIDE')){ die(header("location:../../"));}
 
-function ShowOverviewPage($CurrentUser, $CurrentPlanet)
+function ShowOverviewPage($CurrentUser, &$CurrentPlanet)
 {
-	global $xgp_root, $phpEx, $dpath, $game_config, $lang, $planetrow, $user,$engine;
+	global $xgp_root, $phpEx, $dpath, $game_config, $lang, $planetlist, $planetrow, $user,$engine, $LegacyPlanet;
 
 	include_once($xgp_root . 'includes/functions/InsertJavaScriptChronoAppletJstar.' . $phpEx);
 	include_once($xgp_root . 'includes/functions/InsertJavaScriptChronoApplet.' . $phpEx);
 	include_once($xgp_root . 'includes/classes/class.FlyingFleetsTable.' . $phpEx);
-   include_once($xgp_root . 'includes/functions/CheckPlanetUsedFields.' . $phpEx);
+   //include_once($xgp_root . 'includes/functions/CheckPlanetUsedFields.' . $phpEx);
 
 	$FlyingFleetsTable = new FlyingFleetsTable();
   //start mod
@@ -41,7 +41,7 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
    //end mod
 	if (empty($lunarow)) { unset($lunarow); }
 
-	CheckPlanetUsedFields($lunarow);
+	//CheckPlanetUsedFields($lunarow);
 
 	$parse					= $lang;
 	$parse['planet_id'] 	= $CurrentPlanet['id'];
@@ -312,7 +312,7 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 			}
 			mysql_free_result($OtherFleets);
 
-			$planets_query = doquery("SELECT * FROM `{{table}}` WHERE id_owner='".intval($CurrentUser['id'])."' AND `destruyed` = 0", "planets");
+			$planets_query = $planetlist; //doquery("SELECT * FROM `{{table}}` WHERE id_owner='".intval($CurrentUser['id'])."' AND `destruyed` = 0", "planets");
 			$Colone  	= 1;
 			$AllPlanets = "<tr>";
 			while ($CurrentUserPlanet = mysql_fetch_array($planets_query))
@@ -340,7 +340,7 @@ function ShowOverviewPage($CurrentUser, $CurrentPlanet)
 						}
 						else
 						{
-							CheckPlanetUsedFields ($CurrentUserPlanet);
+							//CheckPlanetUsedFields ($CurrentUserPlanet);
 							$AllPlanets     .= $lang['ov_free'];
 						}
 					}

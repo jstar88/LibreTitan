@@ -137,28 +137,6 @@ function duration() {
 	return ret;
 }
 
-function consumption2() {
-	var consumption;
-	var basicConsumption = 0;
-
-	for (i = 200; i < 220; i++) {
-		if (document.getElementsByName("ship" + i)[0]) {
-			basicConsumption = basicConsumption +
-			document.getElementsByName("consumption" + i)[0].value
-			* document.getElementsByName("ship" + i)[0].value;
-		}
-	}
-
-	speedfactor = document.getElementsByName("speedfactor")[0].value;
-	msp = maxspeed();
-	sp = speed();
-	dist = distance();
-
-	consumption = Math.round(basicConsumption * dist / 35000 * ((sp / 10) + 1) * ((sp / 10) + 1)) + 1;
-
-	return(consumption);
-}
-
 function consumption() {
 	var consumption = 0;
 	var basicConsumption = 0;
@@ -173,23 +151,14 @@ function consumption() {
 
 	for (i = 200; i < 220; i++) {
 		if (document.getElementsByName("ship" + i)[0]) {
-			shipspeed = document.getElementsByName("speed" + i)[0].value;
-			spd = 35000 / (dur * speedfactor - 10) * Math.sqrt(dist * 10 / shipspeed);
-
-			//spd = Math.max(msp / document.getElementsByName("speed" + i)[0].value, 0.1);
-			//spd = Math.min(spd, 1.0);
-			//spd = spd * sp;
-			//spd = 10;
+			spd = 35000 / (dur * speedfactor - 10) * Math.sqrt(dist * 10 / msp);
 			basicConsumption = document.getElementsByName("consumption" + i)[0].value
 			* document.getElementsByName("ship" + i)[0].value;
 			consumption += basicConsumption * dist / 35000 * ((spd / 10) + 1) * ((spd / 10) + 1);
-			//      values = values + " " + spd;
 		}
 	}
 
 	consumption = Math.round(consumption) + 1;
-
-	//  document.write(values);
 
 	return(consumption);
 }

@@ -4,7 +4,7 @@
 # *																			 #
 # * XG PROYECT																 #
 # *  																		 #
-# * @copyright Copyright (C) 2008 - 2009 By lucky from xgproyect.net      	 #
+# * @copyright Copyright (C) 2008 - 2009 By lucky from Xtreme-gameZ.com.ar	 #
 # *																			 #
 # *																			 #
 # *  This program is free software: you can redistribute it and/or modify    #
@@ -33,12 +33,14 @@ if(filesize($xgp_root . 'config.php') == 0 && INSTALL != true)
 }
 
 $phpEx			= "php";
+//$xgp_root = './';
 $game_config   	= array();
 //start mod
 $war_config   	= array();
 //end mod
 $user          	= array();
 $lang          	= array();
+$LegacyPlanet   = array();
 $link          	= "";
 $IsUserChecked 	= false;
 
@@ -68,7 +70,15 @@ if (INSTALL != true)
 	include($xgp_root . 'includes/functions/GetBuildingTime.' . $phpEx);
 	include($xgp_root . 'includes/functions/HandleElementBuildingQueue.' . $phpEx);
 	include($xgp_root . 'includes/functions/PlanetResourceUpdate.' . $phpEx);
-
+	include($xgp_root . 'includes/functions/CheckPlanetUsedFields.'.$phpEx);
+	include($xgp_root . 'includes/functions/HandleTechnologieBuild.' . $phpEx);
+	include($xgp_root . 'includes/functions/UpdatePlanetBatimentQueueList.' . $phpEx);	
+	include($xgp_root . 'includes/functions/CheckPlanetBuildingQueue.' . $phpEx);
+	include($xgp_root . 'includes/functions/GetBuildingPrice.'.$phpEx);
+	include($xgp_root . 'includes/functions/SetNextQueueElementOnTop.'.$phpEx);
+	include($xgp_root . 'includes/functions/IsElementBuyable.' . $phpEx);
+	include($xgp_root . 'includes/functions/SortUserPlanets.' . $phpEx);	
+	
 	$query = doquery("SELECT * FROM {{table}}",'config');
 
 	while ($row = mysql_fetch_assoc($query))
@@ -112,7 +122,7 @@ if (INSTALL != true)
 
 		if($game_config['game_disable'] == 0 && $user['authlevel'] == 0)
 		{
-			message(stripslashes($game_config['close_reason']), '', '', false, false);
+			message($game_config['close_reason'], '', '', false, false);
 		}
 	}
 
@@ -179,9 +189,11 @@ if (INSTALL != true)
 		SetSelectedPlanet ($user);
 
 		$planetrow = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$user['current_planet']."';", "planets", true);
-
-		//include($xgp_root . 'includes/functions/CheckPlanetUsedFields.' . $phpEx);
-		//CheckPlanetUsedFields($planetrow);
+		$planetlist = SortUserPlanets ($user);
+		UpdatePlanetBatimentQueueList ($planetrow, $user);
+		$IsWorking = HandleTechnologieBuild($planetrow, $user);
+		$ProductionTime               = (time() - $planetrow['last_update']);
+		HandleElementBuildingQueue ($user, $planetrow, $ProductionTime);			
 	}
 	include($xgp_root.'includes/classes/class.SecurePage.' . $phpEx ); // include the class
 	SecurePage::run();

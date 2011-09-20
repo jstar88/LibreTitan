@@ -31,7 +31,7 @@ if ($user['authlevel'] < 1) die(message ($lang['404_page']));
 
 	$page  = "<html>\n";
 	$page .= "<head>\n";
-	$page .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />\n";
+	$page .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n";
 	$page .= "<title>". $game_config['game_name'] ." - Admin CP</title>\n";
 	$page .= "<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
 	$page .= "</head>\n";

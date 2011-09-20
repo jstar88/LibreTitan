@@ -21,9 +21,9 @@
 
 if(!defined('INSIDE')){ die(header("location:../../"));}
 
-function ShowResourcesPage($CurrentUser, $CurrentPlanet)
+function ShowResourcesPage($CurrentUser, &$CurrentPlanet)
 {
-	global $lang, $ProdGrid, $resource, $reslist, $game_config;
+	global $lang, $ProdGrid, $resource, $reslist, $game_config, $LegacyPlanet;
 
 	$parse = $lang;
 
@@ -35,8 +35,7 @@ function ShowResourcesPage($CurrentUser, $CurrentPlanet)
 	}
 
 	$ValidList['percent'] = array (  0,  10,  20,  30,  40,  50,  60,  70,  80,  90, 100 );
-	$SubQry               = "";
-
+	
 	if ($_POST)
 	{
 		foreach($_POST as $Field => $Value)
@@ -52,7 +51,7 @@ function ShowResourcesPage($CurrentUser, $CurrentPlanet)
 
 				$Value                        = $Value / 10;
 				$CurrentPlanet[ $FieldName ]  = $Value;
-				$SubQry                      .= ", `".$FieldName."` = '".$Value."'";
+				$LegacyPlanet[ $FieldName ]	  = $FieldName;
 			}
 		}
 	}

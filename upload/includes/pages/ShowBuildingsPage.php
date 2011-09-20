@@ -23,17 +23,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 class ShowBuildingsPage
 {
-	private function BuildingSavePlanetRecord ($CurrentPlanet)
-	{
-		$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-		$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."', ";
-		$QryUpdatePlanet .= "`b_building` = '".    $CurrentPlanet['b_building']    ."' ";
-		$QryUpdatePlanet .= "WHERE ";
-		$QryUpdatePlanet .= "`id` = '".            $CurrentPlanet['id']            ."';";
-		doquery( $QryUpdatePlanet, 'planets');
 
-		return;
-	}
 
 	private function CancelBuildingFromQueue (&$CurrentPlanet, &$CurrentUser)
 	{
@@ -114,8 +104,7 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 		if ($QueueID > 1)
 		{
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
-
-			if ($CurrentQueue != 0)
+			if (!empty($CurrentQueue))
 			{
 				$QueueArray    = explode ( ";", $CurrentQueue );
 				$ActualCount   = count ( $QueueArray );
@@ -169,7 +158,7 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 		$Queue 				= $this->ShowBuildingQueue($CurrentPlanet, $CurrentUser);
 		$CurrentMaxFields  	= CalculateMaxPlanetFields($CurrentPlanet);
 
-		if ($CurrentPlanet["field_current"] >= ($CurrentMaxFields - $Queue['lenght']) && $_GET['cmd'] != 'destroy')
+		if ($CurrentPlanet["field_current"] >= ($CurrentMaxFields - $Queue['destroy']) && $_GET['cmd'] != 'destroy')
 			die(header("location:game.php?page=buildings"));
 
 		if ($CurrentQueue != 0)
@@ -190,6 +179,7 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 		else
 		{
 			$BuildMode = 'destroy';
+ 			$ForDestroy = 'true';
 		}
 
 		if ( $ActualCount < MAX_BUILDING_QUEUE_SIZE)
@@ -201,7 +191,7 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 			$QueueID      = false;
 		}
 
-		if ( $QueueID != false && IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, true, false) && IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Element) )
+		if ( $QueueID != false && IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, true, $ForDestroy) && IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Element) )
 		{
 			if ($QueueID > 1)
 			{
@@ -357,21 +347,20 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 
 	public function __construct (&$CurrentPlanet, $CurrentUser)
 	{
-		global $ProdGrid, $lang, $resource, $reslist, $phpEx, $dpath, $game_config, $_GET, $xgp_root;
+		global $ProdGrid, $lang, $resource, $reslist, $phpEx, $dpath, $game_config, $_GET, $xgp_root, $LegacyPlanet;
 
 		include_once($xgp_root . 'includes/functions/IsTechnologieAccessible.' . $phpEx);
 		include_once($xgp_root . 'includes/functions/GetElementPrice.' . $phpEx);
-      include_once($xgp_root . 'includes/functions/CheckPlanetUsedFields.' . $phpEx);
       
-		CheckPlanetUsedFields ( $CurrentPlanet );
-
+		
 		$parse			= $lang;
 		$Allowed['1'] 	= array(  1,  2,  3,  4, 12, 14, 15, 21, 22, 23, 24, 31, 33, 34, 35, 44, 45);
 		$Allowed['3'] 	= array( 12, 14, 21, 22, 23, 24, 34, 41, 42, 43);
 
 		if (isset($_GET['cmd']))
 		{
-			$bDoItNow 	= false;
+			//$bDoItNow     = false;
+			$bDoItNow     = true;
 			$TheCommand = $_GET['cmd'];
 			$Element 	= $_GET['building'];
 			$ListID 	= $_GET['listid'];
@@ -434,6 +423,8 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 						$this->AddBuildingToQueue ($CurrentPlanet, $CurrentUser, $Element, false);
 					break;
 				}
+				$LegacyPlanet['b_building_id']  = 'b_building_id';
+				$LegacyPlanet['b_building']     = 'b_building';
 			}
 
 			if ( $_GET['r'] == 'overview' )
@@ -451,7 +442,7 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 		$Sprice=array();
 		$Queue = $this->ShowBuildingQueue($CurrentPlanet, $CurrentUser, $Sprice);
 		//end fix
-		$this->BuildingSavePlanetRecord($CurrentPlanet);
+		//$this->BuildingSavePlanetRecord($CurrentPlanet);
 
 		if ($Queue['lenght'] < (MAX_BUILDING_QUEUE_SIZE))
 		{
@@ -470,7 +461,7 @@ private function RemoveBuildingFromQueue ( &$CurrentPlanet, $CurrentUser, $Queue
 			if (in_array($Element, $Allowed[$CurrentPlanet['planet_type']]))
 			{
 				$CurrentMaxFields      = CalculateMaxPlanetFields($CurrentPlanet);
-				if ($CurrentPlanet["field_current"] < ($CurrentMaxFields - $Queue['lenght']))
+				if ($CurrentPlanet["field_current"] < ($CurrentMaxFields - $Queue['destroy']))
 				{
 					$RoomIsOk = true;
 				}

@@ -23,7 +23,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 	function HandleTechnologieBuild ( &$CurrentPlanet, &$CurrentUser )
 	{
-		global $resource;
+		global $resource, $LegacyPlanet;
 
 		if ($CurrentUser['b_tech_planet'] != 0)
 		{
@@ -38,14 +38,19 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 			if ($ThePlanet['b_tech']    <= time() && $ThePlanet['b_tech_id'] != 0)
 			{
 				$CurrentUser[$resource[$ThePlanet['b_tech_id']]]++;
-
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-				$QryUpdatePlanet .= "`b_tech` = '0', ";
-				$QryUpdatePlanet .= "`b_tech_id` = '0' ";
-				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`id` = '". intval($ThePlanet['id']) ."';";
-				doquery( $QryUpdatePlanet, 'planets');
-
+				if ($WorkingPlanet){
+					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet .= "`b_tech` = '0', ";
+					$QryUpdatePlanet .= "`b_tech_id` = '0' ";
+					$QryUpdatePlanet .= "WHERE ";
+					$QryUpdatePlanet .= "`id` = '". intval($ThePlanet['id']) ."';";
+					doquery( $QryUpdatePlanet, 'planets');
+				}else{
+					$CurrentPlanet['b_tech']	=	'0';
+					$CurrentPlanet['b_tech_id']	=	'0';
+					$LegacyPlanet['b_tech']		=	'b_tech';
+					$LegacyPlanet['b_tech_id']	=	'b_tech_id';
+				}
 				$QryUpdateUser    = "UPDATE {{table}} SET ";
 				$QryUpdateUser   .= "`".$resource[$ThePlanet['b_tech_id']]."` = '". $CurrentUser[$resource[$ThePlanet['b_tech_id']]] ."', ";
 				$QryUpdateUser   .= "`b_tech_planet` = '0' ";

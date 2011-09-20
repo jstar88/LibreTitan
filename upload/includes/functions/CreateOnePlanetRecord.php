@@ -35,10 +35,11 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 			$CalculMin        = floor ( $RandomMin[$Position - 1] + ( $RandomMin[$Position - 1] * $PlanetRatio ) / 100 );
 			$CalculMax        = floor ( $RandomMax[$Position - 1] + ( $RandomMax[$Position - 1] * $PlanetRatio ) / 100 );
 			$RandomSize       = mt_rand($CalculMin, $CalculMax);
-			$MaxAddon         = mt_rand(0, 110);
-			$MinAddon         = mt_rand(0, 100);
-			$Addon            = ($MaxAddon - $MinAddon);
-			$PlanetFields     = ($RandomSize + $Addon);
+			//$MaxAddon         = mt_rand(0, 110);
+			//$MinAddon         = mt_rand(0, 100);
+			//$Addon            = ($MaxAddon - $MinAddon);
+			//$PlanetFields     = ($RandomSize + $Addon);
+			$PlanetFields     = ($RandomSize);
 		}
 		else
 		{
@@ -96,43 +97,43 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 				$PlanetType         = array('trocken');
 				$PlanetClass        = array('planet');
 				$PlanetDesign       = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10');
-				$planet['temp_min'] = rand(0, 100);
+				$planet['temp_min'] = mt_rand(0, 100);
 				$planet['temp_max'] = $planet['temp_min'] + 40;
 			} elseif ($Position == 4 || $Position == 5 || $Position == 6) {
 				$PlanetType         = array('dschjungel');
 				$PlanetClass        = array('planet');
 				$PlanetDesign       = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10');
-				$planet['temp_min'] = rand(-25, 75);
+				$planet['temp_min'] = mt_rand(-25, 75);
 				$planet['temp_max'] = $planet['temp_min'] + 40;
 			} elseif ($Position == 7 || $Position == 8 || $Position == 9) {
 				$PlanetType         = array('normaltemp');
 				$PlanetClass        = array('planet');
 				$PlanetDesign       = array('01', '02', '03', '04', '05', '06', '07');
-				$planet['temp_min'] = rand(-50, 50);
+				$planet['temp_min'] = mt_rand(-50, 50);
 				$planet['temp_max'] = $planet['temp_min'] + 40;
 			} elseif ($Position == 10 || $Position == 11 || $Position == 12) {
 				$PlanetType         = array('wasser');
 				$PlanetClass        = array('planet');
 				$PlanetDesign       = array('01', '02', '03', '04', '05', '06', '07', '08', '09');
-				$planet['temp_min'] = rand(-75, 25);
+				$planet['temp_min'] = mt_rand(-75, 25);
 				$planet['temp_max'] = $planet['temp_min'] + 40;
 			} elseif ($Position == 13 || $Position == 14 || $Position == 15) {
 				$PlanetType         = array('eis');
 				$PlanetClass        = array('planet');
 				$PlanetDesign       = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10');
-				$planet['temp_min'] = rand(-100, 10);
+				$planet['temp_min'] = mt_rand(-100, 10);
 				$planet['temp_max'] = $planet['temp_min'] + 40;
 			} else {
 				$PlanetType         = array('dschjungel', 'gas', 'normaltemp', 'trocken', 'wasser', 'wuesten', 'eis');
 				$PlanetClass        = array('planet');
 				$PlanetDesign       = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '00',);
-				$planet['temp_min'] = rand(-120, 10);
+				$planet['temp_min'] = mt_rand(-120, 10);
 				$planet['temp_max'] = $planet['temp_min'] + 40;
 			}
 
-			$planet['image']       = $PlanetType[ rand( 0, count( $PlanetType ) -1 ) ];
-			$planet['image']      .= $PlanetClass[ rand( 0, count( $PlanetClass ) - 1 ) ];
-			$planet['image']      .= $PlanetDesign[ rand( 0, count( $PlanetDesign ) - 1 ) ];
+			$planet['image']       = $PlanetType[ mt_rand( 0, count( $PlanetType ) -1 ) ];
+			$planet['image']      .= $PlanetClass[ mt_rand( 0, count( $PlanetClass ) - 1 ) ];
+			$planet['image']      .= $PlanetDesign[ mt_rand( 0, count( $PlanetDesign ) - 1 ) ];
 			$planet['planet_type'] = 1;
 			$planet['id_owner']    = $PlanetOwnerID;
 			$planet['last_update'] = time();

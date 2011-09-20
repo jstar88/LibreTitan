@@ -63,7 +63,7 @@ $lang['tech_rc'] = array (
 
 //----------------------------------------------------------------------------//
 //TOPNAV
-$lang['tn_vacation_mode']					= 'Modalit‡ vacanza attivata fino a ';
+$lang['tn_vacation_mode']					= 'Modalit√† vacanza attivata fino a ';
 $lang['tn_delete_mode']						= 'Il tuo account sta per essere eliminato';
 
 //----------------------------------------------------------------------------//
@@ -116,7 +116,7 @@ $lang['ov_diameter']						= 'Diametro';
 $lang['ov_distance_unit']					= 'km';
 $lang['ov_temperature']						= 'Temperatura';
 $lang['ov_aprox']							= 'circa';
-$lang['ov_temp_unit']						= '∞C';
+$lang['ov_temp_unit']						= '¬∞C';
 $lang['ov_to']								= 'a';
 $lang['ov_position']						= 'Posizione';
 $lang['ov_points']							= 'Punti';
@@ -143,11 +143,11 @@ $lang['ov_countdown_warinfight']       ='universo in guerra';
 $lang['gl_no_deuterium_to_view_galaxy']		= 'Non hai abbastanza deuterio!';
 $lang['gl_legend']							= 'Legenda';
 $lang['gl_strong_player']					= 'miglior player';
-$lang['gl_week_player']						= 'player pi˘ debole (niubbo)';
-$lang['gl_vacation']						= 'Modalit‡ vacanza';
+$lang['gl_week_player']						= 'player pi√π debole (niubbo)';
+$lang['gl_vacation']						= 'Modalit√† vacanza';
 $lang['gl_banned']							= 'banneto';
-$lang['gl_inactive_seven']					= '7 giorni di inattivit‡';
-$lang['gl_inactive_twentyeight']			= '28 giorni di inattivit‡';
+$lang['gl_inactive_seven']					= '7 giorni di inattivit√†';
+$lang['gl_inactive_twentyeight']			= '28 giorni di inattivit√†';
 $lang['gl_s']								= 'f';
 $lang['gl_w']								= 'd';
 $lang['gl_v']								= 'v';
@@ -173,7 +173,7 @@ $lang['gl_solar_system']					= 'Sistema';
 $lang['gl_show']							= 'Visiona';
 $lang['gl_pos']								= 'Posizione';
 $lang['gl_planet']							= 'Pianeta';
-$lang['gl_name_activity']					= 'Nome (attivit‡)';
+$lang['gl_name_activity']					= 'Nome (attivit√†)';
 $lang['gl_moon']							= 'Luna';
 $lang['gl_debris']							= 'DT';
 $lang['gl_player_estate']					= 'Player (stato)';
@@ -229,7 +229,7 @@ $lang['fl_a']								= '(A)';
 $lang['fl_send_back']						= 'Indietro';
 $lang['fl_acs']								= 'ACS';
 $lang['fl_no_more_slots']					= 'Non hai slot liberi per inviare altre flotte';
-$lang['fl_speed_title']						= 'Velocit‡: ';
+$lang['fl_speed_title']						= 'Velocit√†: ';
 $lang['fl_continue']						= 'continua';
 $lang['fl_no_ships']						= 'Non hai navi disponibili';
 $lang['fl_remove_all_ships']				= 'nessuna nave';
@@ -273,12 +273,12 @@ $lang['fl_shortcut_add']					= 'Aggiungi';
 $lang['fl_shortcut_edition']				= 'Modifica: ';
 $lang['fl_no_colony']						= 'Nessuna colonia';
 $lang['fl_send_fleet']						= 'Invia flotta';
-$lang['fl_fleet_speed']						= 'Velocit‡';
+$lang['fl_fleet_speed']						= 'Velocit√†';
 $lang['fl_distance']						= 'Distanza';
 $lang['fl_flying_time']						= 'Tempo di volo';
 $lang['fl_fuel_consumption']				= 'Cosumo carburante';
-$lang['fl_max_speed']						= 'Max. velocit‡';
-$lang['fl_cargo_capacity']					= 'Capacit‡ cargo';
+$lang['fl_max_speed']						= 'Max. velocit√†';
+$lang['fl_cargo_capacity']					= 'Capacit√† cargo';
 $lang['fl_shortcut']						= 'Scorciatoie';
 $lang['fl_shortcut_add_edit']				= '(Aggiungi / Modifica)';
 $lang['fl_my_planets']						= 'I miei pianeti';
@@ -289,15 +289,15 @@ $lang['fl_max']								= 'max';
 $lang['fl_resources_left']					= 'Lascia risorse';
 $lang['fl_all_resources']					= 'Tutte le risorse';
 $lang['fl_expedition_alert_message']		= 'Attenzione! Le spedizioni sono molto pericolose, potresti perdere le tue navi!';
-$lang['fl_vacation_mode_active']			= 'Modalit‡ vacanza attiva';
+$lang['fl_vacation_mode_active']			= 'Modalit√† vacanza attiva';
 $lang['fl_expedition_tech_required']		= 'Richiesta tecnologia di spedizione!';
 $lang['fl_expedition_fleets_limit']			= 'Raggiunto limite di flotte in spedizione!';
-$lang['fl_week_player']						= 'Il giocatore Ë molto debole!';
-$lang['fl_strong_player']					= 'Il giocatore Ë molto forte!';
-$lang['fl_in_vacation_player']				= 'Il giocatore Ë in modalit‡ vacanza!';
+$lang['fl_week_player']						= 'Il giocatore √® molto debole!';
+$lang['fl_strong_player']					= 'Il giocatore √® molto forte!';
+$lang['fl_in_vacation_player']				= 'Il giocatore √® in modalit√† vacanza!';
 $lang['fl_no_slots']						= 'Non hai slot disponibili';
 $lang['fl_empty_transport']					= 'Non puoi trasposrtare 0 risorse';
-$lang['fl_planet_populed']					= 'Questo pianeta Ë occupato!';
+$lang['fl_planet_populed']					= 'Questo pianeta √® occupato!';
 $lang['fl_stay_not_on_enemy']				= 'Non puoi lasciare flotte in pianeti nemici!';
 $lang['fl_not_ally_deposit']				= 'Nessuna base di appoggio';
 $lang['fl_deploy_only_your_planets']		= 'Puoi depositare le tuo flotte solo nei tuoi pianeti!';
@@ -310,8 +310,8 @@ $lang['fl_arrival_time']					= 'Ora di arrivo';
 $lang['fl_return_time']						= 'Ora di ritorno';
 $lang['fl_fleet']							= 'Flotta';
 $lang['fl_player']							= 'Giocatore ';
-$lang['fl_add_to_attack']					= ' Ë stato aggiuto per attaccare.';
-$lang['fl_dont_exist']						= ' non Ë stato aggiunto per attaccare.';
+$lang['fl_add_to_attack']					= ' √® stato aggiuto per attaccare.';
+$lang['fl_dont_exist']						= ' non √® stato aggiunto per attaccare.';
 $lang['fl_acs_invitation_message']			= ' sei stato invitato per partecipare ad un ACS.';
 $lang['fl_acs_invitation_title']			= 'Invito per ACS';
 $lang['fl_sac_of_fleet']					= 'Flotta ACS';
@@ -332,7 +332,7 @@ $lang['bd_add_to_list']						= 'Metti in coda';
 $lang['bd_no_more_fields']					= 'Non ci sono spazi liberi nel pianeta';
 $lang['bd_remaining']						= 'Rimangono';
 $lang['bd_lab_required']					= 'Prima hai bisogno di costruire in questo pianeta un laboratorio di ricerca!';
-$lang['bd_building_lab']					= 'Non si puÚ implementare una ricerca quando si sviluppa il laboratorio';
+$lang['bd_building_lab']					= 'Non si pu√≤ implementare una ricerca quando si sviluppa il laboratorio';
 $lang['bd_lvl']								= 'livello';
 $lang['bd_spy']								= ' spia';
 $lang['bd_commander']						= ' comandante';
@@ -341,7 +341,7 @@ $lang['bd_shipyard_required']				= 'Prima hai bisogno di costruire in questo pia
 $lang['bd_building_shipyard']				= 'Non puoi costruire navi durante lo sviluppo del cantiere spaziale';
 $lang['bd_available']						= 'Disponibile: ';
 $lang['bd_build_ships']						= 'Costruisci';
-$lang['bd_protection_shield_only_one']		= 'Lo scudo puÚ essere costruito solo una volta!';
+$lang['bd_protection_shield_only_one']		= 'Lo scudo pu√≤ essere costruito solo una volta!';
 $lang['bd_build_defenses']					= 'Costruisci';
 $lang['bd_actual_production']				= 'Produzione attuale:';
 $lang['bd_completed']						= 'Completato';
@@ -352,11 +352,11 @@ $lang['bd_finished']						= 'finito';
 
 //----------------------------------------------------------------------------//
 //RESOURCES
-$lang['rs_amount']							= 'quantit‡';
+$lang['rs_amount']							= 'quantit√†';
 $lang['rs_lvl']								= 'livello';
 $lang['rs_production_on_planet']			= 'Produzione risorse nel pianeta "%s"';
 $lang['rs_basic_income']					= 'Produzione base';
-$lang['rs_storage_capacity']				= 'Capacit‡ riserva';
+$lang['rs_storage_capacity']				= 'Capacit√† riserva';
 $lang['rs_calculate']						= 'calcola';
 $lang['rs_sum']								= 'Totale:';
 $lang['rs_daily']							= 'Resa per giorno:';
@@ -380,12 +380,12 @@ $lang['tr_exchange_done']					= 'Scambio avvenuto con successo';
 $lang['tr_call_trader']						= 'Chiama un mercante';
 $lang['tr_call_trader_who_buys']			= 'Chiama un mercante che compra ';
 $lang['tr_call_trader_submit']				= 'Chiama il mercante';
-$lang['tr_exchange_quota']					= 'il tasso di scambio Ë 4/2/1';
+$lang['tr_exchange_quota']					= 'il tasso di scambio √® 4/2/1';
 $lang['tr_sell_metal']						= 'Vendita di metallo';
 $lang['tr_sell_crystal']					= 'Vendita di cristallo';
 $lang['tr_sell_deuterium']					= 'Vendita di deuterio';
 $lang['tr_resource']						= 'Risorse';
-$lang['tr_amount']							= 'Quantit‡';
+$lang['tr_amount']							= 'Quantit√†';
 $lang['tr_quota_exchange']					= 'Tasso di scambio';
 $lang['tr_exchange']						= 'Scambia';
 $lang['tr_darkmatter_needed']				= 'Ti servono almeno <font color="#FF8900">%s di materia oscura</font> per chiamare un mercante.';
@@ -486,92 +486,92 @@ $lang['tech'] = array(
 $lang['res']['descriptions'] = array(
 1 => "La miniera di metallo fornisce le risorse base per un impero emergente e permette la realizzazione di costruzioni e navi.",
 2 => "I cristalli sono la principale risorsa utilizzata per la costruzione di componenti elettronici e per la formazione di alcune leghe metalliche.",
-3 => "Il deuterio Ë utilizzato come carburante per le navi stellari ed Ë estratto nelle profondit‡ oceaniche. Il deuterio Ë una sostanza rara e perciÚ relativamente costosa.",
+3 => "Il deuterio √® utilizzato come carburante per le navi stellari ed √® estratto nelle profondit√† oceaniche. Il deuterio √® una sostanza rara e perci√≤ relativamente costosa.",
 4 => "Le centrali ad energia solare convertono l`energia fotonica solare in energia elettrica da utilizzarsi per alimentare la maggior parte delle strutture.",
 12 => "Una centrale a fusione nucleare produce un atomo di elio partendo da due di deuterio utilizzando pressioni e temperature estremamente alte.",
-14 => "Le fabbriche dei robots forniscono unit‡ di costruzione economiche ed affidabili che possono essere usate per costruire o migliorare qualsiasi struttura planetaria. Ogni livello aggiuntivo aumenta l`efficienza e la quantit‡ di unit‡ robotiche che aiutano la costruzione.",
-15 => "La fabbrica dei naniti Ë l`ultima evoluzione della robotica. Ogni livello aggiuntivo fornisce naniti sempre pi˘ efficienti e sempre in maggiore quantit‡, utili per aumentare la velocit‡ di costruzione.",
-21 => "Il cantiere spaziale Ë il luogo dove vengono costruite le navi e le difese planetarie.",
+14 => "Le fabbriche dei robots forniscono unit√† di costruzione economiche ed affidabili che possono essere usate per costruire o migliorare qualsiasi struttura planetaria. Ogni livello aggiuntivo aumenta l`efficienza e la quantit√† di unit√† robotiche che aiutano la costruzione.",
+15 => "La fabbrica dei naniti √® l`ultima evoluzione della robotica. Ogni livello aggiuntivo fornisce naniti sempre pi√π efficienti e sempre in maggiore quantit√†, utili per aumentare la velocit√† di costruzione.",
+21 => "Il cantiere spaziale √® il luogo dove vengono costruite le navi e le difese planetarie.",
 22 => "Deposito di stoccaggio per metallo grezzo.",
 23 => "Deposito di stoccaggio per cristalli non processati.",
 24 => "Sono cisterne che contengono il deuterio appena prodotto in attesa d`utilizzo.",
-31 => "Il laboratorio Ë indispensabile per compiere ricerche su nuove tecnologie.",
-33 => "Il terraformer Ë richiesto per rendere edificabili aree del tuo pianeta altrimenti inaccessibili.",
-34 => "La base di appoggio offre la possibilit‡ di rifornirsi alle flotte amiche in orbita che aiutano a difenderti.",
+31 => "Il laboratorio √® indispensabile per compiere ricerche su nuove tecnologie.",
+33 => "Il terraformer √® richiesto per rendere edificabili aree del tuo pianeta altrimenti inaccessibili.",
+34 => "La base di appoggio offre la possibilit√† di rifornirsi alle flotte amiche in orbita che aiutano a difenderti.",
 41 => "",
 42 => "",
 43 => "",
-44 => "La base missilistica Ë una struttura di lancio e di stoccaggio di missili planetari.",
+44 => "La base missilistica √® una struttura di lancio e di stoccaggio di missili planetari.",
 
 106 => "Studiando la tecnologia da applicare allo spionaggio potrete ottenere informazioni riguardanti gli altri pianeti.",
-108 => "Maggiore Ë il livello della tecnologia informatica, pi˘ si avranno posti nella flotta. Ogni livello aggiuntivo permette di avere un posto in pi˘ nella propria flotta.",
+108 => "Maggiore √® il livello della tecnologia informatica, pi√π si avranno posti nella flotta. Ogni livello aggiuntivo permette di avere un posto in pi√π nella propria flotta.",
 109 => "Questo tipo di tecnologia aumenta la forza dei tuoi armamenti dove ogni livello aggiuntivo aumenta la potenza di fuoco del 10% ad ogni tipo di arma.",
-110 => "La tecnologia degli scudi Ë utilizzata per generare uno scudo protettivo a particelle attorno alle strutture. Ogni livello migliora la schermatura del 10% rispetto al livello base di una data struttura.",
+110 => "La tecnologia degli scudi √® utilizzata per generare uno scudo protettivo a particelle attorno alle strutture. Ogni livello migliora la schermatura del 10% rispetto al livello base di una data struttura.",
 111 => "Leghe altamente sofisticate aiutano ad aumentare la corazzatura di una nave aggiungendo il 10%, rispetto alla struttura base, di forza per livello.",
-113 => "Comprendendo la tecnologia che sta dietro i vari tipi di energia, possono esserne adottate di nuove e pi˘ avanzate. La tecnologia energetica Ë di somma importanza per un laboratorio moderno.",
-114 => "Effettuare ricerche in questo campo fornisce propulsori a combustione sempre pi˘ veloci nonostante ogni livello aggiunga solo il 10% di velocit‡ rispetto al motore base.",
-115 => "Effettuare ricerche in questo campo fornisce propulsori a combustione sempre pi˘ veloci nonostante ogni livello aggiunga solo il 10% di velocit‡ rispetto al motore base.",
-117 => "Il propulsore a impulso si basa sul principio di repulsione delle particelle. La materia respinta Ë in realt‡ costituita dalle scorie generate dal reattore a fusione che fornisce energia per questo tipo di propulsione.",
-118 => "Il propulsore iperspaziale permette di entrare nell`iperspazio attraverso una finestra iperspaziale in modo da ridurre estremamente i tempi di viaggio. L`iperspazio Ë uno spazio alternativo con pi˘ di tre dimensioni.",
-120 => "La tecnologia laser Ë di vitale importanza e porta un fascio di luce monocromatica focalizzato con precisione su un bersaglio. Il danno Ë da leggero a moderato a seconda della potenza del raggio.",
+113 => "Comprendendo la tecnologia che sta dietro i vari tipi di energia, possono esserne adottate di nuove e pi√π avanzate. La tecnologia energetica √® di somma importanza per un laboratorio moderno.",
+114 => "Effettuare ricerche in questo campo fornisce propulsori a combustione sempre pi√π veloci nonostante ogni livello aggiunga solo il 10% di velocit√† rispetto al motore base.",
+115 => "Effettuare ricerche in questo campo fornisce propulsori a combustione sempre pi√π veloci nonostante ogni livello aggiunga solo il 10% di velocit√† rispetto al motore base.",
+117 => "Il propulsore a impulso si basa sul principio di repulsione delle particelle. La materia respinta √® in realt√† costituita dalle scorie generate dal reattore a fusione che fornisce energia per questo tipo di propulsione.",
+118 => "Il propulsore iperspaziale permette di entrare nell`iperspazio attraverso una finestra iperspaziale in modo da ridurre estremamente i tempi di viaggio. L`iperspazio √® uno spazio alternativo con pi√π di tre dimensioni.",
+120 => "La tecnologia laser √® di vitale importanza e porta un fascio di luce monocromatica focalizzato con precisione su un bersaglio. Il danno √® da leggero a moderato a seconda della potenza del raggio.",
 121 => "La tecnologia delle armi ioniche studia come focalizzare un fascio di ioni accelerati su un bersaglio creando seri danni grazie agli scudi che sono per natura caricati elettricamente.",
-122 => "Sviluppando ulteriormente la tecnologia ionica si arriva a sviluppare le armi alimentate a plasma, che usano scariche di plasma accelerato che puÚ creare danni enormi al bersaglio.",
+122 => "Sviluppando ulteriormente la tecnologia ionica si arriva a sviluppare le armi alimentate a plasma, che usano scariche di plasma accelerato che pu√≤ creare danni enormi al bersaglio.",
 123 => "Gli scienziati dei tuoi pianeti possono comunicare tra loro attraverso questa rete.",
 124 => "Le navi ora sono dotati di moduli di ricerca che permettono di valutare i dati raccolti nelle spedizioni a lungo termine.",
 199 => "Sparando delle particelle gravitoniche concentrate si crea un campo gravitazionale artificiale la cui potenza e forza attrattiva possono non solo distruggere navi ma addirittura lune intere.",
 
 202 => "I cargo leggeri sono mezzi molto agili usati per trasportare risorse da un pianeta ad un altro.",
-203 => "I cargo pesanti sono una versione avanzata delle pi˘ piccole navi cargo, rendendo disponibile pi˘ spazio per il carico e maggiore velocit‡ dato il sistema di propulsione migliorato.",
-204 => "Il caccia leggero Ë una nave manovrabile che si trova su quasi tutti i pianeti. I costi non sono particolarmente elevati ma allo stesso tempo la forza degli scudi e lo spazio per il trasporto sono molto limitati.",
-205 => "Il caccia pesante Ë la diretta evoluzione del caccia leggero ed offre una corazzatura maggiore ed una pi˘ grande potenza d`attacco.",
-206 => "Gli incrociatori hanno una corazza almeno tre volte pi˘ potente dei caccia pesanti e hanno a disposizione pi˘ del doppio di potenza d fuoco. La loro velocit‡ di crociera Ë allo stesso modo superiore ad ogni altra cosa vista prima.",
-207 => "Le navi da battaglia sono la spina dorsale di ogni flotta militare. Corazzatura rinforzata, armamenti pesanti e alte velocit‡ di spostamento, fanno di questa nave, insieme al grande spazio per il cargo, un nemico difficile da battere.",
+203 => "I cargo pesanti sono una versione avanzata delle pi√π piccole navi cargo, rendendo disponibile pi√π spazio per il carico e maggiore velocit√† dato il sistema di propulsione migliorato.",
+204 => "Il caccia leggero √® una nave manovrabile che si trova su quasi tutti i pianeti. I costi non sono particolarmente elevati ma allo stesso tempo la forza degli scudi e lo spazio per il trasporto sono molto limitati.",
+205 => "Il caccia pesante √® la diretta evoluzione del caccia leggero ed offre una corazzatura maggiore ed una pi√π grande potenza d`attacco.",
+206 => "Gli incrociatori hanno una corazza almeno tre volte pi√π potente dei caccia pesanti e hanno a disposizione pi√π del doppio di potenza d fuoco. La loro velocit√† di crociera √® allo stesso modo superiore ad ogni altra cosa vista prima.",
+207 => "Le navi da battaglia sono la spina dorsale di ogni flotta militare. Corazzatura rinforzata, armamenti pesanti e alte velocit√† di spostamento, fanno di questa nave, insieme al grande spazio per il cargo, un nemico difficile da battere.",
 208 => "I pianeti vuoti possono essere colonizzati grazie a questa nave.",
 209 => "Le Navi Riciclatrici sono usate per raccogliere detriti che fluttuano nello spazio e riciclare risorse utili.",
 210 => "Le sonde spia sono piccoli droni non pilotati dall`uomo con sistemi di propulsione eccezionalmente veloci usati per spiare mondi stranieri.",
-211 => "Il bombardiere Ë una nave stellare speciale sviluppata per sfondare pesanti difese planetarie.",
-212 => "I satelliti solari sono semplici satelliti in orbita equipaggiati di celle fotovoltaiche e servono a trasferire energia al pianeta. L`energia in questo modo Ë trasmessa a terra utilizzando un raggio laser speciale.",
-213 => "La corazzata Ë la nave stellare pi˘ pesante mai vista e ha una potenza di fuoco mai eguagliata in precedenza.",
-214 => "Non c`Ë nulla di cosÏ grande e pericoloso come una morte nera che si avvicina.",
-215 => "L`Incrociatore da battaglia Ë altamente specializzato nell`intercettare flotte nemiche.",
-216 => "La SuperNova  Ë la nave pi˘ pericolosa mai creata prima, con un gran potere offensivo e distruttivo che nessuna nave potr‡ mai resistere.",
+211 => "Il bombardiere √® una nave stellare speciale sviluppata per sfondare pesanti difese planetarie.",
+212 => "I satelliti solari sono semplici satelliti in orbita equipaggiati di celle fotovoltaiche e servono a trasferire energia al pianeta. L`energia in questo modo √® trasmessa a terra utilizzando un raggio laser speciale.",
+213 => "La corazzata √® la nave stellare pi√π pesante mai vista e ha una potenza di fuoco mai eguagliata in precedenza.",
+214 => "Non c`√® nulla di cos√¨ grande e pericoloso come una morte nera che si avvicina.",
+215 => "L`Incrociatore da battaglia √® altamente specializzato nell`intercettare flotte nemiche.",
+216 => "La SuperNova  √® la nave pi√π pericolosa mai creata prima, con un gran potere offensivo e distruttivo che nessuna nave potr√† mai resistere.",
 
-401 => "Il lanciamissili Ë un semplice ma indispensabile sistema di difesa.",
-402 => "Con l`utilizzo di un raggio laser concentrato si possono causare pi˘ danni che attraverso normali armi missilistiche.",
-403 => "I laser pesanti hanno una potenza di emissione e un`integrit‡ strutturale superiore ai laser leggeri.",
+401 => "Il lanciamissili √® un semplice ma indispensabile sistema di difesa.",
+402 => "Con l`utilizzo di un raggio laser concentrato si possono causare pi√π danni che attraverso normali armi missilistiche.",
+403 => "I laser pesanti hanno una potenza di emissione e un`integrit√† strutturale superiore ai laser leggeri.",
 404 => "Usando un`enorme accelerazione elettromagnetica, il cannone gauss accelera pesanti proiettili.",
 405 => "I cannoni ionici sparano raggi ionici altamente energetici verso i propri obiettivi destabilizzando gli scudi e distruggendo l`elettronica.",
-406 => "I cannoni al plasma liberano la potenza di una piccola eruzione solare nella forma di un proiettile di plasma. L`energia distruttiva Ë addirittura superiore a quella della corazzata.",
-407 => "La cupola scudo copre il pianeta con un sottile campo protettivo e di schermatura, che puÚ assorbire enormi quantit‡ di potenza di fuoco.",
-408 => "La cupola scudo potenziata Ë un` evoluta tecnologia di schermatura che assorbe ancor pi˘ energia prima di collassare.",
+406 => "I cannoni al plasma liberano la potenza di una piccola eruzione solare nella forma di un proiettile di plasma. L`energia distruttiva √® addirittura superiore a quella della corazzata.",
+407 => "La cupola scudo copre il pianeta con un sottile campo protettivo e di schermatura, che pu√≤ assorbire enormi quantit√† di potenza di fuoco.",
+408 => "La cupola scudo potenziata √® un` evoluta tecnologia di schermatura che assorbe ancor pi√π energia prima di collassare.",
 409 => "La massima protezione per i pianeti",
 502 => "I Missili Anti Balistici distruggono i missili interplanetari.",
 503 => "I missili interplanetari distruggono le difese nemiche.",
 
-601 => 'Il geologo Ë un esperto nel settore minerario e cristallografia astronomica. Utilizza le sue attrezzature nella metallurgia e nella chimica ed Ë anche responsabile per le comunicazioni interplanetarie per ottimizzare raffinatezza e utilizzo di materie prime.<br><br><strong><font color="lime">+5% di produzione. Livello massimo. 20</font></strong>',
-602 => 'Ammiraglio, un veterano con esperienza e un abile stratega. Nella battaglia pi˘ difficile Ë in grado di avere la giusta idea della situazione e sta in contatto con i suoi subalterni. Un saggio imperatore deve contare sul loro aiuto durante i combattimenti.<br><br><strong><font color="lime">+5% di scudo nelle navi. Livello massimo. 20</font></strong>',
+601 => 'Il geologo √® un esperto nel settore minerario e cristallografia astronomica. Utilizza le sue attrezzature nella metallurgia e nella chimica ed √® anche responsabile per le comunicazioni interplanetarie per ottimizzare raffinatezza e utilizzo di materie prime.<br><br><strong><font color="lime">+5% di produzione. Livello massimo. 20</font></strong>',
+602 => 'Ammiraglio, un veterano con esperienza e un abile stratega. Nella battaglia pi√π difficile √® in grado di avere la giusta idea della situazione e sta in contatto con i suoi subalterni. Un saggio imperatore deve contare sul loro aiuto durante i combattimenti.<br><br><strong><font color="lime">+5% di scudo nelle navi. Livello massimo. 20</font></strong>',
 603 => 'Esperto in gestione di energia. In tempo di pace, aumenta energia di tutte le colonie. In caso di attacco, garantisce approvvigionamento di energia per i cannoni e evita un possibile sovraccarico, determinando una riduzione delle difese sulla sconfitta in battaglia.<br><br><strong><font color="lime">+5% di energia. Livello masssimo. 10</font></strong>',
-604 => 'Autentico genio che riesce a dare una nuova spinta al cantiere navale con la sua tecnologia avanzata. Nessun essere umano normale riuscir‡ mai a decodificare il codice di un tecnico.<br><br><strong><font color="lime">+5% velocit‡ di costruzione navi. Livello massimo. 10</font></strong>',
-605 => 'Il costruttore ha il suo DNA modificato. Solo uno di loro potrebbe costruire una citt‡ intera in poco tempo.<br><br><strong><font color="lime">+10% di rapidit‡ nella costruzione di edifici. Livello massimo. 3</font></strong>',
-606 => 'Gli scienziati sono parte di una gilda specializzata nel miglioramento delle tecnologie.<br><br><strong><font color="lime">+10% di rapidit‡ nelle ricerche. Livello massimo. 3</font></strong>',
-607 => 'Fa parte di una fratellanza proveniente dal pianeta Hsac. Il suo motto Ë ricavare il massimo, per questo serve molto spazio. Ha sviluppato una nuova tecnica di stoccaggio.<br><br><strong><font color="lime">+50% di ammassamento. Livello massimo.2</font></strong>',
-608 => 'Il difensore Ë un membro della armata imperiale. Il suo obiettivo Ë creare in poco tempo una difesa formidabile.<br><br><strong><font color="lime">+25% di rapidit‡ nella costruzione di difesa. Livello massimo. 2</font></strong>',
-609 => 'Il protettore Ë un membro della armata imperiale ed il suo obiettivo Ë sviluppare una unova tecnologia per la protezione del pianeta.<br><br><strong><font color="lime">Sblocca la protezione planetaria. Livello massimo. 1</font></strong>',
-610 => 'La spia Ë una persona enigmatica. Nessuno ha mai visto la sua faccia, unico modo sarebbe ucciderlo.<br><br><strong><font color="lime">+5 livelli di spionaggio. Livello massimo. 2</font></strong>',
-611 => 'Il comandante Ë parte del esercito imperiale che ha imparato le arti di gestione flotte. PuÚ calcolare le traiettorie di un gran numero di flotte.<br><br><strong><font color="lime">+3 slots per la flotta. Livello massimo. 3</font></strong>',
-612 => 'Il distruttore Ë parte del esercito imperiale ed Ë senza piet‡. Distrugge tutto per divertimento. St‡ sviluppando un nuovo metodo di costruzione della Morte Nera.<br><br><strong><font color="lime">2 navi al posto di 1. Livello massimo. 1</font></strong>',
-613 => 'Il generale Ë una parsona che ha servito armata imperiale per tanti anni. In sua presenza gli hangar lavorano pi˘ velocemente.<br><br><strong><font color="lime">+10% di velocit‡ degli hangar. Livello massimo. 3</font></strong>',
-614 => 'Il conquistatore Ë un membro della armata, Ë capace di guidare una particolare nave che nessun altro riuscirebbe a far partire.<br><br><strong><font color="lime">Sblocca la SuperNova. Livello Max. 1</font></strong>',
-615 => 'Ha tutti sotto il suo comando. Combinando le loro abilit‡ riesce a far conquistare tutto universo e a rendere impero quasi del tutto invincibile.<br><br><strong><font color="lime">Sblocca la distruzione planetaria. Livello Massimo. 1</font></strong>',
+604 => 'Autentico genio che riesce a dare una nuova spinta al cantiere navale con la sua tecnologia avanzata. Nessun essere umano normale riuscir√† mai a decodificare il codice di un tecnico.<br><br><strong><font color="lime">+5% velocit√† di costruzione navi. Livello massimo. 10</font></strong>',
+605 => 'Il costruttore ha il suo DNA modificato. Solo uno di loro potrebbe costruire una citt√† intera in poco tempo.<br><br><strong><font color="lime">+10% di rapidit√† nella costruzione di edifici. Livello massimo. 3</font></strong>',
+606 => 'Gli scienziati sono parte di una gilda specializzata nel miglioramento delle tecnologie.<br><br><strong><font color="lime">+10% di rapidit√† nelle ricerche. Livello massimo. 3</font></strong>',
+607 => 'Fa parte di una fratellanza proveniente dal pianeta Hsac. Il suo motto √® ricavare il massimo, per questo serve molto spazio. Ha sviluppato una nuova tecnica di stoccaggio.<br><br><strong><font color="lime">+50% di ammassamento. Livello massimo.2</font></strong>',
+608 => 'Il difensore √® un membro della armata imperiale. Il suo obiettivo √® creare in poco tempo una difesa formidabile.<br><br><strong><font color="lime">+25% di rapidit√† nella costruzione di difesa. Livello massimo. 2</font></strong>',
+609 => 'Il protettore √® un membro della armata imperiale ed il suo obiettivo √® sviluppare una unova tecnologia per la protezione del pianeta.<br><br><strong><font color="lime">Sblocca la protezione planetaria. Livello massimo. 1</font></strong>',
+610 => 'La spia √® una persona enigmatica. Nessuno ha mai visto la sua faccia, unico modo sarebbe ucciderlo.<br><br><strong><font color="lime">+5 livelli di spionaggio. Livello massimo. 2</font></strong>',
+611 => 'Il comandante √® parte del esercito imperiale che ha imparato le arti di gestione flotte. Pu√≤ calcolare le traiettorie di un gran numero di flotte.<br><br><strong><font color="lime">+3 slots per la flotta. Livello massimo. 3</font></strong>',
+612 => 'Il distruttore √® parte del esercito imperiale ed √® senza piet√†. Distrugge tutto per divertimento. St√† sviluppando un nuovo metodo di costruzione della Morte Nera.<br><br><strong><font color="lime">2 navi al posto di 1. Livello massimo. 1</font></strong>',
+613 => 'Il generale √® una parsona che ha servito armata imperiale per tanti anni. In sua presenza gli hangar lavorano pi√π velocemente.<br><br><strong><font color="lime">+10% di velocit√† degli hangar. Livello massimo. 3</font></strong>',
+614 => 'Il conquistatore √® un membro della armata, √® capace di guidare una particolare nave che nessun altro riuscirebbe a far partire.<br><br><strong><font color="lime">Sblocca la SuperNova. Livello Max. 1</font></strong>',
+615 => 'Ha tutti sotto il suo comando. Combinando le loro abilit√† riesce a far conquistare tutto universo e a rendere impero quasi del tutto invincibile.<br><br><strong><font color="lime">Sblocca la distruzione planetaria. Livello Massimo. 1</font></strong>',
 );
 
 //----------------------------------------------------------------------------//
 //INFOS
-$lang['in_jump_gate_done']					= 'Il salto spaziale Ë stato gi‡ effettuato, puoi effettuare il prossimo salto in: ';
+$lang['in_jump_gate_done']					= 'Il salto spaziale √® stato gi√† effettuato, puoi effettuare il prossimo salto in: ';
 $lang['in_jump_gate_error_data']			= 'Errore, i dati per il salto non sono corretti!';
-$lang['in_jump_gate_not_ready_target']		= 'Il salto sapziale non Ë pronto nella luna, sar‡ pronto in ';
+$lang['in_jump_gate_not_ready_target']		= 'Il salto sapziale non √® pronto nella luna, sar√† pronto in ';
 $lang['in_jump_gate_doesnt_have_one']		= 'Non hai il portale iperspaziale sulla luna!';
-$lang['in_jump_gate_already_used']			= 'Il salto spaziale Ë stato gi‡ usato, tempo di ricarica della sua energia: ';
+$lang['in_jump_gate_already_used']			= 'Il salto spaziale √® stato gi√† usato, tempo di ricarica della sua energia: ';
 $lang['in_jump_gate_available']				= 'disponibile';
 $lang['in_rf_again']    					= 'Fuoco rapido contro';
 $lang['in_rf_from']     					= 'Fuoco rapido da';
@@ -584,12 +584,12 @@ $lang['in_used_deuter']						= 'Deuterium consumption';
 $lang['in_range']       					= 'Raggio sensore';
 $lang['in_title_head']  					= 'Informazione di';
 $lang['in_name']        					= 'Nome';
-$lang['in_struct_pt']   					= 'Integrit‡ strutturale';
+$lang['in_struct_pt']   					= 'Integrit√† strutturale';
 $lang['in_shield_pt']   					= 'Forza scudo';
 $lang['in_attack_pt']   					= 'Forza attaco';
-$lang['in_capacity']    					= 'Capacit‡ cargo';
-$lang['in_units']       					= 'unit‡';
-$lang['in_base_speed'] 						= 'Velocit‡ di base';
+$lang['in_capacity']    					= 'Capacit√† cargo';
+$lang['in_units']       					= 'unit√†';
+$lang['in_base_speed'] 						= 'Velocit√† di base';
 $lang['in_consumption'] 					= 'Consumo carburante (Deuterio)';
 $lang['in_jump_gate_start_moon']			= 'Luna iniziale';
 $lang['in_jump_gate_finish_moon']			= 'Luna finale';
@@ -801,17 +801,17 @@ $lang['al_request']							= 'Richiesta';
 $lang['al_click_to_send_request']			= 'Clicca qui per inviare la tua richiesta';
 $lang['al_tag_required']					= 'Tag alleanza vuoto';
 $lang['al_name_required']					= 'Nome alleanza vuoto';
-$lang['al_already_exists']					= 'Alleanza gi‡ esistente.';
+$lang['al_already_exists']					= 'Alleanza gi√† esistente.';
 $lang['al_created']							= 'Alleanza creata';
 $lang['al_continue']						= 'continua';
-$lang['al_alliance_closed']					= 'Questa alleanza non accetta pi˘ membri';
+$lang['al_alliance_closed']					= 'Questa alleanza non accetta pi√π membri';
 $lang['al_request_confirmation_message']	= 'Richiesta inviata. Riceverai presto una risposta con richiesta accettata/rifiutata. <br><a href="game.php?page=alliance">indietro</a>';
 $lang['al_default_request_text']			= 'Il capo non ha inserito un messaggio di presentazione per la richiesta.';
 $lang['al_write_request']					= 'Scrivi richiesta all\'alleanza %s';
-$lang['al_request_deleted']					= 'La tua richiesta per l\'alleanza %s Ë stata cancellata. <br/> Ora puoi fare una nuova richiesta o creare una tua alleanza.';
-$lang['al_request_wait_message']			= 'Hai gi‡ mandato la richiesta all\'alleanza %s. <br/> Per favore aspetta fino a quando nonricevi una risposta o cancelli questa richiesta.';
+$lang['al_request_deleted']					= 'La tua richiesta per l\'alleanza %s √® stata cancellata. <br/> Ora puoi fare una nuova richiesta o creare una tua alleanza.';
+$lang['al_request_wait_message']			= 'Hai gi√† mandato la richiesta all\'alleanza %s. <br/> Per favore aspetta fino a quando nonricevi una risposta o cancelli questa richiesta.';
 $lang['al_delete_request']					= 'Canella richiesta';
-$lang['al_founder_cant_leave_alliance']		= 'Il fondatore non puÚ abbandonare l\'alleanza.';
+$lang['al_founder_cant_leave_alliance']		= 'Il fondatore non pu√≤ abbandonare l\'alleanza.';
 $lang['al_leave_sucess']					= 'Hai lasciato l\alleanza %s con successo.';
 $lang['al_do_you_really_want_to_go_out']	= 'Sei sicuro di voler lasciare l\'alleanza %s?';
 $lang['al_go_out_yes']						= 'Si';
@@ -834,7 +834,7 @@ $lang['al_you_was_declined']				= 'Sei stato rifiutato ';
 $lang['al_has_declined']					= '</b> ha rifiutato la tua richiesta<br>Messaggio del fondatore: <br>';
 $lang['al_no_requests']						= 'Nessuna richiesta';
 $lang['al_request_from']					= '"Richiesta dell\'alleanza %s"';
-$lang['al_no_request_pending']				= 'C\'Ë %n richista/e in attesa';
+$lang['al_no_request_pending']				= 'C\'√® %n richista/e in attesa';
 $lang['al_name']							= 'nome';
 $lang['al_new_name']						= 'Nuovo nome';
 $lang['al_tag']								= 'tag';
@@ -895,7 +895,7 @@ $lang['al_make_submit']						= 'fonda';
 $lang['al_find_alliances']					= 'Cerca alleanza';
 $lang['al_find_text']						= 'Cerca per';
 $lang['al_find_submit']						= 'cerca';
-$lang['al_the_nexts_allys_was_founded']		= 'L\'Alleanza Ë stata fondata:';
+$lang['al_the_nexts_allys_was_founded']		= 'L\'Alleanza √® stata fondata:';
 $lang['al_manage_ranks']					= 'Configura posizioni';
 $lang['al_manage_members']					= 'gestisci membri';
 $lang['al_manage_change_tag']				= 'Cambia il tag dell\'alleanza';
@@ -904,8 +904,8 @@ $lang['al_texts']							= 'Gestisci testo';
 $lang['al_manage_options']					= 'Optzioni';
 $lang['al_manage_image']					= 'Logo alleanza';
 $lang['al_manage_requests']					= 'Richieste';
-$lang['al_requests_not_allowed']			= 'non Ë possibile(alleanza chiusa)';
-$lang['al_requests_allowed']				= 'Ë possibile(alleanza aperta)';
+$lang['al_requests_not_allowed']			= 'non √® possibile(alleanza chiusa)';
+$lang['al_requests_allowed']				= '√® possibile(alleanza aperta)';
 $lang['al_manage_founder_rank']				= 'Posizione Fondatore';
 $lang['al_configura_ranks']					= 'Configura posizioni';
 $lang['al_create_new_rank']					= 'Crea nuova posizione';
@@ -927,7 +927,7 @@ $lang['al_leave_alliance']					= 'Lascia questa alleanza';
 
 //----------------------------------------------------------------------------//
 //BUDDY
-$lang['bu_request_exists']					= 'Hai gi‡ una applicazione verso questo giocatore!';
+$lang['bu_request_exists']					= 'Hai gi√† una applicazione verso questo giocatore!';
 $lang['bu_cannot_request_yourself']			= 'non puoi chiedere amicizia a te stesso';
 $lang['bu_request_message']					= 'Richiesta messaggio';
 $lang['bu_player']							= 'Player';
@@ -966,7 +966,7 @@ $lang['nt_date_note']						= 'Data';
 $lang['nt_subject_note']					= 'Soggetto';
 $lang['nt_size_note']						= 'Grandezza';
 $lang['nt_dlte_note']						= 'Cancella';
-$lang['nt_priority']						= 'Priorit‡';
+$lang['nt_priority']						= 'Priorit√†';
 $lang['nt_note']							= 'Notizia';
 $lang['nt_characters']						= 'caratteri';
 $lang['nt_back']							= 'Indietro';
@@ -1011,11 +1011,11 @@ $lang['sh_position']						= 'Posizione';
 
 //----------------------------------------------------------------------------//
 //OPTIONS
-$lang['op_cant_activate_vacation_mode']		= 'Se stai costruendo o hai flotte in movimento non puoi entrare in modalit‡ vacanza.';
+$lang['op_cant_activate_vacation_mode']		= 'Se stai costruendo o hai flotte in movimento non puoi entrare in modalit√† vacanza.';
 $lang['op_password_changed']				= 'Password cambiata<br /><a href="index.php" target="_top">Indietro</a>';
 $lang['op_username_changed']				= 'Username cambiato<br /><a href="index.php" target="_top">Indietro</a>';
 $lang['op_options_changed']					= 'Modifiche effettuate.<br /><a href="game.php?page=options">Indietro</a>';
-$lang['op_vacation_mode_active_message']	= 'Modalit‡ vacanza attivata. Devi restare in vacanza almeno fino a: ';
+$lang['op_vacation_mode_active_message']	= 'Modalit√† vacanza attivata. Devi restare in vacanza almeno fino a: ';
 $lang['op_end_vacation_mode']				= 'Torna dalla vacanza';
 $lang['op_save_changes']					= 'salva modifiche';
 $lang['op_admin_title_options']				= 'Opzioni disponibile per la gestione';
@@ -1046,14 +1046,14 @@ $lang['op_write_message']					= 'Scrivi messaggio';
 $lang['op_add_to_buddy_list']				= 'Aggiungi alla lista amici';
 $lang['op_missile_attack']					= 'Attacco missilistico';
 $lang['op_send_report']						= 'Invia report';
-$lang['op_vacation_delete_mode']			= 'Modalit‡ vacanza / Cancella account';
-$lang['op_activate_vacation_mode']			= 'Abilita modalit‡ vacanza';
+$lang['op_vacation_delete_mode']			= 'Modalit√† vacanza / Cancella account';
+$lang['op_activate_vacation_mode']			= 'Abilita modalit√† vacanza';
 $lang['op_dlte_account']					= 'Cancella account';
 $lang['op_email_adress_descrip']			= 'Puoi cambiare la mail una sola volta. Questa diventa indirizzo permanente dopo 7 senza cambiamenti.';
-$lang['op_deactivate_ipcheck_descrip']		= 'Controllo IP significa che verr‡ fatto un logout automatico al cambiamento dello stesso IP o per evitare che due persone siano collegato con lo stesso account da IP differenti. Disabilitarlo potrebbe essere un rischio!';
+$lang['op_deactivate_ipcheck_descrip']		= 'Controllo IP significa che verr√† fatto un logout automatico al cambiamento dello stesso IP o per evitare che due persone siano collegato con lo stesso account da IP differenti. Disabilitarlo potrebbe essere un rischio!';
 $lang['op_spy_probes_number_descrip']		= 'Numero di sonde spie che possono essere inviate direttamente dal menu utente nella galassia.';
-$lang['op_activate_vacation_mode_descrip']	= 'La modalit‡ vacanza vi protegger‡ durante lunghe assenze. PuÚ essere attivato solo se niente Ë in costruzione (flotta, edificio o difesa), nulla Ë oggetto di ricerca, e nessuna delle vostrevostre flotte sono in corso. Una volta attivato, si Ë protetti dagli attacchi. Gli attacchi che hanno gi‡ iniziato saranno effettuati. Durante la vacanza, la produzione Ë impostata a zero e deve essere reimpostato manualmente al 100% dopo la fine della modalit‡ vacanza. La modalit‡ vacanza dura un minimo di due giorni e puÚ essere disattivato solo dopo questo tempo.';
-$lang['op_dlte_account_descrip']			= 'Se selezioni questo campo, il tuo account sar‡ cacellato automaticamente dopo 7 giorni.';
+$lang['op_activate_vacation_mode_descrip']	= 'La modalit√† vacanza vi protegger√† durante lunghe assenze. Pu√≤ essere attivato solo se niente √® in costruzione (flotta, edificio o difesa), nulla √® oggetto di ricerca, e nessuna delle vostrevostre flotte sono in corso. Una volta attivato, si √® protetti dagli attacchi. Gli attacchi che hanno gi√† iniziato saranno effettuati. Durante la vacanza, la produzione √® impostata a zero e deve essere reimpostato manualmente al 100% dopo la fine della modalit√† vacanza. La modalit√† vacanza dura un minimo di due giorni e pu√≤ essere disattivato solo dopo questo tempo.';
+$lang['op_dlte_account_descrip']			= 'Se selezioni questo campo, il tuo account sar√† cacellato automaticamente dopo 7 giorni.';
 
 //----------------------------------------------------------------------------//
 //BANNED
@@ -1071,11 +1071,11 @@ $lang['bn_by']								= 'Da';
 //SYSTEM
 $lang['sys_attacker_lostunits'] 			= "L'attacante ha perso un totale di";
 $lang['sys_defender_lostunits'] 			= "Il difensore ha perso un totale di";
-$lang['sys_units']							= "unit‡";
+$lang['sys_units']							= "unit√†";
 $lang['debree_field_1'] 					= "Un campo detriti";
 $lang['debree_field_2']						= "Fluttuano nell'orbita del pianeta.";
-$lang['sys_moonproba'] 						= "La probabilit‡ che una luna emerga dai detriti Ë:";
-$lang['sys_moonbuilt'] 						= "La grande quantit‡ di metallo e cristallo si fondono e formano un satellite lunare in orbita del pianeta %s [%d:%d:%d] !";
+$lang['sys_moonproba'] 						= "La probabilit√† che una luna emerga dai detriti √®:";
+$lang['sys_moonbuilt'] 						= "La grande quantit√† di metallo e cristallo si fondono e formano un satellite lunare in orbita del pianeta %s [%d:%d:%d] !";
 $lang['sys_attack_title']    				= "Flotte in collisione ";
 $lang['sys_attack_round']					= "Round";
 $lang['sys_attack_attacker_pos'] 			= "Attaccante";
@@ -1105,12 +1105,12 @@ $lang['sys_spy_defenses'] 					= "Difeses";
 $lang['sys_mess_qg'] 						= "Sede Centrale";
 $lang['sys_mess_spy_report_moon']			= "(Luna)";
 $lang['sys_mess_spy_report'] 				= "Rapporto di spionaggio";
-$lang['sys_mess_spy_lostproba'] 			= "Probabilit‡ di controspionaggio : %d %% ";
+$lang['sys_mess_spy_lostproba'] 			= "Probabilit√† di controspionaggio : %d %% ";
 $lang['sys_mess_spy_control'] 				= "Controllo spaziale";
-$lang['sys_mess_spy_activity'] 				= "Attivit‡ di spionaggio";
+$lang['sys_mess_spy_activity'] 				= "Attivit√† di spionaggio";
 $lang['sys_mess_spy_ennemyfleet'] 			= "Ua flotta nemica dal pianeta";
-$lang['sys_mess_spy_seen_at'] 				= "Ë stata rilevata vicino il tuo pianeta";
-$lang['sys_mess_spy_destroyed'] 			= "La tua flotta di spionaggio Ë stata distrutta";
+$lang['sys_mess_spy_seen_at'] 				= "√® stata rilevata vicino il tuo pianeta";
+$lang['sys_mess_spy_destroyed'] 			= "La tua flotta di spionaggio √® stata distrutta";
 $lang['sys_stay_mess_stay'] 				= "Flotta parcheggiata";
 $lang['sys_stay_mess_start'] 				= "la tua flotta arriva sul pianeta";
 $lang['sys_stay_mess_end'] 					= " e lascia le seguenti risorse: ";
@@ -1120,15 +1120,15 @@ $lang['sys_colo_mess_from'] 				= "Colonizzazione";
 $lang['sys_colo_mess_report'] 				= "Rapporto di colonizzazione";
 $lang['sys_colo_defaultname'] 				= "Colonia";
 $lang['sys_colo_arrival'] 					= "I coloni arrivano alle coordinate ";
-$lang['sys_colo_maxcolo'] 					= ", ma, sfortunatamente, non possono colonizzare, non possono avere pi˘";
+$lang['sys_colo_maxcolo'] 					= ", ma, sfortunatamente, non possono colonizzare, non possono avere pi√π";
 $lang['sys_colo_allisok'] 					= ", 	i coloni stanno iniziando a costruire la nuova colonia.";
 $lang['sys_colo_badpos']  					= ", 	i coloni hanno trovato un ambiente favorevole all'espansione del suo impero...";
 $lang['sys_colo_notfree'] 					= ", 	I coloni non hanno trovato un pianeta con queste condizioni e sono costretti a tornare indietro demoralizzati ...";
 $lang['sys_colo_planet']  					= " pianeta ";
 $lang['sys_expe_report'] 					= "Rapporto di spedizione";
 $lang['sys_recy_report'] 					= "Rapporto di reciclaggio";
-$lang['sys_expe_blackholl_1'] 				= "La flotta Ë stata risucchiata in un buco nero ed Ë stata parzialmente distrutta.";
-$lang['sys_expe_blackholl_2'] 				= "La flotta Ë stata risucchiata in un buco nero ed Ë stata totalemnte distrutta!";
+$lang['sys_expe_blackholl_1'] 				= "La flotta √® stata risucchiata in un buco nero ed √® stata parzialmente distrutta.";
+$lang['sys_expe_blackholl_2'] 				= "La flotta √® stata risucchiata in un buco nero ed √® stata totalemnte distrutta!";
 $lang['sys_expe_nothing_1'] 				= "I tuoi eploratori hanno fatto grandi foto ma non hanno trovato risorse";
 $lang['sys_expe_nothing_2'] 				= "I tuoi esploratori hanno passato del tempo in questa parte di universo ma non hanno trovato nulla.";
 $lang['sys_expe_found_goods'] 				= "La flotta ha scoperto un veicolo spaziale senza equipaggio! <br> I tuoi esploratori hanno recuperato %s de %s, %s de %s, %s de %s y %s de %s.";
@@ -1136,10 +1136,10 @@ $lang['sys_expe_found_ships'] 				= "I tuoi esploratori hanno trovato una squadr
 $lang['sys_expe_back_home'] 				= "La tua spedizione ritorna alla base.";
 $lang['sys_mess_transport'] 				= "Flotta di trasporto";
 $lang['sys_tran_mess_owner'] 				= "Una tua flotta raggiunge %s %s e lascia questi beni: %s de %s, %s de %s y %s of %s.";
-$lang['sys_tran_mess_user']  				= "Trovata una flotta di% s% s% s stava tornando nel sua pianeta% s% s% s unit‡, unit‡ di% s% s% s% s unit‡.";
+$lang['sys_tran_mess_user']  				= "Trovata una flotta di% s% s% s stava tornando nel sua pianeta% s% s% s unit√†, unit√† di% s% s% s% s unit√†.";
 $lang['sys_mess_fleetback'] 				= "Ritorno della flotta";
 $lang['sys_tran_mess_back'] 				= "La flotta ritorna al pianeta % s% s. La flotta non trasporta risorse.";
-$lang['sys_recy_gotten'] 					= "La tua flotta arriva alle coordinate indicate e raccoglie %s unit‡ %s e %s unit‡ di %s.";
+$lang['sys_recy_gotten'] 					= "La tua flotta arriva alle coordinate indicate e raccoglie %s unit√† %s e %s unit√† di %s.";
 $lang['sys_notenough_money'] 				= "Non hai abbastanza risorse per costruire un %s. Tu %s di %s, %s di %s e %s di %s e il costo della costruzione era %s di %s, %s di %s e %s di %s";
 $lang['sys_nomore_level'] 					= "Prova a distruggere una costruzione ( %s ).";
 $lang['sys_buildlist'] 						= "Lista dell'1area costruzione";
@@ -1149,14 +1149,14 @@ $lang['sys_fleet_won'] 						= "Una tua flotta ritorna dal pianeta %s %s e lasci
 $lang['sys_perte_attaquant'] 				= "Parte d'attaccante";
 $lang['sys_perte_defenseur'] 				= "Parte di difesa";
 $lang['sys_debris'] 						= "Detriti";
-$lang['sys_destruc_title']    				= "Probabilit‡ di distruggere la luna %s :";
+$lang['sys_destruc_title']    				= "Probabilit√† di distruggere la luna %s :";
 $lang['sys_mess_destruc_report'] 			= "Rapporto di distruzione";
-$lang['sys_destruc_lune'] 					= "La probabilit‡ di distruggere la luna Ë: %d %% ";
-$lang['sys_destruc_rip'] 					= "La probabilit‡ che le morte nere vengano distrutte Ë: %d %% ";
-$lang['sys_destruc_stop'] 					= "Il difensore non Ë riuscito a fermare la distruzione della luna";
+$lang['sys_destruc_lune'] 					= "La probabilit√† di distruggere la luna √®: %d %% ";
+$lang['sys_destruc_rip'] 					= "La probabilit√† che le morte nere vengano distrutte √®: %d %% ";
+$lang['sys_destruc_stop'] 					= "Il difensore non √® riuscito a fermare la distruzione della luna";
 $lang['sys_destruc_mess1'] 					= "Le morti nere arrivano nell'orbita della luna e cominciano a sparare contro essa";
 $lang['sys_destruc_mess'] 					= "Una flotta del pianeta %s [%d:%d:%d] va verso la luna del pianeta [%d:%d:%d]";
-$lang['sys_destruc_echec'] 					= ". Le scosse hanno cominciato a distruggere la superficie della luna, ma qualcosa va storto, la gravit‡ crea scosse anche nelle morti nere cosÏ queste vengono distrutte.";
+$lang['sys_destruc_echec'] 					= ". Le scosse hanno cominciato a distruggere la superficie della luna, ma qualcosa va storto, la gravit√† crea scosse anche nelle morti nere cos√¨ queste vengono distrutte.";
 $lang['sys_destruc_reussi'] 				= ", Le scosse hanno cominciato a distruggere la superficie della luna e dopo un po scoppia del tutto! Missione compiuta, le flotte ritornano a casa.";
 $lang['sys_destruc_null'] 					= ", Le morti nere non attaccano, la missione fallisce e la flotta torna a casa.";
 $lang['sys_the']							= " il ";
@@ -1168,13 +1168,13 @@ $lang['sys_stay_mess_bend']         		= " e consegna ";
 $lang['ccs_multiple_users']					= 'Cookie error! Ci sono molti utenti con questo nome! Devi cancellare i cookies. In caso di problemi contatta amministratore.';
 $lang['ccs_other_user']						= 'Cookie error! I cookie non hanno trovato il nome utente! Devi cancellare i cookies. Devi cancellare i cookies. In caso di problemi contatta amministratore';
 $lang['css_different_password']				= 'Cookie error! Sessione in errore, riprova a connetterti! Devi cancellare i cookies. Devi cancellare i cookies. In caso di problemi contatta amministratore.';
-$lang['css_account_banned_message']			= 'IL TUO ACCOUNT Ë STATO SOSPESO';
+$lang['css_account_banned_message']			= 'IL TUO ACCOUNT √® STATO SOSPESO';
 $lang['css_account_banned_expire']			= 'Scadenza:';
 
 //----------------------------------------------------------------------------//
 //class.debug.php
-$lang['cdg_mysql_not_available']			= 'mySQL non Ë disponibile al momento...';
-$lang['cdg_error_message']					= 'Errore, per favore cotatta Marcodimar (Amministratore). Errore n∞:';
+$lang['cdg_mysql_not_available']			= 'mySQL non √® disponibile al momento...';
+$lang['cdg_error_message']					= 'Errore, per favore cotatta Marcodimar (Amministratore). Errore n¬∞:';
 $lang['cdg_fatal_error']					= 'ERRORE FATALE';
 
 //----------------------------------------------------------------------------//
@@ -1217,8 +1217,8 @@ $lang['fgf_time']							= 'Tempo di costruzione: ';
 
 //----------------------------------------------------------------------------//
 // CombatReport.php
-$lang['cr_lost_contact']					= 'Il contatto Ë stato perso attaccando la flotta.';
-$lang['cr_first_round']						= '(La flotta Ë stata distrutta al primo round)';
+$lang['cr_lost_contact']					= 'Il contatto √® stato perso attaccando la flotta.';
+$lang['cr_first_round']						= '(La flotta √® stata distrutta al primo round)';
 $lang['cr_type']							= 'Tipo';
 $lang['cr_total']							= 'Totale';
 $lang['cr_weapons']							= 'Armi';
@@ -1238,15 +1238,15 @@ $lang['fa_planet_not_exist']				= 'Errore, il pianeta non esiste';
 $lang['fa_not_enough_fuel']					= 'Errore, non hai abbastanza carburante';
 $lang['fa_no_more_slots']					= 'Errore, non hai slot liberi per inviare flotte';
 $lang['fa_no_recyclers']					= 'Errore, non hai riciclatrici disponibili';
-$lang['fa_mission_not_available']			= 'Errore, la missione non Ë disponibile';
+$lang['fa_mission_not_available']			= 'Errore, la missione non √® disponibile';
 $lang['fa_no_ships']						= 'Errore, non hai navi siponibili';
-$lang['fa_vacation_mode']					= 'Errore, il giocatore Ë in modalit‡ vacanza';
-$lang['fa_week_player']						= 'Errore, il giocatore Ë troppo debole';
-$lang['fa_strong_player']					= 'Errore, il giocatore Ë troppo forte';
+$lang['fa_vacation_mode']					= 'Errore, il giocatore √® in modalit√† vacanza';
+$lang['fa_week_player']						= 'Errore, il giocatore √® troppo debole';
+$lang['fa_strong_player']					= 'Errore, il giocatore √® troppo forte';
 $lang['fa_not_spy_yourself']				= 'Errore, non puoi spiare te stesso';
 $lang['fa_not_attack_yourself']				= 'Errore, non puoi attaccare te stesso';
 $lang['fa_action_not_allowed']				= 'Errore, azione non permessa';
-$lang['fa_vacation_mode_current']			= 'Errore, sei in modalit‡ vacanza';
+$lang['fa_vacation_mode_current']			= 'Errore, sei in modalit√† vacanza';
 $lang['fa_sending']							= 'In viaggio';
 
 //----------------------------------------------------------------------------//
@@ -1274,11 +1274,11 @@ $lang['ma_missiles_sended']					= ' missili interplanetari inviati. Obiettivo pr
 //----------------------------------------------------------------------------//
 // DATE
 $lang['days'][0]                            = 'Domenica';
-$lang['days'][1]                            = 'LunedÏ';
-$lang['days'][2]                            = 'MartedÏ';
-$lang['days'][3]                            = 'MercoledÏ';
-$lang['days'][4]                            = 'GiovedÏ';
-$lang['days'][5]                            = 'VenerdÏ';
+$lang['days'][1]                            = 'Luned√¨';
+$lang['days'][2]                            = 'Marted√¨';
+$lang['days'][3]                            = 'Mercoled√¨';
+$lang['days'][4]                            = 'Gioved√¨';
+$lang['days'][5]                            = 'Venerd√¨';
 $lang['days'][6]                            = 'Sabato';
 $lang['dayshort'][0]                        = 'Dom';
 $lang['dayshort'][1]                        = 'Lun';
