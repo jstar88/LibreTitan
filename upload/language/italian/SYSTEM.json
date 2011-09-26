@@ -1,0 +1,28 @@
+{
+  "tech_rc": {
+    "202": "Cargo l",
+    "203": "Cargo p",
+    "204": "Caccia l",
+    "205": "Caccia p",
+    "206": "Incro",
+    "207": "Nave batt",
+    "208": "Colon",
+    "209": "Ricy",
+    "210": "Sonda s",
+    "211": "Bomb",
+    "212": "S. solare",
+    "213": "Coraz",
+    "214": "Morte nera",
+    "215": "Incro batt",
+    "216": "SuperNova",
+    "401": "Lanciamissili",
+    "402": "Laser leggero",
+    "403": "Laser pesante",
+    "404": "Cannone Gauss",
+    "405": "Cannone Ionico",
+    "406": "Torre al Plasma",
+    "407": "Cupola scudo",
+    "408": "Cupola scudo potenziata",
+    "409": "Protezione Planetaria"
+  }
+}

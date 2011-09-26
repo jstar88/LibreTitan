@@ -1,24 +1,36 @@
 <?php
 
 /*
-Xtreme 0.4 - Hight performance template engine
+Xtreme 0.5 - Hight performance template engine
 Copyright (C) 2011-2012  Covolo Nicola
 
 */
 
 class Xtreme
 {
+    
+    //----don't change these!----
+    const SHOW_TAG='SHOW_TAG';
+    const HIDE_TAG='HIDE_TAG';
+    const DELETE_TAG='DELETE_TAG'; 
+    const PHP='PHP';  
+    const JSON='JSON';
+    const XML='XML';
+    const INI='INI';
+    //---------------------------
+    
     const GROUPS_CACHE_POSTFIX='_group';
     const TEMPLATE_CACHE_DIRECTORY='templates/';
-    const LANG_CACHE_DIRECTORY='langs/';
-    
-    const SHOW_TAG='show';
-    const HIDE_TAG='hide';
-    const DELTE_TAG='delete';
+    const LANG_CACHE_DIRECTORY='langs/';        
+    const DEFAULT_TEMPLATE='tpl';
+    const DEFAULT_MASTER_LEFT='{';
+    const DEFAULT_MASTER_RIGHT='}';    
+    const DEFAULT_LANG_EXTENSION=self::JSON;
     
     private $baseDirectory; 
     private $compileDirectory; 
     private $langDirectory;
+    private $langExtension;
     private $templateExtension;
     private $templateDirectories; 
     private $data; 
@@ -38,7 +50,8 @@ class Xtreme
         $this->compileDirectory = $this->baseDirectory;
         $this->templateDirectories = $this->baseDirectory;
         $this->langDirectory=$this->baseDirectory;
-        $this->templateExtension = '.tpl';
+        $this->templateExtension = self::DEFAULT_TEMPLATE;
+        $this->langExtension = self::DEFAULT_LANG_EXTENSION;
         $this->data = new stdClass;
         $this->readyCompiled = new stdClass;
         $this->groups_php = new stdClass;
@@ -48,8 +61,8 @@ class Xtreme
         $this->compileCompression = true;
         $this->config = array(
         'master' => array(
-            'left' => '{', 'right' => '}'
-        )
+            'left' => self::DEFAULT_MASTER_LEFT, 'right' => self::DEFAULT_MASTER_RIGHT
+            )
          );
          $this->onInexistenceTag=self::HIDE_TAG;
     }
@@ -72,11 +85,19 @@ class Xtreme
     }
     public function setTemplateExtension($new)
     {
-        $this->templateExtension = ($new{0} == '.') ? $new : '.' . $new;
+        $this->templateExtension = ($new{0} == '.') ? substr($new,1) : $new;
+    }
+    public function setLangExtension($new)
+    {
+        $this->langExtension = constant("self::$new");
     }
     public function setConfig($new)
     {
         $this->config = $new;
+    }
+    public function setOnInexistenceTagEvent($new)
+    {
+        $this->onInexistenceTag=constant("self::$new");     
     }
     public function useCache($status)
     {
@@ -87,23 +108,46 @@ class Xtreme
         $this->compileCompression = $status;
     }
     
-    public function assignLangFile($path){
+    public function assignLangFile($path,$phpVar='lang'){
         $langPath=$this->getLangPath($path);
         $langCompiledPath=$this->getCompiledPath($path,false);
         $lang='';
-        if(file_exists($langCompiledPath)){
-            $lang=json_decode(file_get_contents($langCompiledPath),true);   
+        
+        if(defined("LANG_{$path}_INSIDE"))
+            return;
+        
+        if($this->langExtension!=self::PHP && file_exists($langCompiledPath)){
+            $lang=$this->open_JSON($langCompiledPath);   
         }
         elseif(file_exists($langPath)){
-            if(function_exists('parse_ini_string'))
-                $lang= parse_ini_string(file_get_contents($langPath),true);
-            else
-                $lang= parse_ini_file($langPath,true);
-            $this->save($path,$langCompiledPath,json_encode($lang),false);
+            $function="open_".$this->langExtension;
+            $lang=$this->$function($langPath);
+            $this->save($path,$langCompiledPath,json_encode($lang),false); 
         }
         else
            die('Lang (' . $langPath . ') not found '); 
+        define("LANG_{$path}_INSIDE",true);
         $this->assign($lang);     
+    }
+    private function open_PHP($path,$phpVar)
+    {
+        require($path);
+        return $$phpVar;           
+    }
+    private function open_JSON($path)
+    {
+        return json_decode(file_get_contents($path),true);           
+    }
+    private function open_XML($path)
+    {
+        return simplexml_load_file($path);       
+    }
+    private function open_INI($path)
+    {
+        if(function_exists('parse_ini_string'))
+            return parse_ini_string(file_get_contents($path),true);
+        else
+            return parse_ini_file($path,true);            
     }
 
 
@@ -262,17 +306,17 @@ class Xtreme
     }
     private function getTplPath($template)
     {
-        return ($this->templateDirectories). $template . ($this->templateExtension);
+        return ($this->templateDirectories). $template . '.'. ($this->templateExtension);
     }
     private function getCompiledPath($path,$isTemplate=true)
     {
         if($isTemplate)
             return ($this->compileDirectory) .(self::TEMPLATE_CACHE_DIRECTORY). $path . '.php';
-        return ($this->compileDirectory) .(self::LANG_CACHE_DIRECTORY). $path . '.json'; 
+        return ($this->compileDirectory) .(self::LANG_CACHE_DIRECTORY). $path . '.' . strtolower(self::JSON) ; 
     }
     private function getLangPath($langini)
     {
-        return ($this->langDirectory) . $langini . '.ini';
+        return ($this->langDirectory) . $langini . '.' . strtolower($this->langExtension);
     }
 
     private function bufferedOutput($compiledFile)
@@ -290,10 +334,11 @@ class Xtreme
         $matches = null;
         $masterLeft=$this->config['master']['left'];
         $masterRight=$this->config['master']['right'];
-        $regex='/\\'.$masterLeft.'([^'.$masterLeft.$masterRight.']+)\\'.$masterRight.'/';
+        $regex="/\\{$masterLeft}([^{$masterLeft}{$masterRight}]+)\\{$masterRight}/";
+        
         foreach ($lines as $line)
         {
-            $num = preg_match_all($regex, $line, &$matches);
+            $num = preg_match_all($regex, $line, &$matches); 
             if ($num > 0)
             {
                 for ($i = 0; $i < $num; $i++)
@@ -359,8 +404,6 @@ class Xtreme
 
         $parts = explode(':', $input);
 
-        //print_r($parts);
-
         $string = '';
         switch ($parts[0])
         { 
@@ -405,18 +448,19 @@ class Xtreme
             $return='';
             switch($this->onInexistenceTag){
                 case self::HIDE_TAG:
+                    $return= "<!--$key[$index]-->";    
                     break;
-                case self::DELTE_TAG:
+                case self::DELETE_TAG:
+                    $return= "";
                     break;
                 case self::SHOW_TAG:
                     if($index=== false)
                         $return=$key;
                     else
-                        $return="$key[$index]";
+                        $return='{'.$key.'['.$index.']}';
                     break;
                 default:
-                    break;
-                
+                    break;              
             }
             return $return;               
         } 
