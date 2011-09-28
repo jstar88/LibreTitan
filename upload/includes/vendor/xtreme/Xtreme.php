@@ -33,7 +33,6 @@ class Xtreme
     private $langExtension;
     private $templateExtension;
     private $templateDirectories; 
-    private $data; 
     private $readyCompiled;
     private $groups_php;
     private $groups_html;
@@ -42,6 +41,8 @@ class Xtreme
     private $compileCompression;
     private $config;
     private $onInexistenceTag;
+    private $country;
+    private $languages;
     
 
     function __construct()
@@ -52,7 +53,6 @@ class Xtreme
         $this->langDirectory=$this->baseDirectory;
         $this->templateExtension = self::DEFAULT_TEMPLATE;
         $this->langExtension = self::DEFAULT_LANG_EXTENSION;
-        $this->data = new stdClass;
         $this->readyCompiled = new stdClass;
         $this->groups_php = new stdClass;
         $this->groups_html=new stdClass;
@@ -65,6 +65,8 @@ class Xtreme
             )
          );
          $this->onInexistenceTag=self::HIDE_TAG;
+         $this->country='';
+         $this->languages=array();
     }
 
     public function setBaseDirectory($new)
@@ -107,8 +109,19 @@ class Xtreme
     {
         $this->compileCompression = $status;
     }
-    
-    public function assignLangFile($path,$phpVar='lang'){
+    public function switchCountry($country,$cleanOld=false){
+        $country=$this->appendSeparator($country);
+        if($cleanOld)
+        {
+            unset($this->languages[$country]);
+        }
+        $this->country=$country;
+        if(!isset($this->languages[$country]))
+        {
+            $this->languages[$country]=new stdClass();        
+        }
+    }
+    public function assignLangFile($path,$phpVars=null){
         $langPath=$this->getLangPath($path);
         $langCompiledPath=$this->getCompiledPath($path,false);
         $lang='';
@@ -121,7 +134,7 @@ class Xtreme
         }
         elseif(file_exists($langPath)){
             $function="open_".$this->langExtension;
-            $lang=$this->$function($langPath);
+            $lang=$this->$function($langPath,$phpVars);
             $this->save($path,$langCompiledPath,json_encode($lang),false); 
         }
         else
@@ -129,10 +142,15 @@ class Xtreme
         define("LANG_{$path}_INSIDE",true);
         $this->assign($lang);     
     }
-    private function open_PHP($path,$phpVar)
+    private function open_PHP($path,$phpVars)
     {
+        $container=array();
+        if($phpVars==null)
+            $phpVars=array('lang');
         require($path);
-        return $$phpVar;           
+        foreach($phpVars as $var)
+            array_merge($$var, $container);
+        return $container;           
     }
     private function open_JSON($path)
     {
@@ -184,17 +202,17 @@ class Xtreme
         if (is_array($key))
         {
             foreach ($key as $n => $v)
-                $this->data->$n = $v;
+                $this->languages[$this->country]->$n = $v;
         } elseif (is_object($key))
         {
             foreach (get_object_vars($key) as $n => $v)
-                $this->data->$n = $v;
+                $this->languages[$this->country]->$n = $v;
         } elseif(is_array($value))
         {
-            $this->data->$key = (object)$value;
+            $this->languages[$this->country]->$key = (object)$value;
         }
         else
-            $this->data->$key = $value;    
+            $this->languages[$this->country]->$key = $value;    
     }
     
     public function set($key, $value = '')
@@ -204,27 +222,27 @@ class Xtreme
 
     public function append($key, $value = '')
     {
-        if (!property_exists($this->data, $key))
+        if (!property_exists($this->languages[$this->country], $key))
         {
-            $this->data->$key = '';
+            $this->languages[$this->country]->$key = '';
         }
-        $this->data->$key .= $value;
+        $this->languages[$this->country]->$key .= $value;
     }
     public function push($key, $value = null)
     {
-        if (!property_exists($this->data, $key))
+        if (!property_exists($this->languages[$this->country], $key))
         {
-            $this->data->$key = array();
+            $this->languages[$this->country]->$key = array();
         }
-        $data = $this->data->$key;
+        $data = $this->languages[$this->country]->$key;
         $data[] = $value;
-        $this->data->$key = $data;
+        $this->languages[$this->country]->$key = $data;
     }
 
 
     public function clear()
     {
-        $this->data = new stdClass;
+        $this->languages[$this->country] = new stdClass;
     }
 
     public function clearReadyCompiled()
@@ -306,17 +324,17 @@ class Xtreme
     }
     private function getTplPath($template)
     {
-        return ($this->templateDirectories). $template . '.'. ($this->templateExtension);
+        return ($this->templateDirectories) . $template . '.'. ($this->templateExtension);
     }
     private function getCompiledPath($path,$isTemplate=true)
     {
         if($isTemplate)
             return ($this->compileDirectory) .(self::TEMPLATE_CACHE_DIRECTORY). $path . '.php';
-        return ($this->compileDirectory) .(self::LANG_CACHE_DIRECTORY). $path . '.' . strtolower(self::JSON) ; 
+        return $this->compileDirectory . self::LANG_CACHE_DIRECTORY. $this->country . $path . '.' . strtolower(self::JSON) ; 
     }
     private function getLangPath($langini)
     {
-        return ($this->langDirectory) . $langini . '.' . strtolower($this->langExtension);
+        return $this->langDirectory . $this->country . $langini . '.' . strtolower($this->langExtension);
     }
 
     private function bufferedOutput($compiledFile)
@@ -374,22 +392,12 @@ class Xtreme
     }
 
 
-    private function save($templatePath, $compiledFile, $value,$isTemplate)
+    private function save($templateName, $compiledFile, $value,$isTemplate)
     {
-        $temp = $this->compileDirectory ;
-        $folders = explode(DIRECTORY_SEPARATOR, $templatePath);
-        if($isTemplate)
-            array_unshift($folders,self::TEMPLATE_CACHE_DIRECTORY);
-        else
-            array_unshift($folders,self::LANG_CACHE_DIRECTORY);
-        $i = -1;
-        $count = count($folders);
-        while ($i < $count - 1)
-        {
-            if (!file_exists($temp))
-                mkdir($temp);
-            $temp .= $folders[++$i] . DIRECTORY_SEPARATOR;
-        }
+        
+       $path=substr($compiledFile,0,strrpos($compiledFile, DIRECTORY_SEPARATOR,-1));
+       @mkdir($path,0755,true);    
+        
         $f = fopen($compiledFile, 'w');
         fwrite($f, $value);
         fclose($f);
@@ -444,7 +452,7 @@ class Xtreme
         return $string;
     }
     public function get($key,$index=false){
-        if (!property_exists($this->data, $key)){
+        if (!property_exists($this->languages[$this->country], $key)){
             $return='';
             switch($this->onInexistenceTag){
                 case self::HIDE_TAG:
@@ -465,9 +473,9 @@ class Xtreme
             return $return;               
         } 
         if(empty($index))   
-            return $this->data->$key;
+            return $this->languages[$this->country]->$key;
         else    
-            return $this->data->{$key}[$index];
+            return $this->languages[$this->country]->{$key}[$index];
     }
 }
 

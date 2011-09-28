@@ -53,9 +53,10 @@ include_once($xgp_root . "includes/vendor/phputf8/php-utf8.$phpEx");  //done,fix
 
 $engine=new Xtreme();
 $engine->setBaseDirectory($xgp_root);
-$engine->setCompileDirectory('tmp');
+$engine->setCompileDirectory('cache');
 $engine->setTemplateDirectories('styles/templates');
-$engine->setLangDirectory('language/italian');
+$engine->setLangDirectory('language');
+$engine->switchCountry('italian');
 $debug 		= new debug();
 
 if (INSTALL != true)
