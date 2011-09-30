@@ -191,6 +191,7 @@ if (INSTALL != true)
 
 		$planetrow = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$user['current_planet']."';", "planets", true);
 		$planetlist = SortUserPlanets ($user);
+		PlanetResourceUpdate ( $user, $planetrow, time(), true );
 		UpdatePlanetBatimentQueueList ($planetrow, $user);
 		$IsWorking = HandleTechnologieBuild($planetrow, $user);
 		$ProductionTime               = (time() - $planetrow['last_update']);
