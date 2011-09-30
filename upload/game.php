@@ -1,29 +1,35 @@
 <?php
-
-##############################################################################
-# *																			 #
-# * XG PROYECT																 #
-# *  																		 #
-# * @copyright Copyright (C) 2008 - 2009 By lucky from xgproyect.net      	 #
-# *																			 #
-# *																			 #
-# *  This program is free software: you can redistribute it and/or modify    #
-# *  it under the terms of the GNU General Public License as published by    #
-# *  the Free Software Foundation, either version 3 of the License, or       #
-# *  (at your option) any later version.									 #
-# *																			 #
-# *  This program is distributed in the hope that it will be useful,		 #
-# *  but WITHOUT ANY WARRANTY; without even the implied warranty of			 #
-# *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			 #
-# *  GNU General Public License for more details.							 #
-# *																			 #
-##############################################################################
+/**
+ *  LibreTitan
+ *  Copyright (C) 2011  Jstar,Tomtom
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author XG 
+ * @copyright 2009 => Lucky  XGProyect
+ * @copyright 2011 => Jstar,Tomtom  Fork/LibreTitan
+ * @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
+ * @link https://github.com/jstar88/LibreTitan
+ */
 
 define('INSIDE'  , true);
 define('INSTALL' , false);
 
 $xgp_root = dirname(__FILE__).DIRECTORY_SEPARATOR;
 
+//the autoloader: you can forget to include external classes :)
+//---- 
 require($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
 Autoloader::setCacheFilePath('tmp/class_path_cache.txt',$xgp_root);
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
@@ -31,22 +37,18 @@ Autoloader::setClassPaths(array(
      'includes/'
 ));
 spl_autoload_register(array('Autoloader', 'loadClass'));
+//----
 
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.' . $phpEx);
-
-//include($xgp_root . 'includes/functions/CheckPlanetBuildingQueue.' . $phpEx);
-//include($xgp_root . 'includes/functions/GetBuildingPrice.' . $phpEx);
-//include($xgp_root . 'includes/functions/IsElementBuyable.' . $phpEx);
-//include($xgp_root . 'includes/functions/SetNextQueueElementOnTop.' . $phpEx);
-//include($xgp_root . 'includes/functions/SortUserPlanets.' . $phpEx);
+$engine->assignLang('SERVER');
 
 switch($_GET[page])
 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'changelog':
-		include_once($xgp_root . 'includes/pages/ShowChangelogPage.' . $phpEx);
-		ShowChangelogPage();
+		$page=new ShowChangelogPage();
+		$page->show();
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'overview':
@@ -55,7 +57,6 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'galaxy':
-	//	include_once($xgp_root . 'includes/pages/class.ShowGalaxyPage.' . $phpEx);
 		$ShowGalaxyPage = new ShowGalaxyPage($user, $planetrow);
       $ShowGalaxyPage->updatePosition();
       $ShowGalaxyPage->show();
@@ -66,8 +67,8 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'imperium':
-		include_once($xgp_root . 'includes/pages/ShowImperiumPage.' . $phpEx);
-		ShowImperiumPage($user);
+		$page=new ShowImperiumPage($user);
+		$page->show();
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'fleet':
@@ -99,21 +100,17 @@ switch($_GET[page])
 		switch ($_GET['mode'])
 		{
 			case 'research':
-			//  include_once($xgp_root . 'includes/pages/class.ShowResearchPage.' . $phpEx);
 				new ShowResearchPage($planetrow, $user, $IsWorking['OnWork'], $IsWorking['WorkOn']);
 			break;
 			case 'fleet':
-			//	include_once($xgp_root . 'includes/pages/class.ShowShipyardPage.' . $phpEx);
 				$FleetBuildingPage = new ShowShipyardPage();
 				$FleetBuildingPage->FleetBuildingPage ($planetrow, $user);
 			break;
 			case 'defense':
-			//	include_once($xgp_root . 'includes/pages/class.ShowShipyardPage.' . $phpEx);
 				$DefensesBuildingPage = new ShowShipyardPage();
 				$DefensesBuildingPage->DefensesBuildingPage ($planetrow, $user);
 			break;
 			default:
-			//	include_once($xgp_root . 'includes/pages/class.ShowBuildingsPage.' . $phpEx);
 				new ShowBuildingsPage($planetrow, $user);
 			break;
 		}
@@ -125,12 +122,10 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'officier':
-		include_once($xgp_root . 'includes/pages/class.ShowOfficierPage.' . $phpEx);
 		new ShowOfficierPage($user);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'trader':
-		//include_once($xgp_root . 'includes/pages/ShowTraderPage.' . $phpEx);
 		$ShowTraderPage= new ShowTraderPage($user, $planetrow);
 		$ShowTraderPage->exchange();
 		$ShowTraderPage->show();
@@ -142,7 +137,6 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'infos':
-	//	include_once($xgp_root . 'includes/pages/class.ShowInfosPage.' . $phpEx);
 		new ShowInfosPage($user, $planetrow, $_GET['gid']);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
@@ -152,7 +146,6 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'alliance':
-	//	include_once($xgp_root . 'includes/pages/class.ShowAlliancePage.' . $phpEx);
 		new ShowAlliancePage($user);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
@@ -177,22 +170,21 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'options':
-		include_once($xgp_root . 'includes/pages/class.ShowOptionsPage.' . $phpEx);
 		new ShowOptionsPage($user);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'banned':
-		include_once($xgp_root . 'includes/pages/ShowBannedPage.' . $phpEx);
-		ShowBannedPage();
+		$page=ShowBannedPage();
+		$page->show();
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'logout':
 		setcookie($game_config['COOKIE_NAME'], "", time()-100000, "/", "", 0);
-		message($lang['see_you_soon'], "/", 1, false, false);
+		message($engine->get('see_you_soon'), "/", 1, false, false);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	default:
-		die(message($lang['page_doesnt_exist']));
+		die(message($engine->get('page_doesnt_exist')));
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 }
 ?>

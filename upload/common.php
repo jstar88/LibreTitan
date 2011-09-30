@@ -33,11 +33,8 @@ if(filesize($xgp_root . 'config.php') == 0 && INSTALL != true)
 }
 
 $phpEx			= "php";
-//$xgp_root = './';
 $game_config   	= array();
-//start mod
 $war_config   	= array();
-//end mod
 $user          	= array();
 $lang          	= array();
 $LegacyPlanet   = array();
@@ -47,8 +44,6 @@ $IsUserChecked 	= false;
 include_once($xgp_root . 'includes/constants.'.$phpEx);
 include_once($xgp_root . 'includes/GeneralFunctions.'.$phpEx);
 include_once($xgp_root . 'includes/vendor/simplehtmldom/simple_html_dom.' . $phpEx);
-include_once($xgp_root . 'includes/classes/class.debug.'.$phpEx);
-include_once($xgp_root . "includes/vendor/xtreme/Xtreme.$phpEx");
 include_once($xgp_root . "includes/vendor/phputf8/php-utf8.$phpEx");  //done,fixed utf8 functions!!!
 
 $engine=new Xtreme();
@@ -56,7 +51,9 @@ $engine->setBaseDirectory($xgp_root);
 $engine->setCompileDirectory('cache');
 $engine->setTemplateDirectories('styles/templates');
 $engine->setLangDirectory('language');
-$engine->switchCountry('italian');
+$engine->switchCountry(DEFAULT_LANG);
+$engine->assign('INGAME');
+includeLang('INGAME');//only for now
 $debug 		= new debug();
 
 if (INSTALL != true)
@@ -104,18 +101,10 @@ if (INSTALL != true)
     $i++;
 	}
 	
-	
-	//end mod
-
-	define('DEFAULT_LANG'	, (	$game_config['lang'] 	== ''	) ? "spanish" : 	$game_config['lang']	);
 	define('VERSION'		, (	$game_config['VERSION'] == ''	) ? "		" : "v".$game_config['VERSION']	);
-
-	includeLang('INGAME');
 
 	if ($InLogin != true)
 	{
-		include($xgp_root . 'includes/classes/class.CheckSession.'.$phpEx);
-
 		$Result        	= new CheckSession();
 		$Result			= $Result->CheckUser($IsUserChecked);
 		$IsUserChecked 	= $Result['state'];
@@ -139,7 +128,6 @@ if (INSTALL != true)
 
 	if (isset($user))
 	{
-		include($xgp_root . 'includes/classes/class.FlyingFleetHandler.'.$phpEx);
 		$_fleets = doquery("SELECT fleet_start_universe,fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM {{table}} WHERE `fleet_start_time` <= '".time()."' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
 
 		while ($row = mysql_fetch_array($_fleets))
@@ -197,7 +185,6 @@ if (INSTALL != true)
 		$ProductionTime               = (time() - $planetrow['last_update']);
 		HandleElementBuildingQueue ($user, $planetrow, $ProductionTime);			
 	}
-	include($xgp_root.'includes/classes/class.SecurePage.' . $phpEx ); // include the class
 	SecurePage::run();
 }
 else

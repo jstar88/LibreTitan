@@ -21,6 +21,7 @@
 
 if ( !defined('INSIDE') ) die(header("location:../"));
 
+   define('DEFAULT_LANG','english');
    // time after that position will be ready for colonization
    define('PLANET_DELETE_TIME',86400);
    // time after that moon will be deleted in galaxy 

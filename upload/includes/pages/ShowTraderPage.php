@@ -52,8 +52,7 @@ class ShowTraderPage
     }
     public function show()
     {
-        global $engine, $lang;
-        $engine->assign($lang);
+        global $engine;
         if ($_POST['action'] != 2)
         {
             display($engine->output('trader/trader_main'));
@@ -92,7 +91,7 @@ class ShowTraderPage
     }
     public function exchange()
     {
-      global $lang;
+      global $engine;
         if (empty($_POST['ress']))
             return;
         $proposal = $_POST['ress'];
