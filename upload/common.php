@@ -43,9 +43,8 @@ $IsUserChecked 	= false;
 
 include_once($xgp_root . 'includes/constants.'.$phpEx);
 include_once($xgp_root . 'includes/GeneralFunctions.'.$phpEx);
-include_once($xgp_root . 'includes/vendor/simplehtmldom/simple_html_dom.' . $phpEx);
 include_once($xgp_root . "includes/vendor/phputf8/php-utf8.$phpEx");  //done,fixed utf8 functions!!!
-
+include_once($xgp_root . "includes/vendor/xtreme/Xtreme.$phpEx");
 $engine=new Xtreme();
 $engine->setBaseDirectory($xgp_root);
 $engine->setCompileDirectory('cache');
