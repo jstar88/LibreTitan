@@ -325,7 +325,7 @@ $CurrentFlyingFleets++;
 
 $planetrow 		= doquery("SELECT * FROM {{table}} WHERE `id` = '". $user['current_planet'] ."';", 'planets', true);
 //start mod
-$ResultMessage  = "600; ".$lang['fa_sending']." ". $FleetShipCount  ." ". $lang['tech'][$Ship] ." a ".$_POST['universe'] .":" $_POST['galaxy'] .":". $_POST['system'] .":". $_POST['planet'] ."...|";
+$ResultMessage  = "600; ".$lang['fa_sending']." ". $FleetShipCount  ." ". $lang['tech'][$Ship] ." a ".$_POST['universe'] .":". $_POST['galaxy'] .":". $_POST['system'] .":". $_POST['planet'] ."...|";
 //end mod
 $ResultMessage .= $CurrentFlyingFleets ." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 

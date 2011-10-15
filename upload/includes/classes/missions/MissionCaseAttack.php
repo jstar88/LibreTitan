@@ -68,7 +68,7 @@ class MissionCaseAttack extends FlyingFleetHandler
 			$totaltime 	= microtime(true) - $start;
          /**
           *
-          */                   /
+          */                   
          $steal = array('metal' => 0, 'crystal' => 0, 'deuterium' => 0);
 			if ($result['won'] == "a")
 				$steal = self::calculateAKSSteal($attackFleets, $targetPlanet);	

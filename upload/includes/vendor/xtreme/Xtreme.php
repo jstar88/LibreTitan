@@ -149,7 +149,8 @@ class Xtreme
             $phpVars=array('lang');
         require($path);
         foreach($phpVars as $var)
-            array_merge($$var, $container);
+            if(isset($$var))
+               $container=array_merge_recursive($container,$$var);
         return $container;           
     }
     private function open_JSON($path)

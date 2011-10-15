@@ -310,7 +310,7 @@ function ShowFleetACSPage($CurrentUser, $CurrentPlanet)
 
 				<input type="hidden" name="speed' . $i . '" value="' . $pricelist[$i]['speed'] . '" />';
         if($in_war)
-          $page3 .='<input type="hidden" name="universe" value="' . $universe . '"/>'
+          $page3 .='<input type="hidden" name="universe" value="' . $universe . '"/>';
         $page3 .='
         <input type="hidden" name="galaxy" value="' . $galaxy . '"/>
 				<input type="hidden" name="system" value="' . $system . '"/>

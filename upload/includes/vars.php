@@ -345,5 +345,18 @@ if ( defined('INSIDE'))
 	$reslist['defense']  = array ( 401, 402, 403, 404, 405, 406, 407, 408, 409, 502, 503 );
 	$reslist['officier'] = array ( 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615);
 	$reslist['prod']     = array (   1,   2,   3,   4,  12, 212 );
+	
+	$missions=array(
+      1=>'attack',
+      2=>'acs',
+      3=>'transport',
+      4=>'stay',
+      5=>'stayAlly',
+      6=>'spy',
+      7=>'colonisation',
+      8=>'recycling',
+      9=>'destruction',
+      10=>'mip',
+      15=>'expedition');
 }
 ?>

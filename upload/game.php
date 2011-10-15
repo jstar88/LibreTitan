@@ -28,20 +28,8 @@ define('INSTALL' , false);
 
 $xgp_root = dirname(__FILE__).DIRECTORY_SEPARATOR;
 
-//the autoloader: you can forget to include external classes :)
-//---- 
-require($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
-Autoloader::setCacheFilePath('tmp/class_path_cache.txt',$xgp_root);
-Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
-Autoloader::setClassPaths(array(
-     'includes/'
-));
-spl_autoload_register(array('Autoloader', 'loadClass'));
-//----
-
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.' . $phpEx);
-$engine->assignLang('SERVER');
 
 switch($_GET[page])
 {

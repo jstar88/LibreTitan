@@ -156,7 +156,7 @@ class ShowGalaxyPage extends GalaxyRows
             {
                 if($this->CurrentDeuterium < 10)
                 {
-                    die (message($engine->get('gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
+                    die (message($engine->get('gl_no_deuterium_to_view_galaxy'), "game.php?page=galaxy&mode=0", 2));
                 }
                 else
                 {

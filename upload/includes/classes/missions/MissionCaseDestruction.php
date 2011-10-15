@@ -18,10 +18,10 @@ class MissionCaseDestruction extends FlyingFleetHandler
 		      $TargetPlanet     = $this->getTargetPlanetInfoInCache($FleetRow);
 		      $TargetUserID     = $TargetPlanet['id_owner'];       
 
-				$CurrentUser      = $this->getStartUser($FleetRow)
+				$CurrentUser      = $this->getStartUser($FleetRow);
 				$CurrentUserID    = $CurrentUser['id'];
 
-				$TargetUser       = $this->getTargetUser($FleetRow)
+				$TargetUser       = $this->getTargetUser($FleetRow);
 
 				for ($SetItem = 200; $SetItem < 500; $SetItem++)
 				{

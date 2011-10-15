@@ -24,6 +24,6 @@
  </td>
  <td width="40%" class="c">
  &nbsp;
- </td
+ </td>
 </tr>
 </table>  

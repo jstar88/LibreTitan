@@ -1,11 +1,11 @@
-{galaxyscripts}
+{group:galaxyscripts}
 <body onUnload="">
-    {universe_collision}
-    {galaxyselector}
+    {group:universe_collision}
+    {group:galaxyselector}
     {mip}
 	<table width="569">
-    	{galaxytitles}
+    	{group:galaxytitles}
         {galaxyrows}
-        {galaxyfooter}
+        {group:galaxyfooter}
 	</table>
 </body>        

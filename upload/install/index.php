@@ -23,6 +23,7 @@ define('INSIDE'  , true);
 define('INSTALL' , true);
 
 $xgp_root = './../';
+
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.'.$phpEx);
 include_once('databaseinfos.'.$phpEx);

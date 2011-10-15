@@ -32,6 +32,17 @@ if(filesize($xgp_root . 'config.php') == 0 && INSTALL != true)
 	exit ( header ( "location:" . $xgp_root .  "install/" ) );
 }
 
+//the autoloader: you can forget to include external classes :)
+//---- 
+require($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
+Autoloader::setCacheFilePath('tmp/class_path_cache.txt',$xgp_root);
+Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
+Autoloader::setClassPaths(array(
+     'includes/'
+));
+spl_autoload_register(array('Autoloader', 'loadClass'));
+//----
+
 $phpEx			= "php";
 $game_config   	= array();
 $war_config   	= array();
@@ -44,14 +55,14 @@ $IsUserChecked 	= false;
 include_once($xgp_root . 'includes/constants.'.$phpEx);
 include_once($xgp_root . 'includes/GeneralFunctions.'.$phpEx);
 include_once($xgp_root . "includes/vendor/phputf8/php-utf8.$phpEx");  //done,fixed utf8 functions!!!
-include_once($xgp_root . "includes/vendor/xtreme/Xtreme.$phpEx");
 $engine=new Xtreme();
 $engine->setBaseDirectory($xgp_root);
 $engine->setCompileDirectory('cache');
 $engine->setTemplateDirectories('styles/templates');
 $engine->setLangDirectory('language');
 $engine->switchCountry(DEFAULT_LANG);
-$engine->assign('INGAME');
+$engine->assignLangFile('INGAME');
+$engine->assignLangFile('SERVER');
 includeLang('INGAME');//only for now
 $debug 		= new debug();
 
