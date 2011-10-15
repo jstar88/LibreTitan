@@ -195,6 +195,7 @@ if (INSTALL != true)
 		$ProductionTime               = (time() - $planetrow['last_update']);
 		HandleElementBuildingQueue ($user, $planetrow, $ProductionTime);			
 	}
+	include('includes/classes/class.SecurePage.' . $phpEx ); // include the class
 	SecurePage::run();
 }
 else
