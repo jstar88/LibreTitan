@@ -237,7 +237,7 @@ function ShowStatisticsPage($CurrentUser)
 				else
 					$parse['player_mes']      = "";
 
-				if ($UsrRow['ally_name'] == $CurrentUser['ally_name'])
+				if ($StatRow['ally_name'] == $CurrentUser['ally_name'])
 				{
 					$parse['player_alliance'] = "<a href=\"game.php?page=alliance&mode=ainfo&a=".$StatRow['ally_id']."\"><font color=\"#33CCFF\">".$StatRow['ally_name']."</font></a>";
 				}

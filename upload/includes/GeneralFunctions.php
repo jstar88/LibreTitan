@@ -97,13 +97,13 @@ function display ($page, $topnav = true, $metatags = '', $AdminPage = false, $me
 	$DisplayPage .= "\n<center>\n". $page ."\n</center>\n";
 
 	if(!defined('LOGIN') && $_GET['page'] != 'galaxy')
-		$DisplayPage .= parsetemplate(gettemplate('footer'), $parse);
+		$DisplayPage .= parsetemplate(gettemplate('footer'), array());
 	
 	if (INSTALL != true){
 		if($user['urlaubs_modus'] == 0 )
 			PlanetResourceUpdate($user, $planetrow, time());
 		else
-			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
+			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($user['id']),"planets");
 	}
 	
 	if ($link)

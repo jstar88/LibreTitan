@@ -91,7 +91,7 @@ class ShowTraderPage
     }
     public function exchange()
     {
-      global $engine;
+      global $engine,$phpEx;
         if (empty($_POST['ress']))
             return;
         $proposal = $_POST['ress'];
@@ -99,14 +99,14 @@ class ShowTraderPage
         {
             if (empty($_POST['crystal']) && empty($_POST['deuterium']))
             {
-                message($lang['tr_only_positive_numbers'], "game." . $phpEx . "?page=trader", 1);
+                message($engine->get('tr_only_positive_numbers'), "game." . $phpEx . "?page=trader", 1);
             }
             $crystal    = max(0,min($this->crystal_storage   - $this->CurrentCrystal,   $_POST['crystal']));
             $deuterium  = max(0,min($this->deuterium_storage - $this->CurrentDeuterium, $_POST['deuterium']));
             $necessaire = $crystal * 2 + $deuterium * 4;
             if ($this->CurrentMetal < $necessaire)
             {
-                message($lang['tr_not_enought_metal'], "game." . $phpEx . "?page=trader", 1);
+                message($engine->get('tr_not_enought_metal'), "game." . $phpEx . "?page=trader", 1);
             }
             $this->CurrentMetal     -= $necessaire;
             $this->CurrentCrystal   += $crystal;
@@ -116,14 +116,14 @@ class ShowTraderPage
         {
             if (empty($_POST['metal']) && empty($_POST['deuterium']))
             {
-                message($lang['tr_only_positive_numbers'], "game." . $phpEx . "?page=trader", 1);
+                message($engine->get('tr_only_positive_numbers'), "game." . $phpEx . "?page=trader", 1);
             }
             $metal      = max(0,min($this->metal_storage     - $this->CurrentMetal,     $_POST['metal']));
             $deuterium  = max(0,min($this->deuterium_storage - $this->CurrentDeuterium, $_POST['deuterium']));
             $necessaire = round($metal * 0.5 + $deuterium * 2);
             if ($this->CurrentCrystal < $necessaire)
             {
-                message($lang['tr_not_enought_crystal'], "game." . $phpEx . "?page=trader", 1);
+                message($engine->get('tr_not_enought_crystal'), "game." . $phpEx . "?page=trader", 1);
             }
             $this->CurrentMetal     += $metal;
             $this->CurrentCrystal   -= $necessaire;
@@ -132,14 +132,14 @@ class ShowTraderPage
         {
             if (empty($_POST['metal']) && empty($_POST['crystal']))
             {
-                message($lang['tr_only_positive_numbers'], "game." . $phpEx . "?page=trader", 1);
+                message($engine->get('tr_only_positive_numbers'), "game." . $phpEx . "?page=trader", 1);
             }
             $metal      = max(0,min($this->metal_storage   - $this->CurrentMetal,   $_POST['metal']));
             $crystal    = max(0,min($this->crystal_storage - $this->CurrentCrystal, $_POST['crystal']));
             $necessaire = round($metal * 0.25 + $crystal * 0.5);
             if ($this->CurrentDeuterium < $necessaire)
             {
-                message($lang['tr_not_enought_deuterium'], "game." . $phpEx . "?page=trader", 1);
+                message($engine->get('tr_not_enought_deuterium'), "game." . $phpEx . "?page=trader", 1);
             }
             $this->CurrentMetal     += $metal;
             $this->CurrentCrystal   += $crystal;

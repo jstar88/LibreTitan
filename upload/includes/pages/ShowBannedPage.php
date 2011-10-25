@@ -46,9 +46,9 @@ class ShowBannedPage
             }
 
             if ($i == 0)
-                $banned .= "<tr><th class=b colspan=6>" . $lang['bn_no_players_banned'] . "</th></tr>";
+                $banned .= "<tr><th class=b colspan=6>" . $engine->get('bn_no_players_banned') . "</th></tr>";
             else
-                $banned .= "<tr><th class=b colspan=6>" . $lang['bn_exists'] . $i . $lang['bn_players_banned'] . "</th></tr>";
+                $banned .= "<tr><th class=b colspan=6>" . $engine->get('bn_exists') . $i . $engine->get('bn_players_banned') . "</th></tr>";
 
             $engine->assign('banned', $banned);
             display($engine->output('banned_body'));
