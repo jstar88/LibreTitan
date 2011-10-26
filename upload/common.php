@@ -49,6 +49,7 @@ $lang = array ();
 $LegacyPlanet = array ();
 $link = "";
 $IsUserChecked = false;
+$dpath = "../" . DEFAULT_SKINPATH;
  
 
 includeLang('INGAME'); //only for now
@@ -75,6 +76,7 @@ if (INSTALL != true) {
 	include ($xgp_root . 'includes/functions/SetNextQueueElementOnTop.' . $phpEx);
 	include ($xgp_root . 'includes/functions/IsElementBuyable.' . $phpEx);
 	include ($xgp_root . 'includes/functions/SortUserPlanets.' . $phpEx);
+	include ($xgp_root . 'includes/functions/SetSelectedPlanet.' . $phpEx);
 
 	$query = doquery("SELECT * FROM {{table}}", 'config');
 
@@ -123,46 +125,20 @@ if (INSTALL != true) {
 		update_config('stat_last_update', $result['stats_time']);
 	}
 	//---------------------------
-
+	
 	if (isset ($user)) {
-		$_fleets = doquery("SELECT fleet_start_universe,fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM {{table}} WHERE `fleet_start_time` <= '" . time() . "' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
-
-		while ($row = mysql_fetch_array($_fleets)) {
-			$array = array ();
-			$array['universe'] = $row['fleet_start_universe'];
-			$array['galaxy'] = $row['fleet_start_galaxy'];
-			$array['system'] = $row['fleet_start_system'];
-			$array['planet'] = $row['fleet_start_planet'];
-			$array['planet_type'] = $row['fleet_start_type'];
-
-			$temp = new FlyingFleetHandler($array);
-		}
-		mysql_free_result($_fleets);
-		$_fleets = doquery("SELECT fleet_end_universe,fleet_end_galaxy,fleet_end_system,fleet_end_planet ,fleet_end_type FROM {{table}} WHERE `fleet_end_time` <= '" . time() . " order by fleet_id asc';", 'fleets'); // OR fleet_end_time <= ".time()
-
-		while ($row = mysql_fetch_array($_fleets)) {
-			$array = array ();
-			$array['universe'] = $row['fleet_end_universe'];
-			$array['galaxy'] = $row['fleet_end_galaxy'];
-			$array['system'] = $row['fleet_end_system'];
-			$array['planet'] = $row['fleet_end_planet'];
-			$array['planet_type'] = $row['fleet_end_type'];
-
-			$temp = new FlyingFleetHandler($array);
-		}
-
-		mysql_free_result($_fleets);
-		unset ($_fleets);
-
+		//----------update fleet task
+		new FlyingFleetHandler();
+	    //---------------------------
+		
 		if (defined('IN_ADMIN')) {
 			includeLang('ADMIN');
 			include ('../adm/AdminFunctions/Autorization.' . $phpEx);
-			$dpath = "../" . DEFAULT_SKINPATH;
-		} else {
+		} 
+		else {
 			$dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
 		}
 
-		include ($xgp_root . 'includes/functions/SetSelectedPlanet.' . $phpEx);
 		SetSelectedPlanet($user);
 
 		$planetrow = doquery("SELECT * FROM `{{table}}` WHERE `id` = '" . $user['current_planet'] . "';", "planets", true);
@@ -170,14 +146,18 @@ if (INSTALL != true) {
 		//We include the plugin system 0.3
 		include ($xgp_root . 'includes/plugins.' . $phpEx);
 		
+		//----------update resources task
 		PlanetResourceUpdate($user, $planetrow, time(), true);
+		//---------------------------
+		
+		//----------update buildings task
 		UpdatePlanetBatimentQueueList($planetrow, $user);
 		$IsWorking = HandleTechnologieBuild($planetrow, $user);
 		$ProductionTime = (time() - $planetrow['last_update']);
 		HandleElementBuildingQueue($user, $planetrow, $ProductionTime);
+		//---------------------------
+		
 	}
 	SecurePage :: run();
-} else {
-	$dpath = "../" . DEFAULT_SKINPATH;
 }
 ?>

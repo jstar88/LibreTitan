@@ -556,100 +556,70 @@ class FlyingFleetHandler
 
 	
 
-	public function __construct (&$planet)
+	public function __construct ()
 	{
 		global $resource,$user,$xgp_root,$phpEx;
 
-		//doquery("LOCK TABLE {{table}}aks WRITE, {{table}}rw WRITE, {{table}}errors WRITE, {{table}}messages WRITE, {{table}}fleets WRITE,  {{table}}planets WRITE, {{table}}galaxy WRITE ,{{table}}users WRITE", "");
-    doquery("LOCK TABLE {{table}}aks WRITE, {{table}}rw WRITE, {{table}}errors WRITE, {{table}}messages WRITE, {{table}}statpoints WRITE, {{table}}fleets WRITE,   {{table}}planets WRITE, {{table}}galaxy WRITE ,{{table}}users WRITE",  "");
-		
-      $QryFleet   = "SELECT * FROM {{table}} ";
-		$QryFleet  .= "WHERE (";
-		$QryFleet  .= "( ";
-		//start mod
-		$QryFleet  .= "`fleet_start_universe` = ". $planet['universe']      ." AND ";
-		//end mod
-		$QryFleet  .= "`fleet_start_galaxy` = ". $planet['galaxy']      ." AND ";
-		$QryFleet  .= "`fleet_start_system` = ". $planet['system']      ." AND ";
-		$QryFleet  .= "`fleet_start_planet` = ". $planet['planet']      ." AND ";
-		$QryFleet  .= "`fleet_start_type` = ".   $planet['planet_type'] ." ";
-		$QryFleet  .= ") OR ( ";
-		//start mod
-		$QryFleet  .= "`fleet_end_universe` = ". $planet['universe']      ." AND ";
-		//end mod
-		$QryFleet  .= "`fleet_end_galaxy` = ".   $planet['galaxy']      ." AND ";
-		$QryFleet  .= "`fleet_end_system` = ".   $planet['system']      ." AND ";
-		$QryFleet  .= "`fleet_end_planet` = ".   $planet['planet']      ." ) AND ";
-		$QryFleet  .= "`fleet_end_type`= ".      $planet['planet_type'] ." ) AND ";
-		$QryFleet  .= "( `fleet_start_time` < '". time() ."' OR `fleet_end_time` < '". time() ."' );";
-		$fleetquery = doquery( $QryFleet, 'fleets' );
-      
+		$time=time();
+        doquery("LOCK TABLE {{table}}aks WRITE, {{table}}rw WRITE, {{table}}errors WRITE, {{table}}messages WRITE, {{table}}statpoints WRITE, {{table}}fleets WRITE,   {{table}}planets WRITE, {{table}}galaxy WRITE ,{{table}}users WRITE",  "");	
+        $_fleets = doquery("SELECT * FROM {{table}} WHERE (`fleet_start_time` <= '$time' AND `fleet_mess` = '0') OR (`fleet_end_time` <= '$time' AND `fleet_mess` = '1') OR (`fleet_end_stay` <= '$time' AND `fleet_mess` = '2') ORDER BY `fleet_start_time` ASC;",'fleets'); 
 		$lang_memo=array();
-		while ($CurrentFleet = mysql_fetch_array($fleetquery))
+		$CurrentFleet=array();
+		while ($CurrentFleet = mysql_fetch_array($_fleets))
 		{
 			switch ($CurrentFleet["fleet_mission"])
 			{
 				case 1:
-               include($xgp_root . 'includes/classes/missions/MissionCaseAttack.' . $phpEx);  
 					new MissionCaseAttack($CurrentFleet);
 					break;
 
 				case 2:
-				   include($xgp_root . 'includes/classes/missions/MissionCaseACS.' . $phpEx);
 					new MissionCaseACS($CurrentFleet);
 					break;
 
-				case 3:
-				   include($xgp_root . 'includes/classes/missions/MissionCaseTransport.' . $phpEx);  
+				case 3:  
 				   new MissionCaseTransport($CurrentFleet);
 					break;
 
 				case 4:
-               include($xgp_root . 'includes/classes/missions/MissionCaseStay.' . $phpEx);  
 					new MissionCaseStay($CurrentFleet);
 					break;
 
 				case 5:
-				   include($xgp_root . 'includes/classes/missions/MissionCaseStayAlly.' . $phpEx);
 					new MissionCaseStayAlly($CurrentFleet);
 					break;
 
 				case 6:
-               include($xgp_root . 'includes/classes/missions/MissionCaseSpy.' . $phpEx);  
 					new MissionCaseSpy($CurrentFleet);
 					break;
 
 				case 7:
-               include($xgp_root . 'includes/classes/missions/MissionCaseColonisation.' . $phpEx);  
 					new MissionCaseColonisation($CurrentFleet);
 					break;
 
 				case 8:
-               include($xgp_root . 'includes/classes/missions/MissionCaseRecycling.' . $phpEx);  
 					new MissionCaseRecycling($CurrentFleet);
 					break;
 
 				case 9:
-               include($xgp_root . 'includes/classes/missions/MissionCaseDestruction.' . $phpEx);  
 					new MissionCaseDestruction($CurrentFleet);
 					break;
 
 				case 10: 
-               include($xgp_root . 'includes/classes/missions/MissionCaseMIP.' . $phpEx); 
 					new MissionCaseMIP($CurrentFleet);
 					break;
 
 				case 15:
-				   include($xgp_root . 'includes/classes/missions/MissionCaseExpedition.' . $phpEx);
 					new MissionCaseExpedition($CurrentFleet);
 					break;
 
 				default:
 					doquery("DELETE FROM {{table}} WHERE `fleet_id` = '". $CurrentFleet['fleet_id'] ."';", 'fleets');
-
 			}
 		}
-
+		mysql_free_result($_fleets);
+		unset ($_fleets);
+		unset ($CurrentFleet);
 		doquery("UNLOCK TABLES", "");
 
 	}
