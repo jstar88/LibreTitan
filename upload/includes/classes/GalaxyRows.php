@@ -48,6 +48,7 @@ class GalaxyRows
     protected $CurrentDeuterium;
     
     public function __construct($CurrentUser,$CurrentPlanet){
+    	global $resource;
         $this->CurrentUniverse = $CurrentPlanet['universe'];
         $this->CurrentSystem   = $CurrentPlanet['system'];
         $this->CurrentGalaxy   = $CurrentPlanet['galaxy'];
@@ -365,9 +366,9 @@ class GalaxyRows
 		elseif ($GalaxyInfo['id'] == $user['id'])
 			$MissionType9Link = "";
     
-		$MissionType3Link = "<a href=game.php?page=fleet&&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=".$PlanetType."&target_mission=3>".$lang['type_mission'][3]."</a><br />";
+		$MissionType3Link = "<a href=game.php?page=fleet&&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=3&target_mission=3>".$lang['type_mission'][3]."</a><br />";
     
-		if ($GalaxyInfo && $GalaxyInfo["destruyed"] == 0 && $GalaxyRow["id_luna"] != 0)
+		if ($GalaxyInfo && $GalaxyInfo["destruyed"] == 0 && $GalaxyInfo["id_luna"] != 0)
 		{
 			$Result .= "<a style=\"cursor: pointer;\"";
 			$Result .= " onmouseover='return overlib(\"";
@@ -387,7 +388,7 @@ class GalaxyRows
 			$Result .= "<td class=c colspan=2>".$lang['gl_features']."</td>";
 			$Result .= "</tr><tr>";
 			$Result .= "<th>".$lang['gl_diameter']."</th>";
-			$Result .= "<th>". number_format($GalaxyRowPlanet['diameter'], 0, '', '.') ."</th>";
+			$Result .= "<th>". number_format($GalaxyInfo['diameter'], 0, '', '.') ."</th>";
 			$Result .= "</tr><tr>";
 			$Result .= "<th>".$lang['gl_temperature']."</th><th>". number_format($GalaxyInfo['temp_min'], 0, '', '.') ."</th>";
 			$Result .= "</tr><tr>";
@@ -577,7 +578,7 @@ class GalaxyRows
 
 		$Result  = "<th style=\"white-space: nowrap;\" width=130>";
 
-		if ($GalaxyInfo['last_update'] > (time()-59 * 60) && $GalaxyInfoUser['id'] != $user['id'])
+		if ($GalaxyInfo['last_update'] > (time()-59 * 60) && $GalaxyInfo['id'] != $user['id'])
 		{
          $Inactivity = pretty_time_hour(time() - $GalaxyInfo['last_update']);
       }
@@ -607,9 +608,9 @@ class GalaxyRows
 
 			$Result .= $TextColor . $PhalanxTypeLink . $EndColor;
 
-			if ($GalaxyInfo['last_update']  > (time()-59 * 60) && $GalaxyInfoUser['id'] != $user['id'])
+			if ($GalaxyInfo['last_update']  > (time()-59 * 60) && $GalaxyInfo['id'] != $user['id'])
 			{
-				if ($GalaxyInfo['last_update']  > (time()-10 * 60) && $GalaxyInfoUser['id'] != $user['id'])
+				if ($GalaxyInfo['last_update']  > (time()-10 * 60) && $GalaxyInfo['id'] != $user['id'])
 				{	
                $Result .= "(*)";
             }
@@ -655,7 +656,7 @@ class GalaxyRows
 			$protection      	= $game_config['noobprotection'];
 			$protectiontime  	= $game_config['noobprotectiontime'];
 			$protectionmulti 	= $game_config['noobprotectionmulti'];
-			$MyGameLevel		= $UserPoints['total_points'];
+			$MyGameLevel		= $user['total_points'];
 			$HeGameLevel		= $GalaxyInfo['total_points'];
 
 			if ($GalaxyInfo['bana'] == 1 && $GalaxyInfo['urlaubs_modus'] == 1)

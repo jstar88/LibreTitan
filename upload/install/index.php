@@ -21,13 +21,12 @@
 
 define('INSIDE'  , true);
 define('INSTALL' , true);
-
 $xgp_root = './../';
-
 include($xgp_root . 'extension.inc.php');
 include($xgp_root . 'common.'.$phpEx);
 include_once('databaseinfos.'.$phpEx);
 include_once('UpdateMoonID.'.$phpEx);
+$xgp_root = './../';
 
 $Mode     = $_GET['mode'];
 $Page     = $_GET['page'];
@@ -85,7 +84,7 @@ switch ($Mode) {
 				exit();
 			}
 
-			$parse[first]	= "Conexión establecida con éxito...";
+			$parse[first]	= "Conexiï¿½n establecida con ï¿½xito...";
 
 			fwrite($dz, "<?php\n");
 			fwrite($dz, "if(!defined(\"INSIDE\")){ header(\"location:".$xgp_root."\"); }\n");
@@ -99,7 +98,7 @@ switch ($Mode) {
 			fwrite($dz, "?>");
 			fclose($dz);
 
-			$parse[second]	= "Archivo config.php creado con éxito...";
+			$parse[second]	= "Archivo config.php creado con ï¿½xito...";
 
 			doquery ($QryTableAks        , 'aks'    	);
 			doquery ($QryTableAlliance   , 'alliance'   );
@@ -121,14 +120,14 @@ switch ($Mode) {
 			doquery ($QryTableUniverse      , 'universe'  	);
 			doquery ($QryInsertUniverse    , 'universe'     );
 
-			$parse[third]	= "Tablas creadas con éxito...";
+			$parse[third]	= "Tablas creadas con ï¿½xito...";
 
 			$frame  = parsetemplate(gettemplate('install/ins_form_done'), $parse);
 		}
 		elseif ($Page == 3)
 		{
 			if ($_GET['error'] == 3)
-				message ("¡Debes completar todos los campos!","?mode=ins&page=3", 2, false, false);
+				message ("ï¿½Debes completar todos los campos!","?mode=ins&page=3", 2, false, false);
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc'), false);
 		}
@@ -218,9 +217,9 @@ switch ($Mode) {
 		if ($_POST)
 		{
 			$conexion = mysql_connect($_POST[servidor], $_POST[usuario], $_POST[clave])
-			or die ('<font color=red><strong>Problemas en la conexión con el servidor, es probable que el <u>nombre del servidor, usuario o clave sean incorrectas o que mysql no esta funcionando.</u></strong></font>');
+			or die ('<font color=red><strong>Problemas en la conexiï¿½n con el servidor, es probable que el <u>nombre del servidor, usuario o clave sean incorrectas o que mysql no esta funcionando.</u></strong></font>');
 			@mysql_select_db($_POST[base],$conexion)
-			or die ('<font color=red><strong>Problemas en la conexión con la base de datos. Este error puede deberse a que <u>la base de datos no existe o escribiste mal el nombre de la misma.</u></strong></font>');
+			or die ('<font color=red><strong>Problemas en la conexiï¿½n con la base de datos. Este error puede deberse a que <u>la base de datos no existe o escribiste mal el nombre de la misma.</u></strong></font>');
 
 			if ($_POST[continuar] && (empty($_POST[modo]) or empty($_POST[servidor]) or empty($_POST[usuario]) or empty($_POST[clave]) or empty($_POST[base]) or empty($_POST[prefix])))
 			{
@@ -230,7 +229,7 @@ switch ($Mode) {
 			{
 				if(filesize('../config.php') == 0)
 				{
-					die(message("Error!, tu archivo config.php se encuentra vació o no configurado. En caso de no ser así verifica que su chmod sea de 777","", "", false, false));
+					die(message("Error!, tu archivo config.php se encuentra vaciï¿½ o no configurado. En caso de no ser asï¿½ verifica que su chmod sea de 777","", "", false, false));
 				}
 				else
 				{
@@ -351,7 +350,7 @@ switch ($Mode) {
 					mysql_query($DoQuery);
 				}
 
-				message("XG Proyect finalizó la actualización con éxito, para finalizar borra el directorio install y luego haz <a href=\"./../\">click aqui</a>", "", "", false, false);
+				message("XG Proyect finalizï¿½ la actualizaciï¿½n con ï¿½xito, para finalizar borra el directorio install y luego haz <a href=\"./../\">click aqui</a>", "", "", false, false);
 			}
 		}
 		else
