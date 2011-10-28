@@ -74,6 +74,12 @@ class GalaxyRows
 
         $row = mysql_fetch_object(doquery("SELECT COUNT(*) as total FROM {{table}} WHERE `fleet_owner` = '" . $CurrentUser['id'] . "';", 'fleets'));
         $this->maxfleet_count = $row->total;    
+    } 
+    public function setTarget($universe,$galaxy,$system,$planet){
+      $this->TargetUniverse=$universe;
+      $this->TargetGalaxy=$galaxy;
+      $this->TargetSystem=$system;
+      $this->TargetPlanet=$planet;
     }
 	private function GetMissileRange ()
 	{
@@ -630,15 +636,11 @@ class GalaxyRows
 		return $Result;
 	}
 
-	public function GalaxyRowPos($GalaxyInfo)
+	public function GalaxyRowPos()
 	{
 		$Result  = "<th width=30>";
-		$Result .= "<a href=\"game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=0&target_mission=7\"";
-	  
-  	   if ($GalaxyInfo)
-  	   {    
-			$Result .= " tabindex=\"". ($this->TargetPlanet + 1) ."\"";
-		}
+		$Result .= "<a href=\"game.php?page=fleet&universe=".$this->TargetUniverse."&amp;galaxy=".$this->TargetGalaxy."&system=".$this->TargetSystem."&planet=".$this->TargetPlanet."&planettype=0&target_mission=7\"";   
+		$Result .= " tabindex=\"". ($this->TargetPlanet + 1) ."\"";
 		$Result .= ">". $this->TargetPlanet ."</a>";
 		$Result .= "</th>";
 

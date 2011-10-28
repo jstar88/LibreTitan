@@ -229,7 +229,6 @@ class ShowGalaxyPage extends GalaxyRows
     {
         global $engine;
 
-        $galaxy_view=array();
         $positions=array_fill(1, MAX_PLANET_IN_SYSTEM, false);   
         while ($GalaxyInfo = mysql_fetch_array($GalaxyQuery))
         {   
@@ -243,9 +242,10 @@ class ShowGalaxyPage extends GalaxyRows
                 {
                 	$this->CheckAbandonMoonState($GalaxyInfo);
                 }
+                $this->setTarget($GalaxyInfo['universe'],$GalaxyInfo['galaxy'],$GalaxyInfo['system'],$GalaxyInfo['planet']);
 				    $row  = "\n";
                 $row .= "<tr>";
-                $row .= $this->GalaxyRowPos($GalaxyInfo);
+                $row .= $this->GalaxyRowPos();
                 $row .= $this->GalaxyRowPlanet($GalaxyInfo);
                 $row .= $this->GalaxyRowPlanetName($GalaxyInfo);
                 $row .= $this->GalaxyRowMoon($GalaxyInfo);
@@ -254,17 +254,19 @@ class ShowGalaxyPage extends GalaxyRows
                 $row .= $this->GalaxyRowAlly($GalaxyInfo);
                 $row .= $this->GalaxyRowActions($GalaxyInfo);
                 $row .= "</tr>";
-				    $galaxy_view[$GalaxyInfo['planet']]=$row; 
-				    unset($positions[$GalaxyInfo['planet']]);                            
+				    $positions[$GalaxyInfo['planet']]=$row;                            
             }
         }
         unset($GalaxyInfo);
         foreach($positions as $position => $thereSomething )
         {
-            $engine->assign('pos', $position);
-            $galaxy_view[$position]=$engine->output('galaxy/galaxy_row', true);
+            if($thereSomething === false)
+            {
+               $engine->assign('pos', $position);
+               $positions[$position]=$engine->output('galaxy/galaxy_row', true);
+            }
         }
-        return implode($galaxy_view);
+        return implode($positions);
     }
     
     private function sanitizecoordinates()
