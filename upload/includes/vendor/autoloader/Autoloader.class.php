@@ -28,15 +28,17 @@ class Autoloader {
 	protected static $excludeFolderNames = '/^CVS|\..*$/'; // CVS directories and directories starting with a dot (.).
 	protected static $hasSaver = false;
 	
-	/**
+	public function setRoot($ro){
+      self::$root = $ro;   
+   }
+   /**
 	 * Sets the paths to search in when looking for a class.
 	 * 
 	 * @param array $paths
 	 * @return void
 	 **/
-	public static function setClassPaths($paths,$ro='') {
+	public static function setClassPaths($paths) {
 		self::$classPaths = $paths;
-		self::$root = $ro;
 	}
 	
 	/**

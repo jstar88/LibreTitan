@@ -4,10 +4,7 @@ if (isset ($_GET["xgp_root"]) or isset ($_POST["xgp_root"]))
 
 //-------------what we need always
 error_reporting(E_ALL & ~E_NOTICE);
-if (!defined('IN_ADMIN')) 
-   $xgp_root = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-else
-    $xgp_root = DIRECTORY_SEPARATOR.'..'.dirname(__FILE__) . DIRECTORY_SEPARATOR;   
+$xgp_root= dirname(__FILE__).DIRECTORY_SEPARATOR;
 $phpEx = "php";
 
 require_once ($xgp_root . 'includes/constants.' . $phpEx);
@@ -23,7 +20,7 @@ if (filesize($xgp_root . 'config.php') == 0 && INSTALL != true) {
 if(!file_exists(substr($xgp_root.CACHE_DIR,0,-1)))
 	mkdir($xgp_root.CACHE_DIR,0755,true);
 require ($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
-//Autoloader :: setCurrentDirectory(dirname(__FILE__));
+Autoloader :: setRoot($xgp_root);
 Autoloader :: setCacheFilePath(CACHE_DIR.'class_path_cache.txt', $xgp_root);
 Autoloader :: excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader :: setClassPaths(array (
