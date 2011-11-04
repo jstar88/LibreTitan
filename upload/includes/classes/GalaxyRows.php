@@ -139,9 +139,9 @@ class GalaxyRows
 
         $Result = "<th style=\"white-space: nowrap;\" width=125>";
 
-        if ($RowInfo['id'] != $user['id'])
+        if ($RowInfo['id'] == $user['id'])
         {
-            return "</th>";
+            return "$Result&nbsp;</th>";
         }
 
         if ($RowInfo["destruyed"] == 0 && !empty($RowInfo['id']))
@@ -369,7 +369,7 @@ class GalaxyRows
             {
                 if ($this->canPhalanx())
                 {
-                    $PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&universe=" . $this->TargetUniverse . "&amp;galaxy=" . $this->TargetGalaxy . "&amp;system=" . $this->TargetSystem . "&amp;planet=" . $RowInfo['planet'] . "&amp;planettype=1') >" . $engine->get('gl_phalanx') . "</a><br />";
+                    $PhalanxTypeLink = "<a href=# onclick=fenster(&#039;game.php?page=phalanx&universe=" . $this->TargetUniverse . "&amp;galaxy=" . $this->TargetGalaxy . "&amp;system=" . $this->TargetSystem . "&amp;planet=" . $RowInfo['planet'] . "&amp;planettype=1&#039;) >" . $engine->get('gl_phalanx') . "</a><br />";
                 }
                 else
                 {

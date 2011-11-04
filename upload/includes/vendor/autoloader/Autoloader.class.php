@@ -182,7 +182,7 @@ class Autoloader
      **/
     public static function saveCachedPaths()
     {
-        if (!file_exists(substr(self::$cacheFilePath, 0, -1)))
+        if (!file_exists(self::$cacheFilePath))
             if (!mkdir(self::$cacheFilePath, 0755, true))
                 echo ('Autoload cache folder not writable: ' . self::$cacheFilePath);
         $fileContents = serialize(self::$cachedPaths);

@@ -33,8 +33,8 @@ function ShowPhalanxPage($CurrentUser, $CurrentPlanet)
 
 	$parse = $lang;
     /* range */
-	$radar_menzil_min = $CurrentPlanet['system'] - $GalaxyRows->GetPhalanxRange ( $CurrentPlanet['phalanx'] );
-	$radar_menzil_max = $CurrentPlanet['system'] + $GalaxyRows->GetPhalanxRange ( $CurrentPlanet['phalanx'] );
+	$radar_menzil_min = $CurrentPlanet['system'] - Formules::getPhalanxRange ( $CurrentPlanet['phalanx'] );
+	$radar_menzil_max = $CurrentPlanet['system'] + Formules::getPhalanxRange ( $CurrentPlanet['phalanx'] );
 	$radar_menzil_min=max($radar_menzil_min,1);
    $radar_menzil_max=min($radar_menzil_max,MAX_SYSTEM_IN_GALAXY);
 	/* input validation */
@@ -57,7 +57,7 @@ function ShowPhalanxPage($CurrentUser, $CurrentPlanet)
    $PlType != 1                        || 
    $CurrentPlanet['planet_type'] != 3
    )
-	  die(header("Location: game.php?page=galaxy"));
+	  die(message('out of range!'));
 	 /* main page */
 	if ($CurrentPlanet['deuterium'] > 10000)
 	{
