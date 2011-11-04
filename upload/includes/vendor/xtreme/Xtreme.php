@@ -1,7 +1,7 @@
 <?php
 
 /*
-Xtreme 0.5 - Hight performance template engine
+Xtreme 0.6 - Hight performance template engine
 Copyright (C) 2011-2012  Covolo Nicola
 
 */
@@ -20,8 +20,8 @@ class Xtreme
     //---------------------------
     
     const GROUPS_CACHE_POSTFIX='_group';
-    const TEMPLATE_CACHE_DIRECTORY='templates/';
-    const LANG_CACHE_DIRECTORY='langs/';        
+    const TEMPLATE_CACHE_DIRECTORY='templates';
+    const LANG_CACHE_DIRECTORY='langs';        
     const DEFAULT_TEMPLATE='tpl';
     const DEFAULT_MASTER_LEFT='{';
     const DEFAULT_MASTER_RIGHT='}';    
@@ -71,7 +71,7 @@ class Xtreme
 
     public function setBaseDirectory($new)
     {
-        $this->baseDirectory = $this->compilePath($new);
+        $this->baseDirectory = $this->appendSeparator($new);
     }
     public function setCompileDirectory($new)
     {
@@ -284,6 +284,7 @@ class Xtreme
         $out = '';
         foreach ($templates as $template)
         {
+            $template=str_replace(array('/','\\'),DIRECTORY_SEPARATOR,$template);            
             if($forGroup)
                 $compiledFile = $this->getCompiledPath($template.self::GROUPS_CACHE_POSTFIX);
             else                
@@ -318,6 +319,7 @@ class Xtreme
     }
     private function appendSeparator($path)
     {
+        $path=str_replace(array('/','\\'),DIRECTORY_SEPARATOR,$path);
         $path = trim($path);
         if (substr($path, -1) != DIRECTORY_SEPARATOR)
             $path .= DIRECTORY_SEPARATOR;
@@ -330,8 +332,8 @@ class Xtreme
     private function getCompiledPath($path,$isTemplate=true)
     {
         if($isTemplate)
-            return ($this->compileDirectory) .(self::TEMPLATE_CACHE_DIRECTORY). $path . '.php';
-        return $this->compileDirectory . self::LANG_CACHE_DIRECTORY. $this->country . $path . '.' . strtolower(self::JSON) ; 
+            return ($this->compileDirectory) .(self::TEMPLATE_CACHE_DIRECTORY).DIRECTORY_SEPARATOR. $path . '.php';
+        return $this->compileDirectory . self::LANG_CACHE_DIRECTORY.DIRECTORY_SEPARATOR. $this->country . $path . '.' . strtolower(self::JSON) ; 
     }
     private function getLangPath($langini)
     {
@@ -394,14 +396,11 @@ class Xtreme
 
 
     private function save($templateName, $compiledFile, $value,$isTemplate)
-    {
-        
+    {       
        $path=substr($compiledFile,0,strrpos($compiledFile, DIRECTORY_SEPARATOR,-1));
-       @mkdir($path,0755,true);    
-        
-        $f = fopen($compiledFile, 'w');
-        fwrite($f, $value);
-        fclose($f);
+       mkdir($path,0755,true);     
+       if(file_put_contents($compiledFile,$value)===false)
+            echo "failed to save $compiledFile";       
     }
 
     private function transformSyntax($input)

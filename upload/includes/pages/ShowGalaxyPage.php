@@ -48,10 +48,6 @@ class ShowGalaxyPage extends GalaxyRows
         } 
         elseif ($mode == 1)
         {
-            if(!empty($_POST["planet"]))
-            {
-                $this->TargetPlanet = $_POST["planet"];
-            }
             if (!empty($_POST["universe"]))
             {
                 $this->TargetUniverse=$_POST["universe"];
@@ -137,11 +133,7 @@ class ShowGalaxyPage extends GalaxyRows
             if (!empty($_GET["system"]))
             {
                 $this->TargetSystem = $_GET["system"];
-            }
-            if (!empty($_GET["planet"]))
-            {
-                $this->TargetSystem = $_GET["planet"];
-            }                
+            }               
         }
         $this->consumption(); 
     }
@@ -152,7 +144,7 @@ class ShowGalaxyPage extends GalaxyRows
         $mode=$_GET['mode'];
         if ($mode == 1 || $mode == 3)
         {
-            if ( ( $this->CurrentSystem != $this->TargetSystem ) || ( $this->CurrentGalaxy != $this->TargetGalaxy ) )
+            if ( $this->CurrentSystem != $this->TargetSystem  ||  $this->CurrentGalaxy != $this->TargetGalaxy  )
             {
                 if($this->CurrentDeuterium < 10)
                 {
@@ -175,18 +167,15 @@ class ShowGalaxyPage extends GalaxyRows
     {
         global $dpath,$engine;
         
-        $GalaxyInfo = doquery( "SELECT {{table}}galaxy.metal,{{table}}galaxy.crystal,{{table}}galaxy.id_luna,{{table}}galaxy.destruyed_moon,{{table}}galaxy.id_planet,{{table}}planets.universe,{{table}}planets.galaxy,{{table}}planets.system,{{table}}planets.planet,{{table}}planets.destruyed,{{table}}planets.name,{{table}}planets.image,{{table}}planets.last_update,{{table}}planets.id_owner,{{table}}users.id,{{table}}users.ally_id,{{table}}users.bana,{{table}}users.urlaubs_modus,{{table}}users.onlinetime,{{table}}users.username,{{table}}statpoints.stat_type,{{table}}statpoints.stat_code,{{table}}statpoints.total_rank,{{table}}statpoints.total_points,{{table}}moons.diameter,{{table}}moons.temp_min,{{table}}moons.name AS name_moon,{{table}}alliance.ally_name,{{table}}alliance.ally_tag,{{table}}alliance.ally_web,{{table}}alliance.ally_members,{{table}}buddy.owner AS friends_owner,{{table}}buddy.sender AS friends_sender
+        $GalaxyInfo = doquery( "SELECT {{table}}galaxy.metal,{{table}}galaxy.crystal,{{table}}galaxy.id_luna,{{table}}galaxy.destruyed_moon,{{table}}galaxy.id_planet,{{table}}planets.planet,{{table}}planets.destruyed,{{table}}planets.name,{{table}}planets.image,{{table}}planets.last_update,{{table}}planets.id_owner,{{table}}users.id,{{table}}users.ally_id,{{table}}users.bana,{{table}}users.urlaubs_modus,{{table}}users.onlinetime,{{table}}users.username,{{table}}statpoints.stat_type,{{table}}statpoints.stat_code,{{table}}statpoints.total_rank,{{table}}statpoints.total_points,{{table}}moons.diameter,{{table}}moons.temp_min,{{table}}moons.name AS name_moon,{{table}}alliance.ally_name,{{table}}alliance.ally_tag,{{table}}alliance.ally_web,{{table}}alliance.ally_members,{{table}}buddy.owner AS friends_owner,{{table}}buddy.sender AS friends_sender
                                 FROM {{table}}alliance RIGHT JOIN ({{table}}planets AS {{table}}moons RIGHT JOIN ({{table}}statpoints RIGHT JOIN ((({{table}}planets INNER JOIN {{table}}users ON {{table}}planets.id_owner = {{table}}users.id) INNER JOIN {{table}}galaxy ON {{table}}planets.id = {{table}}galaxy.id_planet) LEFT JOIN {{table}}buddy ON ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner)) ON ({{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1)) ON {{table}}moons.id = {{table}}galaxy.id_luna) ON {{table}}alliance.id = {{table}}users.ally_id
                                 WHERE ({{table}}galaxy.universe='".$this->TargetUniverse."' AND {{table}}galaxy.galaxy='".$this->TargetGalaxy."' AND {{table}}galaxy.system='".$this->TargetSystem."' AND ({{table}}galaxy.planet>'0' AND {{table}}galaxy.planet<='".MAX_PLANET_IN_SYSTEM."'))
                                 GROUP BY `id_planet`;" , '' );
-        $planetcount = 0;
-        $lunacount = 0;
         $mode=$_GET['mode'];
-
+        $planetcount=0;
         $engine->assign('universe', $this->TargetUniverse);
         $engine->assign('galaxy', $this->TargetGalaxy);
         $engine->assign('system', $this->TargetSystem);
-        $engine->assign('planet', $this->TargetPlanet);
         $engine->assign('currentmip', $this->CurrentMIP);
         $engine->assign('maxfleetcount', $this->maxfleet_count);
         $engine->assign('fleetmax', $this->fleetmax);
@@ -200,7 +189,6 @@ class ShowGalaxyPage extends GalaxyRows
         $engine->assign('current_planet', $this->CurrentPlanet);
         $engine->assign('planet_type', $this->CurrentPlanetType);
         $engine->assign('dpath', $dpath);
-        $engine->assign('planetcount', $planetcount . " " . $engine->get('gl_populed_planets'));
         $engine->assignToGroup('x', 'galaxyscripts', 'galaxy/galaxy_script');
         
         if (isUniverseInWarGeneric($this->CurrentUniverse))
@@ -209,7 +197,6 @@ class ShowGalaxyPage extends GalaxyRows
             $engine->assignToGroup('x', 'galaxyselector', 'galaxy/galaxy_selector_extended');
             if ($mode == 2)
                 $engine->assignToGroup('x', 'mip', 'galaxy/galaxy_missile_selector_extended');
-
         } 
         else
         {
@@ -219,45 +206,45 @@ class ShowGalaxyPage extends GalaxyRows
         }
         $engine->assignToGroup('x', 'galaxytitles', 'galaxy/galaxy_titles');
         $html = $this->ShowGalaxyRows($GalaxyInfo,$planetcount);
+        $engine->assign('planetcount', $planetcount . " " . $engine->get('gl_populed_planets'));
         $engine->assign('galaxyrows', $html);
         $engine->assignToGroup('x', 'galaxyfooter', 'galaxy/galaxy_footer');
-
         display($engine->outputGroup('x', 'galaxy/galaxy_body'), false);
     }
 
-    private function ShowGalaxyRows($GalaxyQuery,&$planetcount)
+    private function ShowGalaxyRows($GalaxyInfo,&$planetcount)
     {
         global $engine;
 
         $positions=array_fill(1, MAX_PLANET_IN_SYSTEM, false);   
-        while ($GalaxyInfo = mysql_fetch_array($GalaxyQuery))
+        while ($RowInfo = mysql_fetch_array($GalaxyInfo))
         {   
-            if (!empty($GalaxyInfo['id_planet']))
+            if (!empty($RowInfo['id_planet']))
             {
-            	if (!empty($GalaxyInfo['destruyed']) && !empty($GalaxyInfo['id_owner']))
+            	 if (!empty($RowInfo['destruyed']) && !empty($RowInfo['id_owner']))
                 {
-                    $this->CheckAbandonPlanetState($GalaxyInfo);
+                    $this->CheckAbandonPlanetState($RowInfo);
                 } 
-                elseif (!empty($GalaxyInfo['id_luna']) && !empty($GalaxyInfo['destruyed_moon']))
+                elseif (!empty($RowInfo['id_luna']) && !empty($RowInfo['destruyed_moon']))
                 {
-                	$this->CheckAbandonMoonState($GalaxyInfo);
+                	$this->CheckAbandonMoonState($RowInfo);
                 }
-                $this->setTarget($GalaxyInfo['universe'],$GalaxyInfo['galaxy'],$GalaxyInfo['system'],$GalaxyInfo['planet']);
 				    $row  = "\n";
                 $row .= "<tr>";
-                $row .= $this->GalaxyRowPos();
-                $row .= $this->GalaxyRowPlanet($GalaxyInfo);
-                $row .= $this->GalaxyRowPlanetName($GalaxyInfo);
-                $row .= $this->GalaxyRowMoon($GalaxyInfo);
-                $row .= $this->GalaxyRowDebris($GalaxyInfo);
-                $row .= $this->GalaxyRowUser($GalaxyInfo);
-                $row .= $this->GalaxyRowAlly($GalaxyInfo);
-                $row .= $this->GalaxyRowActions($GalaxyInfo);
+                $row .= $this->GalaxyRowPos($RowInfo);
+                $row .= $this->GalaxyRowPlanet($RowInfo);
+                $row .= $this->GalaxyRowPlanetName($RowInfo);
+                $row .= $this->GalaxyRowMoon($RowInfo);
+                $row .= $this->GalaxyRowDebris($RowInfo);
+                $row .= $this->GalaxyRowUser($RowInfo);
+                $row .= $this->GalaxyRowAlly($RowInfo);
+                $row .= $this->GalaxyRowActions($RowInfo);
                 $row .= "</tr>";
-				    $positions[$GalaxyInfo['planet']]=$row;                            
+				    $positions[$RowInfo['planet']]=$row;  
+                $planetcount++;                          
             }
         }
-        unset($GalaxyInfo);
+        unset($RowInfo);
         foreach($positions as $position => $thereSomething )
         {
             if($thereSomething === false)
@@ -276,7 +263,6 @@ class ShowGalaxyPage extends GalaxyRows
         'universe'          => array($targetUniverse => FILTER_CALLBACK, array('options' => array($this,'validateUniverse'))),
         'galaxy'            => array('filter' => FILTER_VALIDATE_INT, 'options' => array('min_range' => 1, 'max_range' => MAX_GALAXY_IN_WORLD)), 
         'system'            => array('filter' => FILTER_VALIDATE_INT, 'options' => array('min_range' => 1, 'max_range' => MAX_SYSTEM_IN_GALAXY)), 
-        'planet'            => array('filter' => FILTER_VALIDATE_INT, 'options' => array('min_range' => 1, 'max_range' => MAX_PLANET_IN_SYSTEM)),
         'universeLeft'      =>array("filter"=>FILTER_SANITIZE_STRING),
         'universeRight'     =>array("filter"=>FILTER_SANITIZE_STRING),
         'galaxyLeft'        =>array("filter"=>FILTER_SANITIZE_STRING),

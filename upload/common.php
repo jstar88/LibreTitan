@@ -3,33 +3,30 @@ if (isset ($_GET["xgp_root"]) or isset ($_POST["xgp_root"]))
 	die();
 
 //-------------what we need always
-error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ERROR | E_PARSE);
+
 $xgp_root= dirname(__FILE__).DIRECTORY_SEPARATOR;
 $phpEx = "php";
-
-require_once ($xgp_root . 'includes/constants.' . $phpEx);
-require_once ($xgp_root . 'includes/vendor/phputf8/php-utf8.'.$phpEx);
-require_once ($xgp_root . 'includes/GeneralFunctions.' . $phpEx);
-//---------------------------
-
 if (filesize($xgp_root . 'config.php') == 0 && INSTALL != true) {
 	exit (header("location:" . $xgp_root . "install/"));
 }
+//------------
+
+//-------------what we need always
+require ($xgp_root . 'includes/constants.' . $phpEx);
+require ($xgp_root . 'includes/vendor/phputf8/php-utf8.'.$phpEx);
+require ($xgp_root . 'includes/GeneralFunctions.' . $phpEx);
+//---------------------------
 
 //-------------the autoloader
-if(!file_exists(substr($xgp_root.CACHE_DIR,0,-1)))
-	mkdir($xgp_root.CACHE_DIR,0755,true);
-require ($xgp_root . 'includes/vendor/autoloader/Autoloader.class.php');
+require ($xgp_root . 'includes/vendor/autoloader/Autoloader.class.'.$phpEx);
 Autoloader :: setRoot($xgp_root);
-Autoloader :: setCacheFilePath(CACHE_DIR.'class_path_cache.txt', $xgp_root);
+Autoloader :: setCacheFilePath(CACHE_DIR,'class_path_cache.txt');
 Autoloader :: excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader :: setClassPaths(array (
 	'includes/'
 ));
-spl_autoload_register(array (
-	'Autoloader',
-	'loadClass'
-));
+Autoloader::init();
 //---------------------------
 
 //------------the template engine
@@ -137,7 +134,7 @@ if (INSTALL != true) {
 		   //----------update fleet task
 		    new FlyingFleetHandler();
 	    //---------------------------
-			$dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
+			$dpath = (!$user["dpath"]) ? SKIN_DIR.DEFAULT_SKIN.'/' : $user["dpath"];
 		}
 
 		SetSelectedPlanet($user);
@@ -154,7 +151,7 @@ if (INSTALL != true) {
 		//----------update buildings task
 		UpdatePlanetBatimentQueueList($planetrow, $user);
 		$IsWorking = HandleTechnologieBuild($planetrow, $user);
-		$ProductionTime = (time() - $planetrow['last_update']);
+		$ProductionTime = (CURRENT_TIME - $planetrow['last_update']);
 		HandleElementBuildingQueue($user, $planetrow, $ProductionTime);
 		//---------------------------
 		

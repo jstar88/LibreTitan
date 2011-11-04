@@ -25,16 +25,28 @@ if (!defined('INSIDE'))
 
 define('DEFAULT_LANG', 'english');
 // time after that position will be ready for colonization
-define('PLANET_DELETE_TIME', 86400);
+define('PLANET_DELETE_TIME', 24*60*60);
 // time after that moon will be deleted in galaxy 
-define('MOON_DELETE_TIME', 86400);
+define('MOON_DELETE_TIME', 24*60*60);
 
+//min time to see minute-inactivity in galaxy  (*)
+define('INACTIVITY_MIN',15*60);
+//max time to see minute-inactivity in galaxy  (tot minutes)
+define('INACTIVITY_MAX',59*60);
+//time to see short-inactivity in galaxy  (i)
+define('INACTIVITY_SHORT',60*60*24*7);
+//time to see long-inactivity in galaxy  (i)
+define('INACTIVITY_LONG',60*60*24*28);
+
+//the current time in seconds from 1970
+define('CURRENT_TIME',time());                           
 //CACHE DEFAULT SETTINGS
-define('CACHE_DIR', 'cache/');
+define('CACHE_DIR', 'cache');
 //LANG DEFAULT SETTINGS
-define('LANGUAGE_DIR', 'language/');
+define('LANGUAGE_DIR', 'language');
 //TEMPLATES DEFAULT SETTINGS
-define('DEFAULT_SKINPATH', 'styles/skins/stargate/');
+define('DEFAULT_SKIN','stargate');
+define('SKIN_DIR', 'styles/skins/');
 define('TEMPLATE_DIR', 'styles/templates/');
 
 // ADMINISTRATOR EMAIL AND GAME URL - THIS DATA IS REQUESTED BY REG.PHP

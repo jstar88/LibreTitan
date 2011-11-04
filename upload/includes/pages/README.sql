@@ -3,10 +3,7 @@ SELECT
 {{table}}galaxy.crystal, 
 {{table}}galaxy.id_luna,
 {{table}}galaxy.destruyed_moon, 
-{{table}}galaxy.id_planet,
-{{table}}planets.universe,
-{{table}}planets.galaxy, 
-{{table}}planets.system, 
+{{table}}galaxy.id_planet, 
 {{table}}planets.planet, 
 {{table}}planets.destruyed, 
 {{table}}planets.name, 
@@ -81,5 +78,4 @@ WHERE
    AND {{table}}galaxy.system='".$$this->TargetSystem."' 
    AND ({{table}}galaxy.planet>'0' AND {{table}}galaxy.planet<='".MAX_PLANET_IN_SYSTEM."')
 )
-GROUP BY `id_planet` 
-ORDER BY {{table}}planets.planet; 
+GROUP BY `id_planet`;
