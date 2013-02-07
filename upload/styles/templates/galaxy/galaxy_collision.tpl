@@ -1,1 +1,0 @@
-<img src="{dpath}img/Iperspazio.jpg" width="600" height="40" />
