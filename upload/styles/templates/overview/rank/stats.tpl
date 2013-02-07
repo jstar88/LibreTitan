@@ -1,0 +1,1 @@
+{pretty_stats_total_points}({ov_place} <a href="game.php?page=statistics&range={stats_total_rank}">{stats_total_rank}</a> {ov_of} {users_amount})

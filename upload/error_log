@@ -1,0 +1,2 @@
+[12-Sep-2011 17:24:18] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'esucno_aleman'@'localhost' (using password: YES) in /home/esucno/public_html/libretitan.com/libretitan/includes/GeneralFunctions.php on line 374
+[12-Sep-2011 17:29:42] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'esucno_aleman'@'localhost' (using password: YES) in /home/esucno/public_html/libretitan.com/libretitan/includes/GeneralFunctions.php on line 374
