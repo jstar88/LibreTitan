@@ -1,1 +1,0 @@
-{cff_one_of_your}{cff_ships}{endName}{pORm}{cff_from}{group:flyingEvent:link}{cff_comming_back}{cff_to}{startName}{pORm}{cff_with_the_mission_of}
