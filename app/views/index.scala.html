@@ -1,31 +1,15 @@
-@(tasks: List[Task], taskForm: Form[Task])
+@main("Form samples") {
 
-@import helper._
+<h2>Sign up form</h2>
 
-@main("Todo list") {
-    
-    <h1>@tasks.size() task(s)</h1>
-    
-    <table class="table table-condensed">
-        @for(task <- tasks) {
-            <tr>
-                <td>@task.label</td>
-                
-                <td>@form(routes.Application.deleteTask(task.id)) {
-                    <input type="submit" value="Delete" class="btn">
-                }</td>
-            </tr>
-        }
-    </table>
-    
-    <h2>Add a new task</h2>
-    
-    @form(routes.Application.newTask()) {
-        
-        @inputText(taskForm("label")) 
-        
-        <input type="submit" value="Create" class="btn">
-        
-    }
-    
+<p>Demonstrate a classical sign up application.</p>
+
+<p>you are currently @flash.get("logged")
+</p>
+
+<a class="btn" href="@routes.Authentication.login">login »</a>
+
+<a class="btn" href="@routes.Authentication.logout">logout »</a>
+
+
 }
