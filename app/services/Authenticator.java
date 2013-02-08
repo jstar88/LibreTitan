@@ -7,33 +7,33 @@ import play.data.*;
 import models.*;
 import views.html.*;
 
-public abstract class Authenticator {
+public class Authenticator {
 	public static boolean isCurrentUserLogged() {
-		return session("id_user") != null;
+		return Controller.session("id_user") != null;
 	}
 
 	public static User loginCurrentUser(String name, String password) {
 		User user = User.authenticate(name, password);
 		if (user == null)
-			return;
-		session("id_user", user.getId());
-		Cache.set("User:" + user.getId(), user);
+			return null;
+		Controller.session("id_user", user.id+"");
+		Cache.set("User:" + user.id, user);
 		return user;
 	}
 
 	public static void logoutCurrentUser() {
-		Cache.remove(session("id_user"));
-		session().clear();
+		Cache.remove("User:"+Controller.session("id_user"));
+		Controller.session().clear();
 		return;
 	}
 
 	public static User getCurrentUser() {
-		Long idUser = session("id_user");
-		User user = Cache.get("User:" + idUser);
+		String idUser = Controller.session("id_user");
+		Object user = Cache.get("User:" + idUser);
 		if (user == null) {
-			user = User.findById(idUser);
-			Cache.set("User:" + idUser, user);
+			user = User.findById(Long.valueOf(idUser));
+			Cache.set("User:" + idUser, (User)user);
 		}
-		return user;
+		return (User)user;
 	}
 }
