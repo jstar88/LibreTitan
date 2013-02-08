@@ -12,10 +12,10 @@ public abstract class Authenticator {
 		return session("id_user") != null;
 	}
 
-	public static boolean loginCurrentUser(String name, String password) {
+	public static User loginCurrentUser(String name, String password) {
 		User user = User.authenticate(name, password);
 		if (user == null)
-			return false;
+			return;
 		session("id_user", user.getId());
 		Cache.set("User:" + user.getId(), user);
 		return user;
