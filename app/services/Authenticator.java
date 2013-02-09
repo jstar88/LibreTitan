@@ -6,14 +6,15 @@ import play.mvc.*;
 import play.data.*;
 import models.*;
 import views.html.*;
+import interfaces.Loginable;
 
 public class Authenticator {
 	public static boolean isCurrentUserLogged() {
 		return Controller.session("id_user") != null;
 	}
 
-	public static User loginCurrentUser(String name, String password) {
-		User user = User.authenticate(name, password);
+	public static User loginCurrentUser(Loginable men) {
+		User user = User.authenticate(men);
 		if (user == null)
 			return null;
 		Controller.session("id_user", user.id+"");

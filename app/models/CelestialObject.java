@@ -14,7 +14,7 @@ public class CelestialObject extends Model {
 	@Id
 	public Long id;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.ALL } )
 	public User user;
 
 }

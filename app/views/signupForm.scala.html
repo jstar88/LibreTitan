@@ -5,7 +5,7 @@
 
 @main("some") {
     
-    @helper.form(action = routes.Authentication.login) {
+    @helper.form(routes.Registration.registers) {
         
         <fieldset>
             <legend>Account informations</legend>
@@ -66,10 +66,9 @@
             
         </fieldset>
         
-        <div class="actions">
-            <input type="submit" class="btn primary" value="Sign Up">
-            <a href="@routes.Application.index" class="btn">Cancel</a>
-        </div>
+        
+            <button type="submit" class="btn primary">Login</button>
+        
         
     }
     

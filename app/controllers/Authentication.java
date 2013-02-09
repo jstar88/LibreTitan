@@ -11,36 +11,44 @@ import services.*;
 
 public class Authentication extends Controller {
 
-	static Form<User> signupForm = form(User.class);
+	static Form<Login> loginFormInfo = form(Login.class);
 
+	// --------- user managment -----------
+	/**
+	 * Show a blank login form
+	 */
 	public static Result login() {
-		if (Authenticator.isCurrentUserLogged())
-		{
+		if (Authenticator.isCurrentUserLogged()) {
 			return ok(alreadyConnected.render());
 		}
-		return ok(form.render(signupForm));
+		return ok(loginForm.render(loginFormInfo));
 	}
 
 	/**
-	 * Handle login form submission.
+	 * Authenticate the user by login data
 	 */
 	public static Result authenticate() {
-		if (Authenticator.isCurrentUserLogged())
-		{
+		if (Authenticator.isCurrentUserLogged()) {
 			return ok(alreadyConnected.render());
 		}
-		Form<User> filledForm = signupForm.bindFromRequest();
+		Form<Login> filledForm = loginFormInfo.bindFromRequest();
 		if (filledForm.hasErrors()) {
-			return badRequest(form.render(filledForm));
+			return badRequest(loginForm.render(filledForm));
 		} else {
-			User created = filledForm.get();
+			Login loginData = filledForm.get();
+			Authenticator
+					.loginCurrentUser(loginData);
 			return redirect(routes.Application.index());
 		}
 	}
 
+	/**
+	 * Logout the user
+	 */
 	public static Result logout() {
 		if (!Authenticator.isCurrentUserLogged())
 			return ok(notConnected.render());
+		Authenticator.logoutCurrentUser();
 		return redirect(routes.Application.index());
 	}
 

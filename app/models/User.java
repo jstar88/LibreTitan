@@ -5,10 +5,12 @@ import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 import javax.persistence.*;
 import play.data.format.*;
+import models.Login;
+import interfaces.Loginable;
 
 @Entity
 @Table(name = "users")
-public class User extends Model {
+public class User extends Model implements Loginable {
 
 	@Id
 	public Long id;
@@ -22,23 +24,25 @@ public class User extends Model {
 	@Required
 	public String password;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	public Profile profile;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = { CascadeType.ALL } )
 	public CelestialObject homePlanet;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = { CascadeType.ALL } )
 	public List<CelestialObject> planets;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = { CascadeType.ALL } )
 	public List<Role> roles;
 
-	public User(String name, String email, String password, Profile profile) {
+	public User(String name,String email,String password, Profile profile) {
+		User(name,email,password);
+		this.profile = profile;
+	}
+	public User(String name,String email,String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.profile = profile;
 	}
 
 	public static class Profile {
@@ -82,6 +86,10 @@ public class User extends Model {
 		return roles.contains(role);
 
 	}
+	public void save()
+	{
+		Ebean.save(this);
+	}
 
 	// ---------- override functions ------------
 	public String toString() {
@@ -115,11 +123,16 @@ public class User extends Model {
 	}
 
 	/**
-	 * Authenticate a User.
+	 * Authenticate a User by name and password.
 	 */
-	public static User authenticate(String email, String password) {
-		return find.where().eq("email", email).eq("password", password)
+	public static User authenticate(Loginable login) {
+		return find.where().eq("name", login.getName()).eq("password", login.getPassword())
 				.findUnique();
+	}
+	public static boolean exist(User user)
+	{
+		return find.where().eq("email", user.email).or().eq("name", user.name)
+				.findUnique() != null;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Role extends Model {
 	@Id
 	public Integer id;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = { CascadeType.ALL } )
 	public List<User> users;
 
 	// ---------- override functions ------------

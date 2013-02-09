@@ -6,5 +6,10 @@ GET /login controllers.Authentication.login()
 POST /login controllers.Authentication.authenticate()
 GET /logout controllers.Authentication.logout()
 
+# Registration
+GET /login controllers.Registration.signup()
+POST /login controllers.Registration.registers()
+GET /logout controllers.Registration.delete()
+
 # Static files
 GET     /assets/*file           controllers.Assets.at(path="/public", file)
