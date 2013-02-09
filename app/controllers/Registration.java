@@ -39,7 +39,7 @@ public class Registration extends Controller {
 			if(User.exist(user))
 			{
 				//ValidationError e = new ValidationError("name", "user already exist",new ArrayList());
-				filledForm.errors().put("name","s");
+				//filledForm.errors().put("name","s");
 				return badRequest(signupForm.render(filledForm));
 			}
 			user.save();
@@ -53,6 +53,7 @@ public class Registration extends Controller {
 	 */
 	public static Result delete() {
 		// todo
+		return redirect(routes.Application.index());
 	}
 
 }

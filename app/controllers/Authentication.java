@@ -36,8 +36,9 @@ public class Authentication extends Controller {
 			return badRequest(loginForm.render(filledForm));
 		} else {
 			Login loginData = filledForm.get();
-			Authenticator
-					.loginCurrentUser(loginData);
+			if (Authenticator.loginCurrentUser(loginData) == null) {
+				return badRequest(loginForm.render(filledForm));
+			}
 			return redirect(routes.Application.index());
 		}
 	}

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import play.data.format.*;
 import models.Login;
 import interfaces.Loginable;
+import com.avaje.ebean.*;
 
 @Entity
 @Table(name = "users")
@@ -26,20 +27,21 @@ public class User extends Model implements Loginable {
 
 	public Profile profile;
 
-	@OneToOne(cascade = { CascadeType.ALL } )
+	@OneToOne(cascade = { CascadeType.ALL })
 	public CelestialObject homePlanet;
 
-	@OneToMany(cascade = { CascadeType.ALL } )
+	@OneToMany(cascade = { CascadeType.ALL })
 	public List<CelestialObject> planets;
 
-	@ManyToMany(cascade = { CascadeType.ALL } )
+	@ManyToMany(cascade = { CascadeType.ALL })
 	public List<Role> roles;
 
-	public User(String name,String email,String password, Profile profile) {
-		User(name,email,password);
+	public User(String name, String email, String password, Profile profile) {
+		this(name, email, password);
 		this.profile = profile;
 	}
-	public User(String name,String email,String password) {
+
+	public User(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -61,7 +63,7 @@ public class User extends Model implements Loginable {
 	/**
 	 * Ad a role to current user.
 	 */
-	public void addRole(Integer id) throws ClassNotFoundException{
+	public void addRole(Integer id) throws ClassNotFoundException {
 		Role role = Role.findById(id);
 		if (role == null)
 			throw new ClassNotFoundException("Role with id:" + id
@@ -86,9 +88,13 @@ public class User extends Model implements Loginable {
 		return roles.contains(role);
 
 	}
-	public void save()
-	{
-		Ebean.save(this);
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	// ---------- override functions ------------
@@ -126,13 +132,12 @@ public class User extends Model implements Loginable {
 	 * Authenticate a User by name and password.
 	 */
 	public static User authenticate(Loginable login) {
-		return find.where().eq("name", login.getName()).eq("password", login.getPassword())
-				.findUnique();
-	}
-	public static boolean exist(User user)
-	{
-		return find.where().eq("email", user.email).or().eq("name", user.name)
-				.findUnique() != null;
+		return find.where().eq("name", login.getName())
+				.eq("password", login.getPassword()).findUnique();
 	}
 
+	public static boolean exist(User user) {
+		Expression eqOrGt = Expr.or(Expr.eq("email", user.email), Expr.eq("name", user.name));
+		return find.where().add(eqOrGt).findList() != null;
+	}
 }
