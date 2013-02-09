@@ -8,23 +8,32 @@ import play.data.format.*;
 import models.Login;
 import interfaces.Loginable;
 import com.avaje.ebean.*;
+import javax.validation.*;
 
 @Entity
 @Table(name = "users")
 public class User extends Model implements Loginable {
+	
+	public interface All {}
+    public interface Step1{}
+    public interface Step2{} 
 
 	@Id
 	public Long id;
 
-	@Required
+	@Required(groups = {All.class, Step1.class})
+    @Email(groups = {All.class, Step1.class})
 	public String email;
 
-	@Required
+	@Required(groups = {All.class, Step1.class})
+    @MinLength(value = 1, groups = {All.class, Step1.class})
 	public String name;
 
-	@Required
+	@Required(groups = {All.class, Step1.class})
+    @MinLength(value = 1, groups = {All.class, Step1.class})
 	public String password;
-
+	
+	@Valid
 	public Profile profile;
 
 	@OneToOne(cascade = { CascadeType.ALL })
@@ -48,11 +57,19 @@ public class User extends Model implements Loginable {
 	}
 
 	public static class Profile {
-
+		
+		@Required(groups = {All.class, Step2.class})
 		public String country;
+		
 		public String address;
+		
+		@Min(value = 1, groups = {All.class, Step2.class}) @Max(value = 100, groups = {All.class, Step2.class})
 		public Integer age;
 
+		public Profile()
+		{
+			
+		}
 		public Profile(String country, String address, Integer age) {
 			this.country = country;
 			this.address = address;
@@ -139,5 +156,13 @@ public class User extends Model implements Loginable {
 	public static boolean exist(User user) {
 		Expression eqOrGt = Expr.or(Expr.eq("email", user.email), Expr.eq("name", user.name));
 		return find.where().add(eqOrGt).findList() != null;
+	}
+	public static boolean existEmail(String email)
+	{
+		return find.where().eq("email", email).findUnique() != null;
+	}
+	public static boolean existName(String name)
+	{
+		return find.where().eq("name", name).findUnique() != null;
 	}
 }
