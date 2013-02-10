@@ -1,97 +1,35 @@
-2013-02-09T20:20:04+00:00 heroku[web.1]: Starting process with command `target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${DATABASE_URL} -Ddb.default.driver=org.postgresql.Driver`
-2013-02-09T20:20:07+00:00 app[web.1]: Play server process ID is 2
-2013-02-09T20:20:10+00:00 app[web.1]: [[37minfo[0m] play - database [default] connected at jdbc:postgresql://ec2-54-243-228-241.compute-1.amazonaws.com:5432/dbccl356odfb52
-2013-02-09T20:20:13+00:00 app[web.1]: [[33mwarn[0m] play - Your production database [default] needs evolutions! 
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: # !!! WARNING! This script contains DOWNS evolutions that are likely destructives
-2013-02-09T20:20:13+00:00 app[web.1]: # --- Rev:1,Downs - 2af6baa
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: SET REFERENTIAL_INTEGRITY FALSE;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: drop sequence if exists task_seq;
-2013-02-09T20:20:13+00:00 app[web.1]: create table celestial_objects (
-2013-02-09T20:20:13+00:00 app[web.1]: id                        bigint not null,
-2013-02-09T20:20:13+00:00 app[web.1]: # --- Rev:1,Ups - eefc548
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: drop table if exists task;
-2013-02-09T20:20:13+00:00 app[web.1]: SET REFERENTIAL_INTEGRITY TRUE;
-2013-02-09T20:20:13+00:00 app[web.1]: user_id                   bigint,
-2013-02-09T20:20:13+00:00 app[web.1]: ;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: create table roles (
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: constraint pk_roles primary key (id))
-2013-02-09T20:20:13+00:00 app[web.1]: create table users (
-2013-02-09T20:20:13+00:00 app[web.1]: id                        bigint not null,
-2013-02-09T20:20:13+00:00 app[web.1]: email                     varchar(255),
-2013-02-09T20:20:13+00:00 app[web.1]: name                      varchar(255),
-2013-02-09T20:20:13+00:00 app[web.1]: constraint pk_users primary key (id))
-2013-02-09T20:20:13+00:00 app[web.1]: ;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: create table roles_users (
-2013-02-09T20:20:13+00:00 app[web.1]: roles_id                       integer not null,
-2013-02-09T20:20:13+00:00 app[web.1]: id                        integer not null,
-2013-02-09T20:20:13+00:00 app[web.1]: constraint pk_celestial_objects primary key (id))
-2013-02-09T20:20:13+00:00 app[web.1]: home_planet_id            bigint,
-2013-02-09T20:20:13+00:00 app[web.1]: constraint pk_roles_users primary key (roles_id, users_id))
-2013-02-09T20:20:13+00:00 app[web.1]: ;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: ;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-201
-3-02-09T20:20:13+00:00 app[web.1]: create table users_roles (
-2013-02-09T20:20:13+00:00 app[web.1]: roles_id                       integer not null,
-2013-02-09T20:20:13+00:00 app[web.1]: password                  varchar(255),
-2013-02-09T20:20:13+00:00 app[web.1]: create sequence celestial_objects_seq;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: create index ix_celestial_objects_user_1 on celestial_objects (user_id);
-2013-02-09T20:20:13+00:00 app[web.1]: alter table users add constraint fk_users_homePlanet_2 foreign key (home_planet_id) references celestial_objects (id) on delete restrict on update restrict;
-2013-02-09T20:20:13+00:00 app[web.1]: users_id                       bigint not null,
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: alter table roles_users add constraint fk_roles_users_users_02 foreign key (users_id) references users (id) on delete restrict on update restrict;
-2013-02-09T20:20:13+00:00 app[web.1]: alter table users_roles add constraint fk_users_roles_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: create sequence roles_seq;
-2013-02-09T20:20:13+00:00 app[web.1]: users_id                       bigint not null,
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: create sequence users_seq;
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: alter table users_roles add constraint fk_users_roles_roles_02 foreign key (roles_id) references roles (id) on delete restrict on update restrict;
-2013-02-09T20:20:13+00:00 app[web.1]: constraint pk_users_roles primary key (users_id, roles_id))
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: ;
-2013-02-09T20:20:13+00:00 app[web.1]: create index ix_users_homePlanet_2 on users (home_planet_id);
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: 
-2013-02-09T20:20:13+00:00 app[web.1]: alter table celestial_objects add constraint fk_celestial_objects_user_1 foreign key (user_id) references users (id) on delete restrict on update restrict;
-2013-02-09T20:20:13+00:00 app[web.1]: alter table roles_users add constraint fk_roles_users_roles_01 foreign key (roles_id) references roles (id) on delete restrict on update restrict;
-2013-02-09T20:20:13+00:00 app[web.1]: [[33mwarn[0m] play - Run with -DapplyEvolutions.default=true and -DapplyDownEvolutions.default=true if you want to run them automatically (be careful)
-2013-02-09T20:20:13+00:00 app[web.1]: Oops, cannot start the server.
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:478)
-2013-02-09T20:20:13+00:00 app[web.1]: @6d9npk664: Database 'default' needs evolution!
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:449)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:434)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:432)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at scala.collection.immutable.List.foreach(List.scala:309)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:432)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:63)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.utils.Threads$.withContextClassLoader(Threads.scala:18)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at scala.collection.immutable.List.foreach(List.scala:309)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.core.server.NettyServer$.createServer(NettyServer.scala:228)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1.apply(Play.scala:63)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1.apply(Play.scala:63)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:63)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.core.StaticApplication.<init>(ApplicationProvider.scala:54)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.Play$.start(Play.scala:62)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:259)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.core.server.NettyServer.main(NettyServer.scala)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:63)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at scala.Option.map(Option.scala:145)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:258)
-2013-02-09T20:20:13+00:00 app[web.1]: 	at play.core.server.NettyServer$.main(NettyServer.scala:258)
-2013-02-09T20:20:16+00:00 heroku[web.1]: Process exited with status 255
-2013-02-09T20:20:16+00:00 heroku[web.1]: State changed from starting to crashed
+2013-02-10T15:09:47+00:00 heroku[slugc]: Slug compilation finished
+2013-02-10T15:09:50+00:00 heroku[web.1]: Starting process with command `target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -DapplyDownEvolutions.default=true -Ddb.default.url=${DATABASE_URL} -Ddb.default.driver=org.postgresql.Driver`
+2013-02-10T15:09:51+00:00 app[web.1]: Play server process ID is 2
+2013-02-10T15:09:53+00:00 app[web.1]: [[37minfo[0m] play - database [default] connected at jdbc:postgresql://ec2-54-243-228-241.compute-1.amazonaws.com:5432/dbccl356odfb52
+2013-02-10T15:09:53+00:00 app[web.1]: [[31merror[0m] play - ERROR: syntax error at or near "FALSE"
+2013-02-10T15:09:53+00:00 app[web.1]: Oops, cannot start the server.
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:478)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:432)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.Evolutions$.evolutionScript(Evolutions.scala:306)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.Evolutions$.databaseEvolutions(Evolutions.scala:330)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.Evolutions$.checkEvolutionsState(Evolutions.scala:177)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:435)
+2013-02-10T15:09:53+00:00 app[web.1]: @6da3i2h4b: Database 'default' is in inconsistent state!
+2013-02-10T15:09:53+00:00 app[web.1]:   Position: 27 [ERROR:0, SQLSTATE:42601]
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:434)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at scala.collection.immutable.List.foreach(List.scala:309)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:432)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:63)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:63)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at scala.collection.immutable.List.foreach(List.scala:309)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:63)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1.apply(Play.scala:63)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.Play$$anonfun$start$1.apply(Play.scala:63)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.utils.Threads$.withContextClassLoader(Threads.scala:18)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.api.Play$.start(Play.scala:62)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.core.StaticApplication.<init>(ApplicationProvider.scala:54)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.core.server.NettyServer$.createServer(NettyServer.scala:228)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:259)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.core.server.NettyServer$$anonfun$main$5.apply(NettyServer.scala:258)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at scala.Option.map(Option.scala:145)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.core.server.NettyServer$.main(NettyServer.scala:258)
+2013-02-10T15:09:53+00:00 app[web.1]: 	at play.core.server.NettyServer.main(NettyServer.scala)
+2013-02-10T15:09:55+00:00 heroku[web.1]: Process exited with status 255
+2013-02-10T15:09:55+00:00 heroku[web.1]: State changed from starting to crashed
+2013-02-10T15:09:56+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=libretitan.herokuapp.com fwd=79.11.15.110 dyno= queue= wait= connect= service= status=503 bytes=
