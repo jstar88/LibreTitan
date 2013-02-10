@@ -1,0 +1,1 @@
+web: target/start -Dhttp.port=${PORT} -DapplyDownEvolutions.default=true -Ddb.default.url=${DATABASE_URL} -Ddb.default.driver=org.postgresql.Driver
