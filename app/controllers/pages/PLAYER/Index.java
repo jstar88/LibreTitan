@@ -11,7 +11,7 @@ import services.*;
 
 public class Index extends Controller
 {
-	public static Result show()
+	public static Result show(User user)
 	{
 		return ok(index.render());
 	}

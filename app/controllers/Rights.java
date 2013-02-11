@@ -15,8 +15,9 @@ public class Rights extends Controller {
 			throws ClassNotFoundException, IllegalAccessException,
 			InvocationTargetException, ExceptionInInitializerError,
 			NoSuchMethodException {
-
-		if (!RightsValidator.haveAccess(Authenticator.getCurrentUser(), rights)) {
+		
+		User user = Authenticator.getCurrentUser();
+		if (!RightsValidator.haveAccess(user, rights)) {
 			return badRequest(notAllowed.render());
 		}
 
@@ -25,8 +26,8 @@ public class Rights extends Controller {
 				.forName(
 						"controllers.pages." + rights.toLowerCase() + "."
 								+ page)
-				.getDeclaredMethod(methodName, new Class[] {})
-				.invoke(null, new Object[] {});
+				.getDeclaredMethod(methodName, new Class[] {User.class})
+				.invoke(null, new Object[] {user});
 
 	}
 }
