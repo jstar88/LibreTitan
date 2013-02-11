@@ -1,0 +1,23 @@
+@(title: String)(page: Html)
+
+@main("Form samples") {
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		@navbar()
+	</div>
+	<div class="container-fluid">
+            <div class="row-fluid">
+            	<div class="span3">
+					<div class="well sidebar-nav">
+						@menu()
+					</div>
+            	</div>
+            	<div class="span9">
+            		@page
+            	</div>
+            </div>
+            <footer>
+				<p>© Libretitan 2013</p>
+			</footer>
+    </div>
+
+}
