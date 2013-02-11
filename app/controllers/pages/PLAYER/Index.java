@@ -1,4 +1,4 @@
-package controllers.pages.PLAYER;
+package controllers.pages.player;
 
 
 import play.*;

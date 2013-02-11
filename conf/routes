@@ -1,17 +1,5 @@
 # Visitor
 GET / controllers.Application.index()
-
-# User
-GET /game/:page/:method            controllers.rights.PLAYER.validate(page: String , method: String) 
-
-# Game Operator
-GET /moderation/:page/:method        controllers.rights.GO.validate(page: String , method: String)
-
-# Super Game Operator
-GET /superModeration/:page/:method  controllers.rights.SGO.validate(page: String , method: String)
-
-# Game Admin
-GET /administration/:page/:method    controllers.rights.GA.validate(page: String , method: String)
                                 
 # Authentication
 GET /login  controllers.Authentication.login()
@@ -23,6 +11,8 @@ GET /signup  controllers.Registration.signup()
 POST /signup controllers.Registration.registers()
 GET /delete  controllers.Registration.delete()
 
-
 # Static files
 GET     /assets/*file           controllers.Assets.at(path="/public", file)
+
+# User rights validation
+GET /:rights/:page/:method    controllers.Rights.validate(rights: String , page: String , method: String)
