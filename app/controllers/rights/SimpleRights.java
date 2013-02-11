@@ -20,7 +20,7 @@ class SimpleRights extends Controller {
 				new Class[] {}).invoke(null, new Object[] {});
 		if (currentUser != null) {
 			page = page.substring(0, 1).toUpperCase() + page.substring(1);
-			return (Result) Class.forName("controllers.pages."+page).getDeclaredMethod(methodName,
+			return (Result) Class.forName("controllers.pages."+className.getSimpleName()+"."+page).getDeclaredMethod(methodName,
 					new Class[] {}).invoke(null, new Object[] {});
 		} else {
 			return onInvalid();
