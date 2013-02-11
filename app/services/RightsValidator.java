@@ -7,18 +7,23 @@ public class RightsValidator {
 		if (user == null) {
 			return false;
 		}
-		switch (rights.toLowerCase()) {
-		case "player":
+		if(rights.equalsIgnoreCase("player"))
+		{
 			return user.type > 0;
-		case "go":
-			return user.type > 1;
-		case "sgo":
-			return user.type > 2;
-		case "ga":
-			return user.type > 3;
-		default:
-			return false;
 		}
+		if(rights.equalsIgnoreCase("go"))
+		{
+			return user.type > 1;
+		}
+		if(rights.equalsIgnoreCase("sgo"))
+		{
+			return user.type > 2;
+		}
+		if(rights.equalsIgnoreCase("ga"))
+		{
+			return user.type > 3;
+		}
+		return false;
 	}
 
 }
