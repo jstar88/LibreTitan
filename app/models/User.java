@@ -22,6 +22,8 @@ public class User extends Model implements Loginable {
 	public Long id;
 	
 	public Integer type;
+	
+	public String skin="blue";
 
 	@Required(groups = {All.class, Step1.class})
     @Email(groups = {All.class, Step1.class})

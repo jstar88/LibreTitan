@@ -17,6 +17,7 @@ create table roles (
 create table users (
   id                        bigint not null,
   type                      integer,
+  skin                      varchar(255),
   email                     varchar(255),
   name                      varchar(255),
   password                  varchar(255),

@@ -13,7 +13,7 @@ public class Index extends Controller
 {
 	public static Result show(User user)
 	{
-		return ok(index.render());
+		return ok(index.render(user.skin));
 	}
 	
 }

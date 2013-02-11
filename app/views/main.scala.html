@@ -1,15 +1,18 @@
-@(title: String)(content: Html)
+@(skin: String)(content: Html)
 
 <!DOCTYPE html>
 
 <html lang="en">
     <head>
     	<meta charset="utf-8"> 
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/bootstrap.min.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("img/favicon.png")">
-        <script async src="@routes.Assets.at("js/jquery-1.9.0.min.js")"></script>
-        <script async src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+        <title>LibreTitan</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap/bootstrap.min.css")">
+        @if(skin != null && !skin.equals("")) {
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/"+skin+".min.css")">
+        }
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script async src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+        <script async src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
     </head>
     <body>
     	<div class="container">
