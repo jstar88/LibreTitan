@@ -73,6 +73,9 @@ public class Registration extends Controller {
 		// encrypt password
 		user.password = Encrypter.sha1(user.password);
 
+		//users
+		user.type = 1;
+		
 		// save user in db
 		user.save();
 

@@ -20,6 +20,8 @@ public class User extends Model implements Loginable {
 
 	@Id
 	public Long id;
+	
+	public Integer type;
 
 	@Required(groups = {All.class, Step1.class})
     @Email(groups = {All.class, Step1.class})
