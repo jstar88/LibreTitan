@@ -1,23 +1,40 @@
 @(skin: String)(page: Html)
 
 @main(skin) {
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		@navbar()
-	</div>
+	<script >
+    $(document).ready(function() {
+			
+		$.ajax({
+			url : '@routes.StaticFilesController.getTemplate("game/index")',
+			dataType : 'text',
+			success : function (data,stato) {
+			//template = new Hogan.Template(data);
+			var template = new Hogan.Template();
+			eval('var func = '+data);
+			template.r = func;
+			info = {text: 'Hello World'};
+					$("#content").append(template.render(info));
+			    },
+			    error : function (richiesta,stato,errori) {
+			        alert("E' evvenuto un errore. Il stato della chiamata: "+stato +":"+errori);
+			    }
+			});
+	});
+    </script>
+	@navbar()
 	<div class="container-fluid">
-            <div class="row-fluid">
-            	<div class="span3">
-					<div class="well sidebar-nav">
-						@menu()
-					</div>
-            	</div>
-            	<div class="span9">
-            		@page
-            	</div>
-            </div>
-            <footer>
-				<p>© Libretitan 2013</p>
-			</footer>
+    	<div class="row-fluid">
+    		<div class="span2">
+				@menu()
+			</div>
+			<div class="span10" id ="content">
+				@page
+			</div>
+        </div>
+        <hr>
+        <footer>
+			<p>© LibreTitan 2013</p>
+		</footer>
     </div>
 
 }

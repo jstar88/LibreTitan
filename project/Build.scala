@@ -24,7 +24,7 @@ def customLessEntryPoints(base: File): PathFinder = (
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here  
-    lessEntryPoints <<= baseDirectory(customLessEntryPoints)    
+    //lessEntryPoints <<= baseDirectory(customLessEntryPoints)    
   )
 
 }

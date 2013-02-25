@@ -12,7 +12,12 @@ POST /signup controllers.Registration.registers()
 GET /delete  controllers.Registration.delete()
 
 # Static files
-GET     /assets/*file           controllers.Assets.at(path="/public", file)
+GET     /assets/stylesheets/img/:name      controllers.StaticFilesController.getBoostrapImg(name)
+GET     /assets/images/*name 			controllers.StaticFilesController.getImg(name)
+GET     /assets/stylesheets/*name       controllers.StaticFilesController.getCss(name)
+GET     /assets/javascripts/*name            controllers.StaticFilesController.getJs(name)
+GET     /assets/templates/*name            controllers.StaticFilesController.getTemplate(name)
+
 
 # User rights validation
 GET /:rights/:page/:method    controllers.Rights.validate(rights: String , page: String , method: String)
