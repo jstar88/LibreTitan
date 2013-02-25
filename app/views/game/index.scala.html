@@ -1,4 +1,25 @@
 @(skin: String)
 @ingame(skin) {
 
+	<script >
+    $(document).ready(function() {
+			
+		$.ajax({
+			url : '@routes.StaticFilesController.getTemplate("game/index")',
+			dataType : 'text',
+			success : function (data,stato) {
+			//template = new Hogan.Template(data);
+			var template = new Hogan.Template();
+			eval('var func = '+data);
+			template.r = func;
+			info = {text: 'Hello World'};
+					$("#content").append(template.render(info));
+			    },
+			    error : function (richiesta,stato,errori) {
+			        alert("E' evvenuto un errore. Il stato della chiamata: "+stato +":"+errori);
+			    }
+			});
+	});
+    </script>
+
 }
