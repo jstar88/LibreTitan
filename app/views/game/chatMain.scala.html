@@ -1,0 +1,32 @@
+@(skin: String, connected: String)(content: Html) 
+@ingame(skin) {
+
+<div class="container">
+	<a class="brand" href="@routes.Application.index()">Websocket Chat-Room</a> 
+	@if(connected != null) {
+		<p class="pull-right">
+			Logged in as @connected — <a href="@routes.Application.index()">Disconnect</a>
+		</p>
+	} else {
+		<form action="@routes.Rights.validate("player","chat","chatRoom")" class="pull-right">
+			<input id="username" name="username" class="input-small" type="text" placeholder="Username">
+			<button class="btn" type="submit">Sign in</button>
+		</form>
+	}
+
+</div>
+
+
+<div class="container">
+
+	<div class="content">@content</div>
+
+	<footer>
+		<p>
+			<a href="http://www.playframework.com">www.playframework.com</a>
+		</p>
+	</footer>
+
+</div>
+
+}

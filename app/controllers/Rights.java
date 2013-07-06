@@ -67,11 +67,22 @@ public class Rights extends Controller {
 			String methodName, User user) throws Exception {
 
 		page = page.substring(0, 1).toUpperCase() + page.substring(1);
-		return Class
+		Object returns = null;
+		try
+		{
+		returns = Class
 				.forName(
 						"controllers.pages." + rights.toLowerCase() + "."
 								+ page)
 				.getDeclaredMethod(methodName, new Class[] { User.class })
 				.invoke(null, new Object[] { user });
+		}
+		catch(Exception e)
+		{
+			throw new Exception(rights+":"+page+":"+methodName);
+		}
+		
+			return returns;
+		
 	}
 }
