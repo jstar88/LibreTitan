@@ -19,5 +19,8 @@ GET     /assets/javascripts/*name            controllers.StaticFilesController.g
 GET     /assets/templates/*name            controllers.StaticFilesController.getTemplate(name)
 
 
-# User rights validation
-GET /:rights/:page/:method    controllers.Rights.validate(rights: String , page: String , method: String)
+# User rights validation http
+GET /web/:rights/:page/:method    controllers.Rights.validate(rights: String , page: String , method: String)
+
+# User rights validation websocket
+GET /socket/:rights/:page/:method    controllers.Rights.validateWebSocketJsonNode(rights: String , page: String , method: String)

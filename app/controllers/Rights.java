@@ -10,6 +10,7 @@ import java.lang.reflect.*;
 import play.libs.F;
 import play.libs.F.*;
 import java.util.concurrent.Callable;
+import org.codehaus.jackson.*;
 
 public class Rights extends Controller {
 
@@ -25,24 +26,20 @@ public class Rights extends Controller {
 			return badRequest(notAllowed.render());
 		}
 
-		// elaborate the Result
-		Promise<Result> promiseOfResult = play.libs.Akka
-				.future(new Callable<Result>() {
-					public Result call() throws Exception {
-						return (Result) callController(rights, page,
-								methodName, user);
-					}
-				});
-
-		// when the Result is ready return it
-		return async(promiseOfResult.map(new Function<Result, Result>() {
-			public Result apply(Result result) {
-				return result;
-			}
-		}));
+		return (Result) callController(rights, page, methodName, user);
+		/*
+		 * // elaborate the Result Promise<Result> promiseOfResult =
+		 * play.libs.Akka .future(new Callable<Result>() { public Result call()
+		 * throws Exception { return (Result) callController(rights, page,
+		 * methodName, user); } });
+		 * 
+		 * // when the Result is ready return it return
+		 * async(promiseOfResult.map(new Function<Result, Result>() { public
+		 * Result apply(Result result) { return result; } }));
+		 */
 
 	}
-	
+
 	/**
 	 * Execute the http request and return the websocket
 	 */
@@ -52,13 +49,18 @@ public class Rights extends Controller {
 		// check if current user have access to target websocket
 		final User user = Authenticator.getCurrentUser();
 		if (!RightsValidator.haveAccess(user, rights)) {
-			return null;
+			throw new Exception("ee");
 		}
-		
-		//call the controller that return a websocket
+
+		// call the controller that return a websocket
 		return (WebSocket) callController(rights, page, methodName, user);
 
 	}
+	public static WebSocket<JsonNode> validateWebSocketJsonNode(String rights, String page,
+			String methodName) throws Exception {
+		return (WebSocket<JsonNode>) validateWebSocket(rights,page,methodName);
+	}
+	
 
 	/**
 	 * Call the corrispective controller and return the Result
@@ -68,21 +70,18 @@ public class Rights extends Controller {
 
 		page = page.substring(0, 1).toUpperCase() + page.substring(1);
 		Object returns = null;
-		try
-		{
-		returns = Class
-				.forName(
-						"controllers.pages." + rights.toLowerCase() + "."
-								+ page)
-				.getDeclaredMethod(methodName, new Class[] { User.class })
-				.invoke(null, new Object[] { user });
+		try {
+			returns = Class
+					.forName(
+							"controllers.pages." + rights.toLowerCase() + "."
+									+ page)
+					.getDeclaredMethod(methodName, new Class[] { User.class })
+					.invoke(null, new Object[] { user });
+		} catch (Exception e) {
+			throw new Exception(rights + ":" + page + ":" + methodName);
 		}
-		catch(Exception e)
-		{
-			throw new Exception(rights+":"+page+":"+methodName);
-		}
-		
-			return returns;
-		
+
+		return returns;
+
 	}
 }
