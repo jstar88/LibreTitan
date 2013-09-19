@@ -16,7 +16,7 @@ class ShowMessagesPage
 
 		$OwnerID		= intval ( (isset($_GET['id'])?$_GET['id']:NULL) );
 		$MessCategory  	= intval ( (isset($_GET['messcat'])?$_GET['messcat']:NULL) );
-		$MessPageMode  	= addslashes ( mysql_escape_value ( (isset($_GET['mode'])?$_GET['mode']:NULL) ) );
+		$MessPageMode  	= addslashes (  ( (isset($_GET['mode'])?$_GET['mode']:NULL) ) );
 		$DeleteWhat    	= isset($_POST['deletemessages'])?$_POST['deletemessages']:NULL;
 
 		if ( isset ( $DeleteWhat ) )
@@ -207,13 +207,13 @@ class ShowMessagesPage
 				{
 					$parse['message_id']		=	$CurMess['message_id'];
 					$parse['message_date']		=	date ( "m-d H:i:s" , $CurMess['message_time'] );
-					$parse['message_from']		=   stripslashes( $CurMess['message_from'] );
-					$parse['message_subject']	=	stripslashes( $CurMess['message_subject'] );
+					$parse['message_from']		=   ( $CurMess['message_from'] );
+					$parse['message_subject']	=	( $CurMess['message_subject'] );
 
 
 					if ( $CurMess['message_type'] == 1 )
 					{
-						$parse['message_subject'] .= "<a href=\"game.php?page=messages&mode=write&amp;id=". $CurMess['message_sender'] ."&amp;subject=Re: " . htmlspecialchars( $CurMess['message_subject']) ."\">";
+						$parse['message_subject'] .= "<a href=\"game.php?page=messages&mode=write&amp;id=". $CurMess['message_sender'] ."&amp;subject=Re: " . ( $CurMess['message_subject']) ."\">";
 						$parse['message_subject'] .= " <img src=\"". DPATH ."img/m.gif\" border=\"0\"></a>\n";
 					}
 					else
@@ -221,7 +221,7 @@ class ShowMessagesPage
 						$parse['message_subject'] .= "";
 					}
 
-					$parse['message_text']		= stripslashes( nl2br( $CurMess['message_text'] ) );
+					$parse['message_text']		= ( nl2br( $CurMess['message_text'] ) );
 
 					$messagesBody				.= parsetemplate ( $subTemplateMessages , $parse );
 				}

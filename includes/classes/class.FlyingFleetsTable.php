@@ -54,12 +54,12 @@ class FlyingFleetsTable
 			}
 			elseif($user['spy_tech'] >= 2 && $user['spy_tech'] < 4 && $FleetRow['fleet_owner'] != $user['id'])
 			{
-				$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow[fleet_amount].$lang['cff_ships']."<font></td></tr>";
+				$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow['fleet_amount'].$lang['cff_ships']."<font></td></tr>";
 			}
 			else
 			{
 				if($FleetRow['fleet_owner'] != $user['id'])
-					$FleetPopup .= "<tr><td width=100% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow[fleet_amount].$lang['cff_ships'].":<font></td></tr>";
+					$FleetPopup .= "<tr><td width=100% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow['fleet_amount'].$lang['cff_ships'].":<font></td></tr>";
 
 				foreach($FleetRec as $Item => $Group)
 				{

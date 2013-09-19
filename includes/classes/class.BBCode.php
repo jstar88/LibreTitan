@@ -54,7 +54,7 @@ class bbCode
 		    '$this->sizefix(\'\\1\',\'\\2\')'
 		);
 
-		return preg_replace($pattern, $replace, nl2br(htmlspecialchars(stripslashes($string))));
+		return preg_replace($pattern, $replace, nl2br(stripslashes($string)));
 	}
 
 	private function sCode($string)
@@ -96,7 +96,7 @@ class bbCode
 	{
 		$title = stripslashes($title);
 		$url   = trim($url);
-		return (substr ($url, 0, 5) == 'data:' || substr ($url, 0, 5) ==  'file:' || substr ($url, 0, 11) == 'javascript:' || substr  ($url, 0, 4) == 'jar:' || substr ($url, 0, 1) == '#') ? '' : '<a  href="' . $url . '" title="'.htmlspecialchars($title,  ENT_QUOTES).'">'.htmlspecialchars($title, ENT_QUOTES).'</a>';
+		return (substr ($url, 0, 5) == 'data:' || substr ($url, 0, 5) ==  'file:' || substr ($url, 0, 11) == 'javascript:' || substr  ($url, 0, 4) == 'jar:' || substr ($url, 0, 1) == '#') ? '' : '<a  href="' . $url . '" title="'.$title.'">'.$title.'</a>';
 	}
 
 	private function fontfix($font, $title)

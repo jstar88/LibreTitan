@@ -51,7 +51,9 @@ if ( INSTALL != TRUE )
 	include ( XGP_ROOT . 'includes/functions/GetBuildingTime.php' );
 	include ( XGP_ROOT . 'includes/functions/HandleElementBuildingQueue.php' );
 	include ( XGP_ROOT . 'includes/functions/PlanetResourceUpdate.php' );
-
+    require_once ( XGP_ROOT . 'includes/classes/class.SecurePage.php' );
+    connectToDB();
+    SecurePage::run();
 	$game_lang	=	read_config ( 'lang' );
 
 	define ( 'DEFAULT_LANG'	, (	$game_lang  == '' ) ? "spanish" : $game_lang );
@@ -66,8 +68,6 @@ if ( INSTALL != TRUE )
 		$Result			= $Result->CheckUser ( $IsUserChecked );
 		$IsUserChecked 	= $Result['state'];
 		$user          	= $Result['record'];
-		require ( XGP_ROOT . 'includes/classes/class.SecurePage.php' );
-		SecurePage::run();
 
 		if ( read_config ( 'game_disable' ) == 0 && $user['authlevel'] == 0 )
 		{

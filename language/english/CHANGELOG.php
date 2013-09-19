@@ -3,6 +3,10 @@
 $lang['Version']     = 'Version';
 $lang['Description'] = 'Description';
 $lang['changelog']   = array(
+'1.0.0' => 'Libretitan
+- Removed useless input checks.-
+- Updated the class xml ',
+
 
 '2.10.6' => ' 13/07/2013
 - [Mejoras]

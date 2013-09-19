@@ -26,7 +26,8 @@ function unset_vars ( $prefix )
 // READS CONFIGURATIONS
 function read_config ( $config_name = '' , $all = FALSE )
 {
-	$configs		= xml::getInstance ( 'config.xml' );
+    
+	$configs		= xml::getInstance (XGP_ROOT . 'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR .  'config.xml' );
 
 	if ( $all )
 	{
@@ -42,7 +43,7 @@ function read_config ( $config_name = '' , $all = FALSE )
 // WRITES CONFIGURATIONS
 function update_config ( $config_name, $config_value )
 {
-	$configs		= xml::getInstance ( 'config.xml' );
+	$configs		= xml::getInstance (XGP_ROOT . 'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . 'config.xml' );
 
 	$configs->write_config ( $config_name , $config_value );
 }
@@ -238,64 +239,42 @@ function BuildPlanetAdressLink ( $CurrentPlanet )
 	return $Link;
 }
 
-function doquery ( $query , $table , $fetch = FALSE )
+function connectToDB()
 {
-	global $link, $debug;
+    global $link, $debug, $prefix;
+    if (!$link)
+    {
+        require (XGP_ROOT . 'config.php');
+        $prefix = $dbsettings["prefix"];
+        $link = mysql_connect($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"]) or $debug->error(mysql_error() . "<br />$query", "SQL Error");
 
-	require ( XGP_ROOT . 'config.php' );
-
-	if ( !$link )
-	{
-		$link = mysql_connect	(
-									$dbsettings["server"],
-									$dbsettings["user"],
-									$dbsettings["pass"]
-								) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
-
-		mysql_select_db ( $dbsettings["name"] ) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
-
-		echo mysql_error();
-	}
-
-	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
-	$sqlquery 	= mysql_query ( $sql ) or $debug->error ( mysql_error() . "<br />$sql<br />" , "SQL Error" );
-
-	unset ( $dbsettings );
-
-	global $numqueries,$debug;
-	$numqueries++;
-
-	$debug->add ( "<tr><th>Query $numqueries: </th><th>$query</th><th>$table</th><th>$fetch</th></tr>");
-
-	if ( $fetch )
-	{
-		return mysql_fetch_array ( $sqlquery );
-	}
-	else
-	{
-		return $sqlquery;
-	}
+        mysql_select_db($dbsettings["name"]) or $debug->error(mysql_error() . "<br />$query", "SQL Error");
+        echo mysql_error();
+         unset ( $dbsettings );
+    }
 
 }
 
-function mysql_escape_value ( $inp ) 
-{ 
-	/* By feedr
-	http://www.php.net/manual/en/function.mysql-real-escape-string.php#101248
-	*/
+function doquery($query, $table, $fetch = false)
+{
+    global $link, $prefix, $numqueries, $debug;
+    connectToDB();
+    $sql = str_replace("{{table}}", $prefix . $table, $query);
+    $sqlquery = mysql_query($sql) or $debug->error(mysql_error() . "<br />$sql<br />", "SQL Error");
 
-	if ( is_array ( $inp ) )
-	{
-		return array_map ( __METHOD__ , $inp );	
-	}  
-	
-	if ( ! empty ( $inp ) && is_string ( $inp ) ) 
-	{ 
-		return str_replace ( array ( '\\' , "\0" , "\n" , "\r" , "'" , '"' , "\x1a" ) , array ( '\\\\' , '\\0' , '\\n' , '\\r' , "\\'" , '\\"' , '\\Z' ) , $inp ); 
-	} 
-	
-	return $inp; 
-}
+    $numqueries++;
+
+    $debug->add("<tr><th>Query $numqueries: </th><th>$query</th><th>$table</th><th>$fetch</th></tr>");
+
+    if ($fetch)
+    {
+        return mysql_fetch_array($sqlquery);
+    } else
+    {
+        return $sqlquery;
+    }
+
+}  
 
 
 ?>
