@@ -1,1 +1,0 @@
-Hogan.compile(template, {asString: true});
